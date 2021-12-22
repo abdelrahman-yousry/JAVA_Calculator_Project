@@ -12,21 +12,17 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author yomna
+ * @author Abdelrahman Yousry
  */
 public class Calc_GUI extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
-        
+        Parent root = FXMLLoader.load(getClass().getResource("Converter_FXML.fxml"));        
+        Scene scene = new Scene(root);    
         stage.setScene(scene);
         stage.show();
-//        System.out.println(System.getProperty("user.dir"));
-//        url('file:D:\ITI\5-Java\Labs\Calc_GUI/tst.PNG')
-//url(file:./src/calc_gui/tst.PNG)
+
     }
 
     /**
