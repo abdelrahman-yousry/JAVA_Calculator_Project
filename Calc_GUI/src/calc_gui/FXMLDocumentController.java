@@ -10,12 +10,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 
 
 /**
  *
- * @author yomna
+ * @author Nehal
  */
 public class FXMLDocumentController implements Initializable {
     
@@ -24,25 +25,23 @@ public class FXMLDocumentController implements Initializable {
 //    private Button button;
     @FXML
     private ToggleButton theme;
-    
+    private Label res;
+
 
      @FXML
     private void theme_change(ActionEvent event) {
-//        System.out.println("yyyyyyyyyy!");
-//        theme.getScene().getRoot().setEffect(new );
+
         if(theme.isSelected()){
-            theme.setStyle("-fx-background-image: url(file:./src/calc_gui/tst2.PNG);");
-//            theme.setText("yyy");
-        }
+            theme.setStyle("-fx-background-image: url(file:./src/calc_gui/tst2.PNG);");        }
         else{
             theme.setStyle("-fx-background-image: url(file:./src/calc_gui/tst1.PNG);");
-//            theme.setText("xxx");            
+          
         }
     }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }

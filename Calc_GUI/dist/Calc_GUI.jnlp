@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Calc_GUI.jar" size="58390" download="eager" />
+    <jar href="Calc_GUI.jar" size="58748" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="calc_gui.Calc_GUI"  name="Calc_GUI" />
   <update check="always"/>
