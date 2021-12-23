@@ -1,0 +1,50 @@
+.trigButton {
+  -fx-background-color:  rgb(214, 212, 216);
+  -fx-background-radius: 100;   
+}
+  
+.trigButton:hover {
+    -fx-background-color: rgb(225, 223, 226);
+}
+
+.trigButton:pressed {
+  -fx-background-color:  rgb(214, 212, 216);
+  -fx-border-radius: 100px ;
+  -fx-border-color: cornflowerblue;
+}
+
+.defaultbutton{
+    -fx-background-color: 
+        linear-gradient(#cfcfcf 0%, #ebebeb 49%, #ebebeb 50%, #cfcfcf 100%);
+    -fx-background-radius: 100; 
+}
+
+
+.defaultbutton:hover{
+    -fx-background-color: #dddddd;
+}
+
+
+.defaultbutton:pressed{
+    -fx-background-color: 
+        linear-gradient(#cfcfcf 0%, #ebebeb 49%, #ebebeb 50%, #cfcfcf 100%); 
+    -fx-border-radius: 100px ;
+    -fx-border-color: cornflowerblue;
+}
+
+.equalbutton{
+    -fx-background-color:  rgb(112, 217, 112);
+    -fx-background-radius: 100;
+}
+
+.equalbutton:hover{
+    -fx-background-color:  rgb(132, 237, 132);    
+}
+
+.equalbutton:pressed{
+    -fx-background-color: rgb(112, 217, 112);
+    -fx-border-radius: 100px ;
+    -fx-border-color: cornflowerblue;
+}
+
+

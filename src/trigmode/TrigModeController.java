@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -39,6 +40,15 @@ public class TrigModeController implements Initializable {
     public Button arcsec;
     public Button arccsc;
     public Button arccot;
+    public AnchorPane anchor;
+    @FXML
+    private Button xpower;
+    @FXML
+    private Button log;
+    @FXML
+    private Button mod;
+    @FXML
+    private Button ln;
     
     
     private void handleButtonAction(ActionEvent event) {
@@ -53,6 +63,13 @@ public class TrigModeController implements Initializable {
 
     @FXML
     private void theme_change(ActionEvent event) {
+        if(theme.isSelected()){
+            anchor.setStyle("-fx-background-image: url(file:./src/trigmode/normal.png);");           
+        }
+        else{
+            anchor.setStyle("-fx-background-image: url(file:./src/trigmode/dark.png);");
+         //anchor.setStyle("-fx-background-color: black;");
+        }
     }
 
     @FXML
@@ -93,10 +110,17 @@ public class TrigModeController implements Initializable {
 
     @FXML
     private void radButtonHandle(ActionEvent event) {
+        
         if(radian.isSelected())
             radian.setText("Degree");
         else
             radian.setText("Radian");
+    }
+
+    @FXML
+    private void lnEventAction(ActionEvent event) {
+       // anchor.getChildren().getClass()instanceof Button;
+       //ln.setStyle("-fx-border-radius: 100px; -fx-border-color: rgb(5,148,199)");
     }
     
 }

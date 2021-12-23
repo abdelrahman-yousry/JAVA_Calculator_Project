@@ -1,0 +1,62 @@
+.trigButton {
+  -fx-background-color:  rgb(77, 77, 255);
+  -fx-background-radius: 100;   
+}
+  
+.trigButton:hover {
+    -fx-background-color: rgb(100, 100, 255);
+}
+
+.trigButton:pressed {
+  -fx-background-color:  rgb(77, 77, 255);
+  -fx-border-radius: 100px ;
+  -fx-border-color: cornflowerblue;
+}
+
+.defaultbutton{
+    -fx-background-color: rgb(84, 84, 84);
+    -fx-background-radius: 100;   
+    -fx-border-radius: 100px;
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(77, 77, 255);
+}
+
+.defaultbutton:hover{
+    -fx-background-color: rgb(114, 114, 114);
+}
+
+.defaultbutton:pressed{
+    -fx-background-color: rgb(84, 84, 84);
+    -fx-border-radius: 100px ;
+    -fx-border-color: white;
+}
+
+.equalbutton{
+    -fx-background-color:  rgb(1, 255, 0);
+    -fx-background-radius: 100;
+}
+
+.equalbutton:hover{
+    -fx-background-color:  rgb(159, 255, 158);    
+}
+
+.equalbutton:pressed{
+    -fx-background-color: rgb(1, 255, 0);
+    -fx-border-radius: 100px ;
+    -fx-border-color: white;
+}
+
+.clearbutton{
+    -fx-background-color:  rgb(255, 0, 0);
+    -fx-background-radius: 100;
+}
+
+.clearbutton:hover{
+    -fx-background-color:  rgb(255, 105, 105);    
+}
+
+.clearbutton:pressed{
+    -fx-background-color: rgb(255, 0, 0);
+    -fx-border-radius: 100px ;
+    -fx-border-color: white;
+}
