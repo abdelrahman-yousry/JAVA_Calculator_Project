@@ -1,4 +1,4 @@
-package calc_gui;
+package calc_conversions_handling;
 
 
 import java.net.URL;
@@ -8,10 +8,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
@@ -39,10 +37,11 @@ public class Converter_FXMLController implements Initializable {
     MenuItem mm_to,cm_to, m_to,km_to, mile_to ;
     MenuItem m_p_s_from,km_p_h_from,mile_p_h_from ;
     MenuItem m_p_s_to,km_p_h_to,mile_p_h_to ;
-    @FXML
-    private MenuItem timeconv1;
-    @FXML
-    private MenuItem timeconv2;
+	
+	//////
+    MenuItem bit_from, byte_from,kilo_byte_from, mega_byte_from ,giga_byte_from ; 
+    MenuItem bit_to, byte_to,kilo_byte_to, mega_byte_to ,giga_byte_to ;
+	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ta2.setEditable(false);
@@ -186,6 +185,56 @@ public class Converter_FXMLController implements Initializable {
                         result=dnum1*1.60934;
                     }
                     break;
+                    case(6):
+                    if(from==1 && to==2)
+                    {
+                        result=dnum1/8;
+                    }
+                    else if(from==1 && to==3)
+                    {
+                        result=dnum1*0.000000125; 
+                    }
+                    else if(from==1 && to==4)
+                    {
+                        result=dnum1*0.000000000125;
+                    }
+                    else if(from==2 && to==1)
+                    {
+                        result=dnum1*8;
+                    }
+                    else if(from==2 && to==3)
+                    {
+                        result=dnum1*0.000001;
+                    }
+                    else if (from==2 && to==4)
+                    {
+                        result=dnum1*0.000000001;
+                    }
+			        else if(from==3 && to==1)
+                    {
+                        result=dnum1*8000000;
+                    }
+                    else if(from==3 && to==2)
+                    {
+                        result=dnum1*1000000;
+                    }
+                    else if (from==3 && to==4)
+                    {
+                        result=dnum1/1000;
+                    }
+			        else if(from==4 && to==1)
+                    {
+                        result=dnum1*72000000;
+                    }
+                    else if(from==4 && to==2)
+                    {
+                        result=dnum1*9000000;
+                    }
+                    else if (from==4 && to==3)
+                    {
+                        result=dnum1*1000;
+                    }					
+                    break;			
             }
             ta2.appendText(result.toString());
             if(from==to && to!=0)
@@ -211,8 +260,8 @@ public class Converter_FXMLController implements Initializable {
         String s=conv_mi.getText();
         unit_conv_mb.setText(s);
         from=to=0;
-        to_mb.getItems().removeAll(mm_to,cm_to,m_to ,km_to, mile_to,m_p_s_to,km_p_h_to,mile_p_h_to);
-        from_mb.getItems().removeAll(mm_from,cm_from,m_to ,km_from, mile_from,m_p_s_from,km_p_h_from,mile_p_h_from);
+        to_mb.getItems().removeAll(mm_to,cm_to,m_to ,km_to, mile_to,m_p_s_to,km_p_h_to,mile_p_h_to,bit_to, byte_to,kilo_byte_to, mega_byte_to ,giga_byte_to);
+        from_mb.getItems().removeAll(mm_from,cm_from,m_to ,km_from, mile_from,m_p_s_from,km_p_h_from,mile_p_h_from,bit_from, byte_from,kilo_byte_from, mega_byte_from ,giga_byte_from);
         if(s.equals("Length Converter"))
     {
         conv_mode_detect=4;
@@ -396,6 +445,99 @@ public class Converter_FXMLController implements Initializable {
                 from=3;
             }
             });
+    }
+	else if(s.equals("Data Converter"))
+	{
+        conv_mode_detect=6;
+        bit_from=new MenuItem("Bit");
+        byte_from=new MenuItem("Byte");
+        mega_byte_from=new MenuItem("Megabyte");
+        giga_byte_from=new MenuItem("Gigabyte");
+        bit_to=new MenuItem("Bit");
+        byte_to=new MenuItem("Byte");
+        mega_byte_to=new MenuItem("Megabyte");
+        giga_byte_to=new MenuItem("Gigabyte");
+        from_mb.getItems().add(bit_from);
+        from_mb.getItems().add(byte_from);
+        from_mb.getItems().add(mega_byte_from);
+        from_mb.getItems().add(giga_byte_from);
+        to_mb.getItems().add(bit_to);
+        to_mb.getItems().add(byte_to);
+		to_mb.getItems().add(mega_byte_to);
+        to_mb.getItems().add(giga_byte_to);
+        bit_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                to_mb.setText(bit_to.getText());
+                to=1;
+            }
+            });
+        byte_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                to_mb.setText(byte_to.getText());
+                to=2;
+            }
+            });
+        mega_byte_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                to_mb.setText(mega_byte_to.getText());
+                to=3;
+            }
+            });
+        giga_byte_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                to_mb.setText(giga_byte_to.getText());
+                to=4;
+            }
+            });
+        bit_from.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                from_mb.setText(bit_from.getText());
+                from=1;
+            }
+            });
+        byte_from.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                from_mb.setText(byte_from.getText());
+                from=2;
+            }
+            });	
+        mega_byte_from.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                from_mb.setText(mega_byte_from.getText());
+                from=3;
+            }
+            });	
+        giga_byte_from.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                from_mb.setText(giga_byte_from.getText());
+                from=4;
+            }
+            });			
 }
 }
 }
+

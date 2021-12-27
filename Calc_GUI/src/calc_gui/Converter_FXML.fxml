@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calc_gui.Converter_FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calc_conversions_handling.Converter_FXMLController">
     <children>
       <MenuBar id="menubar" layoutY="1.0" prefHeight="32.0" prefWidth="508.0">
         <menus>
@@ -34,10 +34,11 @@
             <MenuItem fx:id="timeconv" mnemonicParsing="false" onAction="#conv_mode" text="Time Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Temp Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Freq Converter" />
-            <MenuItem fx:id="timeconv1" mnemonicParsing="false" onAction="#conv_mode" text="Length Converter" />
-            <MenuItem fx:id="timeconv2" mnemonicParsing="false" onAction="#conv_mode" text="Speed Converter" />
-            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Angle Converter" />
+            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Geometry" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Data Converter" />
+            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Angle Converter" />
+            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Length Converter" />
+            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Speed Converter" />
         </items>
          <effect>
             <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
