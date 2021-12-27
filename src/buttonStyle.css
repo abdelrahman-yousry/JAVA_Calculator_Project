@@ -13,6 +13,21 @@
   -fx-border-color: cornflowerblue;
 }
 
+.rad_hyp_Button {
+  -fx-background-color:   rgb(169, 98, 240);
+  -fx-background-radius: 100;   
+}
+  
+.rad_hyp_Button:hover {
+    -fx-background-color: rgb(180, 120, 260);
+}
+
+.rad_hyp_Button:pressed {
+  -fx-background-color:   rgb(169, 98, 240);
+  -fx-border-radius: 100px ;
+  -fx-border-color: cornflowerblue;
+}
+
 .defaultbutton{
     -fx-background-color: 
         linear-gradient(#cfcfcf 0%, #ebebeb 49%, #ebebeb 50%, #cfcfcf 100%);
@@ -47,4 +62,56 @@
     -fx-border-color: cornflowerblue;
 }
 
+.context-menu{
+    -fx-background-color: #fff;
+    -fx-background-insets: 3,0,0,0;
+}
+
+.menu-bar{
+    -fx-background-color: #fff;  
+    -fx-padding: 0px;
+}
+
+.menu-bar > .container > .menu-button{
+       -fx-background-color: #fff;  
+       -fx-padding: 10 25 10 25;
+}
+
+/*** Top-level menu itself (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused
+{
+    -fx-background-insets: 0;
+    -fx-border-color: #ff3333;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button > .label
+{
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: black;
+}
+
+.menu-item {
+    -fx-padding: 10px 25px 0 25px;
+}
+
+.menu-item .label {
+    -fx-text-fill: #fff;
+}
+
+.menu-item:focused, .menu-item:hovered {
+    -fx-background-color: #ff3333; 
+
+}
 
