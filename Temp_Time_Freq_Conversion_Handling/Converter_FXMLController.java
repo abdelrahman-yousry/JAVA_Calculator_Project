@@ -34,6 +34,12 @@ public class Converter_FXMLController implements Initializable {
     MenuItem hrs_from,mins_from,secs_from,msecs_from;
     MenuItem feh_from,cel_from,kel_from,feh_to,cel_to,kel_to;
     MenuItem hz_from,radps_from,hz_to,radps_to;
+    MenuItem deg_from,rad_from;
+    MenuItem deg_to,rad_to;
+    @FXML
+    private MenuItem timeconv1;
+    @FXML
+    private MenuItem timeconv2;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ta2.setEditable(false);
@@ -105,7 +111,7 @@ public class Converter_FXMLController implements Initializable {
                     {
                         result=dnum1/60000;
                     }
-                    else
+                    else if(from==4 && to==3)
                     {
                         result=dnum1/1000;
                     }
@@ -131,7 +137,7 @@ public class Converter_FXMLController implements Initializable {
                     {
                         result=(dnum1-273.15)*9/5+32;
                     }
-                    else
+                    else if(from==3 && to==2)
                     {
                         result=dnum1-273.15;
                     }
@@ -141,10 +147,16 @@ public class Converter_FXMLController implements Initializable {
                         {
                             result=dnum1*6.2832;
                         }
-                        else       
+                        else if(from==2 && to==1)       
                         {
                             result=dnum1/6.2832;
                         }
+                        break;
+                    case(7):
+                        if(from==1 && to==2)
+                            result=dnum1*0.0174533;
+                        else if(from==2 && to==1)
+                            result=dnum1/0.0174533;
                         break;
             }
             ta2.appendText(result.toString());
@@ -171,8 +183,8 @@ public class Converter_FXMLController implements Initializable {
         String s=conv_mi.getText();
         unit_conv_mb.setText(s);
         from=to=0;
-        to_mb.getItems().removeAll(hrs_to,mins_to,secs_to,msecs_to,hz_to,radps_to,feh_to,cel_to,kel_to);
-        from_mb.getItems().removeAll(hrs_from,mins_from,secs_from,msecs_from,hz_from,radps_from,feh_from,cel_from,kel_from);
+        to_mb.getItems().removeAll(hrs_to,mins_to,secs_to,msecs_to,hz_to,radps_to,feh_to,cel_to,kel_to,deg_to,rad_to);
+        from_mb.getItems().removeAll(hrs_from,mins_from,secs_from,msecs_from,hz_from,radps_from,feh_from,cel_from,kel_from,deg_from,rad_from);
         if(s.equals("Time Converter"))
         {
             conv_mode_detect=1;
@@ -379,6 +391,54 @@ public class Converter_FXMLController implements Initializable {
                 ta1.clear();
                 ta2.clear();
                 from_mb.setText(radps_from.getText());
+                from=2;
+            }
+            });
+    }
+    else if(s.equals("Angle Converter"))
+    {
+        conv_mode_detect=7;
+        deg_from=new MenuItem("Degree");
+        rad_from=new MenuItem("Radian");
+        deg_to=new MenuItem("Degree");
+        rad_to=new MenuItem("Radian");
+        to_mb.getItems().add(deg_to);
+        to_mb.getItems().add(rad_to);
+        from_mb.getItems().add(deg_from);
+        from_mb.getItems().add(rad_from);
+        deg_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                to_mb.setText(deg_to.getText());
+                to=1;
+            }
+            });
+        rad_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                to_mb.setText(rad_to.getText());
+                to=2;
+            }
+            });
+        deg_from.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                from_mb.setText(deg_from.getText());
+                from=1;
+            }
+            });
+        rad_from.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {   
+                ta1.clear();
+                ta2.clear();
+                from_mb.setText(rad_from.getText());
                 from=2;
             }
             });

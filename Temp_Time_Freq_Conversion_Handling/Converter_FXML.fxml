@@ -34,10 +34,10 @@
             <MenuItem fx:id="timeconv" mnemonicParsing="false" onAction="#conv_mode" text="Time Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Temp Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Freq Converter" />
-            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Geometry" />
-            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="int, hex, bin, octal converter" />
-            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Data Converter" />
+            <MenuItem fx:id="timeconv1" mnemonicParsing="false" onAction="#conv_mode" text="Length Converter" />
+            <MenuItem fx:id="timeconv2" mnemonicParsing="false" onAction="#conv_mode" text="Speed Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Angle Converter" />
+            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Data Converter" />
         </items>
          <effect>
             <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
