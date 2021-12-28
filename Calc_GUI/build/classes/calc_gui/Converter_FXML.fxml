@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -11,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calc_gui.Converter_FXMLController">
     <children>
-      <MenuBar id="menubar" layoutY="1.0" prefHeight="32.0" prefWidth="508.0">
+      <MenuBar id="menubar" layoutY="1.0" prefHeight="40.0" prefWidth="578.0" stylesheets="@../buttonStyle.css">
         <menus>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
@@ -20,16 +21,30 @@
                   <MenuItem mnemonicParsing="false" text="Paste" />
                   <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@NormalMenu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="Guide" />
                   <MenuItem mnemonicParsing="false" text="About" />
             </items>
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@NormalHelp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
           </Menu>
         </menus>
       </MenuBar>
-      <MenuButton fx:id="unit_conv_mb" layoutX="7.0" layoutY="40.0" mnemonicParsing="false" text="Unit-Converter">
+      <MenuButton fx:id="unit_conv_mb" layoutX="7.0" layoutY="50.0" mnemonicParsing="false" text="Unit-Converter">
         <items>
             <MenuItem fx:id="timeconv" mnemonicParsing="false" onAction="#conv_mode" text="Time Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Temp Converter" />
@@ -43,10 +58,9 @@
             <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
          </effect>
       </MenuButton>
-      <ToggleButton fx:id="theme" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" onAction="#theme_change" prefHeight="31.0" prefWidth="79.0" />
       <TextField fx:id="ta1" layoutX="161.0" layoutY="77.0" prefHeight="50.0" prefWidth="334.0" />
       <TextField fx:id="ta2" layoutX="161.0" layoutY="139.0" prefHeight="50.0" prefWidth="334.0" />
-      <GridPane fx:id="b" layoutX="208.0" layoutY="189.0" prefHeight="326.0" prefWidth="268.0">
+      <GridPane fx:id="b" layoutX="208.0" layoutY="196.0" prefHeight="326.0" prefWidth="268.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -60,72 +74,72 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button layoutX="281.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="=" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Button layoutX="281.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../buttonStyle.css" text="=" textFill="#f8f8f8" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="200.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button layoutX="200.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="1" GridPane.rowIndex="3">
+            <Button layoutX="112.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="193.0" layoutY="310.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button layoutX="193.0" layoutY="310.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="7" GridPane.rowIndex="1">
+            <Button layoutX="112.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="7" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button layoutX="281.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="310.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="4" GridPane.rowIndex="2">
+            <Button layoutX="112.0" layoutY="310.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="4" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button id="b8" layoutX="187.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button id="b8" layoutX="187.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="193.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button layoutX="193.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button layoutX="281.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="118.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="." GridPane.rowIndex="4">
+            <Button layoutX="118.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="." GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="152.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="C" textFill="#e80c0c">
+            <Button layoutX="112.0" layoutY="152.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="C" textFill="#e80c0c">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="141.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="⌫" GridPane.columnIndex="2">
+            <Button layoutX="281.0" layoutY="141.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="⌫" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="303.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button layoutX="281.0" layoutY="303.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../buttonStyle.css" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>

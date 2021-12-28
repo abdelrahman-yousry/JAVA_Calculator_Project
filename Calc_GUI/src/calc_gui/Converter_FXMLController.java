@@ -1,4 +1,4 @@
-package calc_conversions_handling;
+package calc_gui;
 
 
 import java.net.URL;
@@ -463,7 +463,7 @@ public class Converter_FXMLController implements Initializable {
         from_mb.getItems().add(giga_byte_from);
         to_mb.getItems().add(bit_to);
         to_mb.getItems().add(byte_to);
-		to_mb.getItems().add(mega_byte_to);
+        to_mb.getItems().add(mega_byte_to);
         to_mb.getItems().add(giga_byte_to);
         bit_to.setOnAction(new EventHandler<ActionEvent>(){
             public void handle(ActionEvent event)

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calc_gui.Geometry_FXMLController">
+    <children>
+      <MenuBar id="menubar" layoutX="-1.0" layoutY="1.0" prefHeight="32.0" prefWidth="495.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Guide" />
+                  <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <MenuButton fx:id="calc_mb" layoutX="28.0" layoutY="107.0" mnemonicParsing="false" onAction="#shapes" text="Calculations">
+         <effect>
+            <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
+         </effect>
+      </MenuButton>
+      <ToggleButton fx:id="theme" layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#theme_change" prefHeight="31.0" prefWidth="79.0" style="-fx-background-image: url(file:./src/calc_gui/tst1.PNG);" />
+      <GridPane layoutX="161.0" layoutY="174.0" prefHeight="348.0" prefWidth="334.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button layoutX="157.0" layoutY="316.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="155.0" layoutY="245.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="86.0" layoutY="245.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="78.0" layoutY="87.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="86.0" layoutY="174.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="7" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="155.0" layoutY="167.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="16.0" layoutY="316.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="." GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="143.0" layoutY="87.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="14.0" layoutY="245.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="4" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="=" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="⌫" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="C" textFill="#e80c0c">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <TextField fx:id="ta2" layoutX="155.0" layoutY="126.0" prefHeight="44.0" prefWidth="345.0" />
+      <TextField fx:id="ta1" layoutX="155.0" layoutY="68.0" prefHeight="44.0" prefWidth="345.0" />
+      <MenuButton fx:id="shape_mb" layoutX="28.0" layoutY="43.0" mnemonicParsing="false" text="Shapes">
+         <effect>
+            <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
+         </effect>
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#shapes" text="Circle" />
+            <MenuItem mnemonicParsing="false" onAction="#shapes" text="Square" />
+            <MenuItem mnemonicParsing="false" onAction="#shapes" text="Rectangle" />
+            <MenuItem mnemonicParsing="false" onAction="#shapes" text="Triangle" />
+            <MenuItem mnemonicParsing="false" onAction="#shapes" text="Rhombus" />
+         </items>
+      </MenuButton>
+    </children>
+   <effect>
+      <DropShadow color="#0000003a" />
+   </effect>
+</AnchorPane>

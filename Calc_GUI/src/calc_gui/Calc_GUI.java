@@ -1,4 +1,5 @@
-package calc_conversions_handling;
+package calc_gui;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +13,10 @@ import javafx.stage.Stage;
  */
 
 public class Calc_GUI extends Application {
+    
     @Override
     public void start(Stage stage) throws Exception {
+        
         Parent root = FXMLLoader.load(getClass().getResource("Converter_FXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
