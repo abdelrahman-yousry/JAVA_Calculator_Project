@@ -1,1 +1,1 @@
-creating folder to the geometry mode
+This folder is for the geometry mode which has the features of calculating area and perimeter/circumference for the circle, triangle, square, rectangle, rohmbus, triangle and parallelogram.
