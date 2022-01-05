@@ -1,0 +1,40 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jan 6, 2022, 12:50:57 AM
+    Author     : EngAya
+*/
+
+.myDialog{
+    -fx-background-color: white;
+}
+.myDialog > *.button-bar > *.container{
+   -fx-background: none;
+}
+.myDialog > *.label.content{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.myDialog:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: #292929;
+}
+
+.myDialog .button{
+    -fx-background-color: #830000;
+   -fx-text-fill:white;
+   -fx-font-weight:bold;   
+   -fx-wrap-text: true;
+   -fx-cursor:hand;
+   -fx-background-size: 30px;
+ }
+
+.myDialog .button:hover{     
+  -fx-effect: dropshadow(three-pass-box ,rgba(0,0,0,0.24), 2 ,2, 2, 2);
+
+ }
+

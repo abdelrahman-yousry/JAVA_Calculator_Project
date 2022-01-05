@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onKeyReleased="#write_key" prefHeight="540.0" prefWidth="578.0" style="-fx-background-image: url(file:./src/Style/dark3.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GeometryMode.Geometry_FXMLController">
+    <children>
+      <MenuButton fx:id="calc_mb" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" styleClass="convButton" stylesheets="@../Style/buttonStyleDark.css" text="Calculations" textFill="WHITE">
+         <effect>
+            <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </MenuButton>
+      <GridPane layoutX="161.0" layoutY="174.0" prefHeight="348.0" prefWidth="334.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button layoutX="157.0" layoutY="316.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="155.0" layoutY="245.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="86.0" layoutY="245.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="78.0" layoutY="87.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="8" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="86.0" layoutY="174.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="7" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="155.0" layoutY="167.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button fx:id="b_period" layoutX="16.0" layoutY="316.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="." textFill="WHITE" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="143.0" layoutY="87.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="9" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="14.0" layoutY="245.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="1" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="4" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button fx:id="b_equal" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyleDark.css" text="=" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="b_backspace" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" stylesheets="@../Style/buttonStyleDark.css" text="⌫" textFill="WHITE" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="defaultbutton" />
+                  <String fx:value="defaultbutton" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="C" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <TextField fx:id="ta2" layoutX="155.0" layoutY="116.0" opacity="0.9" prefHeight="44.0" prefWidth="345.0" styleClass="txtField" stylesheets="@../Style/buttonStyleDark.css">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="ta1" layoutX="155.0" layoutY="58.0" opacity="0.9" prefHeight="44.0" prefWidth="345.0" styleClass="txtField" stylesheets="@../Style/buttonStyleDark.css">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></TextField>
+      <MenuButton fx:id="shape_mb" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" styleClass="convButton" stylesheets="@../Style/buttonStyleDark.css" text="Shapes" textFill="WHITE">
+         <effect>
+            <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
+         </effect>
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Circle" />
+            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Square" />
+            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Rectangle" />
+            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Triangle" />
+            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Rohmbus" />
+         </items>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </MenuButton>
+      <MenuBar prefHeight="40.0" prefWidth="578.0" stylesheets="@../Style/buttonStyleDark.css">
+         <menus>
+            <Menu mnemonicParsing="false" text="Edit">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Style/ellipsis%20(2).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Modes">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Style/DarkMenu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Basic" />
+                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Scientific" />
+                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Base-N" />
+                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Geometry" />
+                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Conversion" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Style/DarkHelp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Guide" />
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+            <Menu fx:id="port_menu" mnemonicParsing="false" text="Ports">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Style/micro-usb.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+         </menus>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </MenuBar>
+      <ImageView fx:id="dark" fitHeight="30.0" fitWidth="30.0" layoutX="533.0" layoutY="4.0" onMouseClicked="#changeMode" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Style/lampDark.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="227.0" prefHeight="26.0" prefWidth="50.0" stylesheets="@../Style/buttonStyle.css" textAlignment="RIGHT" />
+    </children>
+   <effect>
+      <DropShadow color="#0000003a" />
+   </effect>
+</AnchorPane>
