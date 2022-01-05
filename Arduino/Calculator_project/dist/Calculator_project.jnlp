@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Calculator_project.jnlp">
+  <information>
+    <title>Calculator_project</title>
+    <vendor>U3</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Calculator_project.jar" size="421511" download="eager" />
+    <jar href="lib\jssc-2.9.0.jar" size="421356" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="calculator_project_geometry_mode.Calculator_project"  name="Calculator_project" />
+  <update check="always"/>
+</jnlp>
