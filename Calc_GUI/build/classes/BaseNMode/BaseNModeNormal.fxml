@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#write_key" prefHeight="595.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseNMode.BaseNMode">
+<AnchorPane id="AnchorPane" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseNMode.BaseNMode">
     <children>
       <MenuBar prefHeight="40.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css">
         <menus>
@@ -137,7 +137,7 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="( )">
+            <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="( )" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -177,27 +177,12 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#clearScr" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="C" textFill="#e80c0c" GridPane.columnIndex="1">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
             <Button mnemonicParsing="false" onAction="#invert_sign" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="+/-" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
             <Button fx:id="btn_A" mnemonicParsing="false" onAction="#write_number" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="A" GridPane.columnIndex="6">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="÷">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="÷">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
@@ -245,6 +230,11 @@
             <Button fx:id="btn_Hex" mnemonicParsing="false" onAction="#baseN" prefHeight="50.0" prefWidth="80.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyle.css" text="HEX" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#clearScr" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="C" textFill="#e80c0c">
+               <font>
+                  <Font name="System Bold" size="27.0" />
                </font>
             </Button>
          </children>

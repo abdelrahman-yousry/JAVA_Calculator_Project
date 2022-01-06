@@ -13,8 +13,11 @@ import static java.awt.Color.black;
 import java.io.IOException;
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
+import java.math.BigInteger;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.StringJoiner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +55,7 @@ public class BaseNMode implements Initializable {
     @FXML
     private Button b_period;
     public  Menu port_menu;
-    public String selectedMode ;//= "Basic";
+    public String selectedMode ;
     
     int prev_state=10;
     int next_state=10;
@@ -108,10 +111,8 @@ public class BaseNMode implements Initializable {
     private Button btn_Dec;
     @FXML
     private Button btn_Hex;
-    public void theme_change(ActionEvent event) {
-
-    }
-        
+    
+    
     @FXML
     public void write_number(ActionEvent event) {
         Button tmp = (Button)event.getSource();
@@ -120,45 +121,9 @@ public class BaseNMode implements Initializable {
     }
     @FXML
     public void write_key(KeyEvent event) {
-       
+
         pos = input.getText().indexOf("|");
-        if(btn_Bin.getTextFill()==javafx.scene.paint.Color.BLUE)    
-        {
-            if(event.getCode()==event.getCode().DIGIT0
-               ||event.getCode()==event.getCode().DIGIT1)
-                    input.insertText(pos, event.getText());
-        }
-        else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.BLUE) //make it by default
-        {
-            if(event.getCode().isDigitKey())
-                input.insertText(pos, event.getText());
-        }
-        else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.BLUE)    
-        {
-             if(event.getCode()==event.getCode().DIGIT0
-               ||event.getCode()==event.getCode().DIGIT1
-               ||event.getCode()==event.getCode().DIGIT2
-               ||event.getCode()==event.getCode().DIGIT3
-               ||event.getCode()==event.getCode().DIGIT4
-               ||event.getCode()==event.getCode().DIGIT5
-               ||event.getCode()==event.getCode().DIGIT6
-               ||event.getCode()==event.getCode().DIGIT7)
-                input.insertText(pos, event.getText());
-        }
-        else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.BLUE)    
-        {
-            if(event.getCode().isDigitKey())
-                input.insertText(pos, event.getText());
-            if(event.getCode()==event.getCode().A
-               ||event.getCode()==event.getCode().B
-               ||event.getCode()==event.getCode().C
-               ||event.getCode()==event.getCode().D
-               ||event.getCode()==event.getCode().E
-               ||event.getCode()==event.getCode().F)                
-            {
-                input.insertText(pos, event.getText());
-            }
-        }
+        
         
         if(event.isShiftDown()){
             switch(event.getCode()){
@@ -198,9 +163,7 @@ public class BaseNMode implements Initializable {
         }
         else{
             switch(event.getCode()){
-                case E:
-                    input.insertText(pos, "e");
-                    break;
+                
                 case SLASH:
                     input.insertText(pos, "÷");
                     break;
@@ -228,12 +191,6 @@ public class BaseNMode implements Initializable {
                 case BACK_SPACE:
                     b_backspace.fire();
                     break;
-                case PERIOD:
-                    b_period.fire();
-                    break;
-                case DECIMAL:
-                    b_period.fire();
-                    break;
                 case HOME:
                     input.setText(input.getText().replace("|", ""));
                     input.insertText(0, "|");
@@ -243,15 +200,55 @@ public class BaseNMode implements Initializable {
                     input.insertText(input.getText().length(), "|");
                     break;
             }
+            
+            
+            if(btn_Bin.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            {
+                if(event.getCode()==event.getCode().DIGIT0
+                   ||event.getCode()==event.getCode().DIGIT1)
+                        input.insertText(pos, event.getText());
+            }
+            else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.BLUE) //make it by default
+            {
+                if(event.getCode().isDigitKey())
+                    input.insertText(pos, event.getText());
+            }
+            else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            {
+                 if(event.getCode()==event.getCode().DIGIT0
+                   ||event.getCode()==event.getCode().DIGIT1
+                   ||event.getCode()==event.getCode().DIGIT2
+                   ||event.getCode()==event.getCode().DIGIT3
+                   ||event.getCode()==event.getCode().DIGIT4
+                   ||event.getCode()==event.getCode().DIGIT5
+                   ||event.getCode()==event.getCode().DIGIT6
+                   ||event.getCode()==event.getCode().DIGIT7)
+                    input.insertText(pos, event.getText());
+            }
+            else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            {
+                if(event.getCode().isDigitKey())
+                    input.insertText(pos, event.getText());
+                if(event.getCode()==event.getCode().A
+                   ||event.getCode()==event.getCode().B
+                   ||event.getCode()==event.getCode().C
+                   ||event.getCode()==event.getCode().D
+                   ||event.getCode()==event.getCode().E
+                   ||event.getCode()==event.getCode().F)                
+                {
+                    input.insertText(pos, event.getText().toUpperCase());
+                }
+            }
+
+            
+            
+            
         }
     }
     @FXML
-    public void operation(ActionEvent event) {
+    public void operation(ActionEvent event) {        
         Button tmp = (Button)event.getSource();
         String op = tmp.getText();
-        if(op.equals("√")){
-            op = "√( )";
-        }
         pos = input.getText().indexOf("|");
         input.insertText(pos, op);
     }
@@ -263,6 +260,7 @@ public class BaseNMode implements Initializable {
         input.setText("|");
         res.setText("");
     }   
+    
     @FXML
     private void back_space(ActionEvent event) {
         // deletes the char
@@ -272,62 +270,49 @@ public class BaseNMode implements Initializable {
     } 
     
     @FXML
-    private void dot_op(ActionEvent event) {
-        // sets dot only one time per number
-        // parse on operations
-        String str = input.getText();
-        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+");
-        pos = input.getText().indexOf("|");
-        for(String a:arrOfStr){
-            if(a.contains("|")){
-                if(!a.contains(".")){
-                    input.insertText(pos, ".");
-                    // check if pos of | doesn't has a number before it --> pos-2 = 0
-                    if(pos == 0 || !Character.isDigit(input.getText().charAt(pos-1)))
-                        input.insertText(pos, "0");
-                }
-                break;
-            }
-        }
-    }
-    
-    @FXML
     private void equal_op(ActionEvent event) {
-        String expression = input.getText();
-//        int count = expression.length() - expression.replaceAll("^","").length();
-//        int count = StringUtils.countMatches("engineering", "e");
-        expression = expression.replace("|", "");
+        int dec;
+        String exp = input.getText().replace("|","");
+        String expression = "";
+        String[] splitsMixed = exp.split("((?=\\+|\\-|\\×|\\÷|\\%|\\(|\\))|(?<=\\+|\\-|\\×|\\÷|\\%|\\(|\\)))");
+        for (String txt:splitsMixed)
+        {
+            try{
+               dec=(int)Long.parseLong(txt,next_state);
+               txt=Integer.toString(dec);
+            }
+            catch(Exception e){ }
+            expression += txt;
+        }
         if(!expression.isEmpty()){
             ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
             ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
             
             expression = expression.replace('×', '*');
-            expression = expression.replace('÷', '/');
-            expression = expression.replace("π", Double.toString(PI));
-
-            expression = expression.replace("e",  Double.toString(E));
-            expression = expression.replace("√", "Math.sqrt");
-            
-//            for(int i = 0; i < count; i++){
-            if(expression.contains("^")){
-                // split string on all operators except ^
-                String[] arrOfStr = expression.split("[\\×\\÷\\+\\-\\√\\(\\)\\%]+");
-                for(String a:arrOfStr){
-                    // get the substring that contains ^
-                    if(a.contains("^")){
-                        // replace the power part(base^exponent) by "^"
-                        expression = expression.replace(a, "^");
-                        // split substring on ^ to get the argumnets
-                        String [] arg = a.split("\\^");
-                        expression = expression.replace("^", "Math.pow(" + arg[0] + "," + arg[1] + ")");
-                    }
-                }
-            }
-//            System.out.println(expression);
-            
+            expression = expression.replace('÷', '/');            
             try {
-                Double result = (Double) scriptEngine.eval(expression);
-                res.setText(Double.toString(result));
+                Double result = (Double) scriptEngine.eval(expression.replace("--", "+"));
+                switch(next_state)
+                    {
+                        case 2:         
+                            input.setText(Integer.toBinaryString(result.intValue()));
+                            res.setText(Integer.toBinaryString(result.intValue()));
+                            break;
+                        case 8:
+                            input.setText(Integer.toOctalString(result.intValue()));
+                            res.setText(Integer.toOctalString(result.intValue()));
+                            break;
+                        case 10:
+                            input.setText(Integer.toString(result.intValue()));
+                            res.setText(Integer.toString(result.intValue()));
+                            break;
+                        case 16:
+                            input.setText(Integer.toHexString(result.intValue()).toUpperCase());
+                            res.setText(Integer.toHexString(result.intValue()).toUpperCase());
+                            break;
+                    }
+                    input.appendText("|");
+
             } catch (ScriptException ex) {
                 res.setText("Math error");
             }
@@ -336,8 +321,27 @@ public class BaseNMode implements Initializable {
             }
             catch(Exception ex){
                 try{
-                    Integer result = (Integer) scriptEngine.eval(expression);
-                    res.setText(Integer.toString(result));
+                    Integer result = (Integer) scriptEngine.eval(expression.replace("--", "+"));
+                    switch(next_state)
+                    {
+                        case 2:         
+                            input.setText(Integer.toBinaryString(result));
+                            res.setText(Integer.toBinaryString(result));
+                            break;
+                        case 8:
+                            input.setText(Integer.toOctalString(result));
+                            res.setText(Integer.toOctalString(result));
+                            break;
+                        case 10:
+                            input.setText(Integer.toString(result));
+                            res.setText(Integer.toString(result));
+                            break;
+                        case 16:
+                            input.setText(Integer.toHexString(result).toUpperCase());
+                            res.setText(Integer.toHexString(result).toUpperCase());
+                            break;
+                    }
+                    input.appendText("|");
                 }catch(ScriptException e) {
                     res.setText("Math error");
                 }
@@ -374,15 +378,15 @@ public class BaseNMode implements Initializable {
         Button tmp = (Button)event.getSource();
         String base = tmp.getText();
         int dec;
+        b_equal.fire();
         switch(base)
-        {
+            {               
             case "BIN":
                 prev_state=next_state;
                 next_state=2;
-                
-                if(!input.getText().replace("|", "").isEmpty())
+                if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=Integer.parseInt(input.getText().replace("|", ""),prev_state);
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
                     input.setText(Integer.toBinaryString(dec));
                     res.setText(Integer.toBinaryString(dec));
                 }
@@ -413,9 +417,9 @@ public class BaseNMode implements Initializable {
             case "OCT":
                 prev_state=next_state; 
                 next_state=8;
-                if(!input.getText().replace("|", "").isEmpty())
+                if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=Integer.parseInt(input.getText().replace("|", ""),prev_state);
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
                     input.setText(Integer.toOctalString(dec));
                     res.setText(Integer.toOctalString(dec));
                 }
@@ -436,7 +440,6 @@ public class BaseNMode implements Initializable {
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
                 
-                
                 btn_Oct.setTextFill(javafx.scene.paint.Color.BLUE);
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -446,9 +449,9 @@ public class BaseNMode implements Initializable {
             case "DEC":
                 prev_state=next_state; 
                 next_state=10;
-                if(!input.getText().replace("|", "").isEmpty())
+                if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=Integer.parseInt(input.getText().replace("|", ""),prev_state);
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
                     input.setText(Integer.toString(dec));
                     res.setText(Integer.toString(dec));
                 }
@@ -469,7 +472,6 @@ public class BaseNMode implements Initializable {
                 btn_D.setDisable(true);
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
-                
 
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -480,11 +482,11 @@ public class BaseNMode implements Initializable {
             case "HEX":
                 prev_state=next_state;
                 next_state=16; 
-                if(!input.getText().replace("|", "").isEmpty())
+                if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=Integer.parseInt(input.getText().replace("|", ""),prev_state);
-                    input.setText(Integer.toHexString(dec));
-                    res.setText(Integer.toHexString(dec));
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
+                    input.setText(Integer.toHexString(dec).toUpperCase());
+                    res.setText(Integer.toHexString(dec).toUpperCase());
                 }
                 
                 btn_0.setDisable(false);
@@ -503,8 +505,7 @@ public class BaseNMode implements Initializable {
                 btn_D.setDisable(false);
                 btn_E.setDisable(false);
                 btn_F.setDisable(false);
-                
-                
+                        
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -512,10 +513,8 @@ public class BaseNMode implements Initializable {
 
                 break;
         }
-        if(!input.getText().replace("|","").isEmpty())
+        if(!input.getText().replace("|","").isEmpty()&&res.getText()!="Math error")
             input.appendText("|");
-        
-        
     }
     
     @Override

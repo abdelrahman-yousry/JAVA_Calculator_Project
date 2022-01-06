@@ -118,7 +118,9 @@ package CalcApplication;
 import BaseMode.*;
 import ConversionMode.Converter_FXMLController;
 import ScientificMode.*;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -192,6 +194,7 @@ public class Calc_GUI extends Application {
         stage.getIcons().add(new Image(getClass().getResource("..//Style/Calculator-icon.png").toExternalForm()));
         stage.setTitle("Calculator");      
         stage.setScene(scene);
+        stage.resizableProperty().setValue(Boolean.FALSE);
         stage.show();
         
     }
@@ -209,7 +212,6 @@ public class Calc_GUI extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
         launch(args);
         
     }
