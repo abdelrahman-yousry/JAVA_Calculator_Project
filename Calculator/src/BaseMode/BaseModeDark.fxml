@@ -220,9 +220,9 @@
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font></TextField>
-      <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="63.0" layoutY="106.0" opacity="0.9" prefHeight="26.0" prefWidth="361.0" style="-fx-background-color: rgb(255,255,255,0);" stylesheets="@../Style/buttonStyleDark.css" textFill="WHITE">
+      <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="63.0" layoutY="105.0" opacity="0.9" prefHeight="26.0" prefWidth="361.0" style="-fx-background-color: rgb(255,255,255,0);" stylesheets="@../Style/buttonStyleDark.css" textFill="WHITE">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
       <ImageView fx:id="dark" fitHeight="30.0" fitWidth="30.0" layoutX="431.0" layoutY="4.0" onMouseClicked="#changeMode" pickOnBounds="true" preserveRatio="true">
          <image>

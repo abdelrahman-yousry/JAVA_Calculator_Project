@@ -14,30 +14,33 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import static java.lang.Math.E;
-import java.lang.Math;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 /**
  *
  * @author EngAya
  */
 public class ScientificMode implements Initializable {
+    Alert alert;
+    DialogPane dialogPane;
     String expression;
+    static String text;
     ScriptEngineManager scriptEngineManager;
     ScriptEngine scriptEngine;
     String [] trigOperations = {" sin("," cos("," tan("," sec("," csc("," cot(","asin(","acos(","atan(","asec(","acsc(","acot(",
@@ -87,7 +90,7 @@ public class ScientificMode implements Initializable {
     @FXML
     private Button b_equal;
     @FXML
-    private ImageView normal;
+    private ImageView dark;
 
 
     
@@ -118,6 +121,9 @@ public class ScientificMode implements Initializable {
                     break;
             } 
         }
+        /* Check if the hyperpolic button is pressed or not , if pressed print
+         * sinh, cosh,... , if not pressed print sin, cos,... on buttons 
+         */
         if(hypFlag == false)
         {
             if(event.getSource() == sin)
@@ -196,6 +202,10 @@ public class ScientificMode implements Initializable {
         {
                 txtField.insertText(pos,"e");                                             
         }
+        else if("√".equals(((Button)event.getSource()).getText()))
+        {
+                txtField.insertText(pos,"√( )");                                             
+        }
     }
     
     @Override
@@ -204,12 +214,11 @@ public class ScientificMode implements Initializable {
         txtField.setEditable(false);
         txtField.setFocusTraversable(false);
         res.setText(oldRes);
-        checkHypRad();
-        scriptEngineManager = new ScriptEngineManager();
+        checkHypRad();   // Check if the hyp and radian buttons of the old scene when switching between normal and dark mode is pressed or not and change the required buttons 
+        scriptEngineManager = new ScriptEngineManager();  
         scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
-        scriptEngine.put("HyperMath", new HyperMath()); 
+        scriptEngine.put("HyperMath", new HyperMath());   // Add a class HyperMath - that solves the operations that are not found in java Math library such as ln, arccot,... - to the Script Engine to recognize them
     }    
-
 
     @FXML
     public void hypButtonHandle(ActionEvent event) {
@@ -265,12 +274,13 @@ public class ScientificMode implements Initializable {
     @FXML
     private void equalButtonHandle(ActionEvent event) throws ScriptException {
             expression = txtField.getText();
-            expression = expression.replace("|", "");
+            expression = expression.replace("|", "");   //Remove the cursor from the expression
+            /* Check if the expression is empty or not, if not --> Do nothing */
             if(!expression.isEmpty())
             {
                 /* Preparing the Expression to be executed using Java Script Engine */
                 expression = expression.replace("sech","tmp");   //Replace every sech with temporary name because the e will be replaced to Math.e
-                expression = expression.replace("exp", "xp");
+                expression = expression.replace("exp", "xp");    //Replace every exp with temporary name because the e will be replaced to Math.e
                 expression = expression.replace('×', '*');
                 expression = expression.replace('÷', '/');
                 expression = expression.replace("π", "Math.PI");
@@ -480,9 +490,6 @@ public class ScientificMode implements Initializable {
     private void operation(ActionEvent event) {
         Button tmp = (Button)event.getSource();
         String op = tmp.getText();
-        if(op.equals("√")){
-            op = "√( )";
-        }
         pos = txtField.getText().indexOf("|");
         txtField.insertText(pos, op);
     }
@@ -645,4 +652,69 @@ public class ScientificMode implements Initializable {
         } 
     }
     
+   @FXML
+    private void helpHandle(ActionEvent event) {
+        switch(((MenuItem)event.getSource()).getText())
+        {
+            case "Guide":
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guide");
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
+                        + "-----------------------------------------------------------\n"
+                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
+                        + "2- Ctrl + → : Move Cursor to Right\n"
+                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
+                        + "4- Alt   :  Go to MenuBar\n"
+                        + "5- Tab  :  Move out from the Text Field\n"
+                        + "-----------------------------------------------------------\n"
+                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
+                
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
+                break;
+            case "About":
+                Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
+                ImageView logo = new ImageView(logoITI);
+                StackPane pane = new StackPane();
+                pane.getChildren().add(logo);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("About");
+                alert.setHeaderText(null);
+                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
+                alert.setGraphic(pane);
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
+                break;       
+        }
+    }
+
+    @FXML
+    private void editHandle(ActionEvent event) {
+        switch(((MenuItem)event.getSource()).getText())
+        {
+            case "Copy":
+               text = txtField.getSelectedText();
+               text = text.replace("|", "");
+                break;
+            case "Cut":
+                text = txtField.getSelectedText();
+                txtField.deleteText(txtField.getSelection());
+                break;
+            case "Paste":
+                txtField.insertText(txtField.getCaretPosition(),text);
+                break;
+            case "Delete":
+                txtField.setText("|");
+                break;
+        }
+    }
+
 }

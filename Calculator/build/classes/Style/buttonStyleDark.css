@@ -16,7 +16,7 @@
 .trigButton:focused{
     -fx-border-radius: 100px ;
     -fx-border-color: white;
-    -fx-border-width: 2px;
+    -fx-border-width: 3px;
 
 }
 
@@ -38,6 +38,7 @@
 
 .rad_hyp_Button:focused{
     -fx-border-radius: 100px ;
+    -fx-border-width: 3px ;
     -fx-border-color: white;
 
 }

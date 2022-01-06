@@ -146,7 +146,7 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="√" textFill="WHITE" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="√" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -278,9 +278,9 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="47.0" layoutY="106.0" opacity="0.9" prefHeight="26.0" prefWidth="707.0" style="-fx-background-color: rgb(255,255,255,0);" stylesheets="@../Style/buttonStyleDark.css" textFill="WHITE">
+      <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="47.0" layoutY="104.0" opacity="0.9" prefHeight="26.0" prefWidth="707.0" style="-fx-background-color: rgb(255,255,255,0);" stylesheets="@../Style/buttonStyleDark.css" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <Button fx:id="radian" layoutX="581.0" layoutY="160.0" mnemonicParsing="false" onAction="#radButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="Radian" textFill="WHITE">
@@ -304,10 +304,10 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Copy" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Cut" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Paste" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Delete" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Modes">
@@ -326,7 +326,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Conversion" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help">
+            <Menu mnemonicParsing="false" onAction="#helpHandle" text="Help">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -335,8 +335,8 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Guide" />
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="Guide" />
+                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="About" />
                </items>
             </Menu>
             <Menu fx:id="port_menu" mnemonicParsing="false" text="Ports">

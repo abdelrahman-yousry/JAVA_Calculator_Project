@@ -172,10 +172,39 @@ public class BaseMode implements Initializable {
     public void operation(ActionEvent event) {
         Button tmp = (Button)event.getSource();
         String op = tmp.getText();
+        pos = input.getText().indexOf("|");
+
+        if(op.equals("√") || op.equals("π") || op.equals("e") || op.equals("( )"))
+        {
+            if( !"|".equals(input.getText()) )  //if the text field is not Empty --> Check the last character before the curser
+        {
+            Character lastChar = input.getText().charAt(pos-1);  
+            //if the last character is one of the next cases --> add X before the trigonometric func.
+            switch( lastChar )
+            {
+                case '0':
+                case '1':
+                case '2':        
+                case '3':        
+                case '4':        
+                case '5':        
+                case '6':        
+                case '7':        
+                case '8':        
+                case '9':        
+                case 'e':        
+                case 'π':
+                case ')':
+                    input.insertText(pos,"×");
+                    pos = input.getText().indexOf("|");;
+                    break;
+            } 
+        }
+            
+        }
         if(op.equals("√")){
             op = "√( )";
         }
-        pos = input.getText().indexOf("|");
         input.insertText(pos, op);
     }
    
@@ -298,6 +327,9 @@ public class BaseMode implements Initializable {
         input.setEditable(false);
         input.setFocusTraversable(false);
         res.setText(oldRes);
+        MenuItem dummy = new MenuItem("Serial ports");
+        dummy.setDisable(true);
+        port_menu.getItems().add(dummy);
         
     }    
 
@@ -412,7 +444,7 @@ public class BaseMode implements Initializable {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("About");
                 alert.setHeaderText(null);
-                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\t    Embedded System Track");  
+                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
                 alert.setGraphic(pane);
                 dialogPane = alert.getDialogPane();
                 dialogPane.getStylesheets().add(

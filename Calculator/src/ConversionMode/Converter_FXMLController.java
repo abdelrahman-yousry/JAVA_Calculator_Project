@@ -15,7 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
@@ -23,10 +25,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /*
@@ -34,12 +38,12 @@ import javafx.stage.Stage;
 */
 
 public class Converter_FXMLController implements Initializable {
+    Alert alert;
+    DialogPane dialogPane;
+    static String text;
     static String oldInput = "|";
     static String oldRes = " ";
     static boolean darkFlag = false;
-    static String fromFlag = "KWD";
-    static String toFlag = "KWD";
-    static String unitFlag = "Currency";
     String selectedMode;
     static String fromStr = null;
     static String toStr = null;
@@ -86,7 +90,6 @@ public class Converter_FXMLController implements Initializable {
     private ImageView normal;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        init();
         ta1.setText(oldInput);
         ta1.setEditable(false);
         ta1.setFocusTraversable(false);
@@ -453,7 +456,6 @@ public class Converter_FXMLController implements Initializable {
                         {
                             amount = ta1.getText();
                             amount = amount.replace("|", "");
-                            System.out.println(ta1.getText());
                             if((fromStr==null) || (toStr==null ))
                                 ta2.setText("Choose units");
                             else if("|".equals(ta1.getText()))
@@ -496,7 +498,6 @@ public class Converter_FXMLController implements Initializable {
         ta2.clear();
         MenuItem conv_mi=(MenuItem)event.getSource();
         String s=conv_mi.getText();
-        System.out.println(s);
         unit_conv_mb.setText(s);
         from=to=0;
         to_mb.getItems().removeAll(hrs_to,mins_to,secs_to,msecs_to,hz_to,radps_to,feh_to,
@@ -1362,16 +1363,11 @@ public class Converter_FXMLController implements Initializable {
         Scene scene;
         if("normal".equals(((ImageView)event.getSource()).getId()))
         {
-            fromFlag = from_mb.getText();
-            toFlag = to_mb.getText();
             root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));
             Calc_GUI.darkFlag = true;
-
         }
         else
-        {
-            fromFlag = from_mb.getText();
-            toFlag = to_mb.getText();            
+        {           
             root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));
             Calc_GUI.darkFlag = false;
         }
@@ -1379,27 +1375,70 @@ public class Converter_FXMLController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();          
-    }  
+    } 
     
-    void init ()
-    {
-        System.out.println(fromFlag);
-        switch(unitFlag)
+    @FXML
+    private void helpHandle(ActionEvent event) {
+        
+        switch(((MenuItem)event.getSource()).getText())
         {
-            case "Currency Converter":
-                currencyButton.fire();
-                switch(fromFlag)
-                {
-                    case "KWD":
-                        KWD.fire();
-                        break;
-                }
-                switch(toFlag)
-                {
-                    case "KWD":
-                        KWD_to.fire();
-                        
-                }
+            case "Guide":
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guide");
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
+                        + "-----------------------------------------------------------\n"
+                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
+                        + "2- Ctrl + → : Move Cursor to Right\n"
+                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
+                        + "4- Alt   :  Go to MenuBar\n"
+                        + "5- Tab  :  Move out from the Text Field\n"
+                        + "-----------------------------------------------------------\n"
+                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
+                
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
+                break;
+            case "About":
+                Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
+                ImageView logo = new ImageView(logoITI);
+                StackPane pane = new StackPane();
+                pane.getChildren().add(logo);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("About");
+                alert.setHeaderText(null);
+                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
+                alert.setGraphic(pane);
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
+                break;       
+        }
+    }
+
+    @FXML
+    private void editHandle(ActionEvent event) {
+        switch(((MenuItem)event.getSource()).getText())
+        {
+            case "Copy":
+               text = ta1.getSelectedText();
+               text = text.replace("|", "");
+                break;
+            case "Cut":
+                text = ta1.getSelectedText();
+                ta1.deleteText(ta1.getSelection());
+                break;
+            case "Paste":
+                ta1.insertText(ta1.getCaretPosition(),text);
+                break;
+            case "Delete":
+                ta1.setText("|");
                 break;
         }
     }

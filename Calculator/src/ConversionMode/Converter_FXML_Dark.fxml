@@ -167,10 +167,10 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Copy" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Cut" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Paste" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Delete" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Modes">
@@ -198,8 +198,8 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Guide" />
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="Guide" />
+                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="About" />
                </items>
             </Menu>
             <Menu fx:id="port_menu" mnemonicParsing="false" text="Ports">

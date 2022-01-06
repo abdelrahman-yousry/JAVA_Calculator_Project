@@ -9,16 +9,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#write_key" prefHeight="595.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseNMode.BaseNMode">
+<AnchorPane id="AnchorPane" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseNMode.BaseNMode">
     <children>
       <MenuBar prefHeight="40.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css">
         <menus>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Copy" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Cut" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Paste" />
+                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Delete" />
             </items>
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -46,8 +46,8 @@
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="Guide" />
-                  <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="Guide" />
+                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="About" />
             </items>
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -232,7 +232,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#clearScr" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="C" textFill="#e80c0c">
+            <Button mnemonicParsing="false" onAction="#clearScr" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyle.css" text="C" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>

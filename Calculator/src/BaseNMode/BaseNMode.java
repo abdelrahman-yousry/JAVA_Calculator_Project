@@ -25,15 +25,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -43,6 +47,9 @@ import javax.script.ScriptException;
  * @author yomna
  */
 public class BaseNMode implements Initializable {
+    Alert alert;
+    DialogPane dialogPane;
+    static String text;
     static String oldInput = "|";
     static String oldRes = " ";
     @FXML
@@ -195,18 +202,18 @@ public class BaseNMode implements Initializable {
             }
             
             
-            if(btn_Bin.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            if(btn_Bin.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)    
             {
                 if(event.getCode()==event.getCode().DIGIT0
                    ||event.getCode()==event.getCode().DIGIT1)
                         input.insertText(pos, event.getText());
             }
-            else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.BLUE) //make it by default
+            else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //make it by default
             {
                 if(event.getCode().isDigitKey())
                     input.insertText(pos, event.getText());
             }
-            else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)    
             {
                  if(event.getCode()==event.getCode().DIGIT0
                    ||event.getCode()==event.getCode().DIGIT1
@@ -218,7 +225,7 @@ public class BaseNMode implements Initializable {
                    ||event.getCode()==event.getCode().DIGIT7)
                     input.insertText(pos, event.getText());
             }
-            else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)    
             {
                 if(event.getCode().isDigitKey())
                     input.insertText(pos, event.getText());
@@ -300,8 +307,8 @@ public class BaseNMode implements Initializable {
                             res.setText(Integer.toString(result.intValue()));
                             break;
                         case 16:
-                            input.setText(Integer.toHexString(result.intValue()));
-                            res.setText(Integer.toHexString(result.intValue()));
+                            input.setText(Integer.toHexString(result.intValue()).toUpperCase());
+                            res.setText(Integer.toHexString(result.intValue()).toUpperCase());
                             break;
                     }
                     input.appendText("|");
@@ -330,8 +337,8 @@ public class BaseNMode implements Initializable {
                             res.setText(Integer.toString(result));
                             break;
                         case 16:
-                            input.setText(Integer.toHexString(result));
-                            res.setText(Integer.toHexString(result));
+                            input.setText(Integer.toHexString(result).toUpperCase());
+                            res.setText(Integer.toHexString(result).toUpperCase());
                             break;
                     }
                     input.appendText("|");
@@ -401,10 +408,11 @@ public class BaseNMode implements Initializable {
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
                 
-                btn_Bin.setTextFill(javafx.scene.paint.Color.BLUE);
+                btn_Bin.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Hex.setTextFill(javafx.scene.paint.Color.WHITE);
+                
 
                 break;
             case "OCT":
@@ -433,7 +441,7 @@ public class BaseNMode implements Initializable {
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
                 
-                btn_Oct.setTextFill(javafx.scene.paint.Color.BLUE);
+                btn_Oct.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Hex.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -468,7 +476,7 @@ public class BaseNMode implements Initializable {
 
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
-                btn_Dec.setTextFill(javafx.scene.paint.Color.BLUE);
+                btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
                 btn_Hex.setTextFill(javafx.scene.paint.Color.WHITE);
 
                 break;
@@ -478,8 +486,8 @@ public class BaseNMode implements Initializable {
                 if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
                     dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
-                    input.setText(Integer.toHexString(dec));
-                    res.setText(Integer.toHexString(dec));
+                    input.setText(Integer.toHexString(dec).toUpperCase());
+                    res.setText(Integer.toHexString(dec).toUpperCase());
                 }
                 
                 btn_0.setDisable(false);
@@ -502,7 +510,7 @@ public class BaseNMode implements Initializable {
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
-                btn_Hex.setTextFill(javafx.scene.paint.Color.BLUE);
+                btn_Hex.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
 
                 break;
         }
@@ -513,7 +521,7 @@ public class BaseNMode implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        btn_Dec.setTextFill(javafx.scene.paint.Color.BLUE);
+        btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
         input.setText(oldInput);
         input.setEditable(false);
         input.setFocusTraversable(false);
@@ -596,6 +604,72 @@ public class BaseNMode implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();    
+    }
+    
+    @FXML
+    private void helpHandle(ActionEvent event) {
+        
+        switch(((MenuItem)event.getSource()).getText())
+        {
+            case "Guide":
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guide");
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
+                        + "-----------------------------------------------------------\n"
+                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
+                        + "2- Ctrl + → : Move Cursor to Right\n"
+                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
+                        + "4- Alt   :  Go to MenuBar\n"
+                        + "5- Tab  :  Move out from the Text Field\n"
+                        + "-----------------------------------------------------------\n"
+                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
+                
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
+                break;
+            case "About":
+                Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
+                ImageView logo = new ImageView(logoITI);
+                StackPane pane = new StackPane();
+                pane.getChildren().add(logo);
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("About");
+                alert.setHeaderText(null);
+                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
+                alert.setGraphic(pane);
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
+                break;       
+        }
+    }
+
+    @FXML
+    private void editHandle(ActionEvent event) {
+        switch(((MenuItem)event.getSource()).getText())
+        {
+            case "Copy":
+               text = input.getSelectedText();
+               text = text.replace("|", "");
+                break;
+            case "Cut":
+                text = input.getSelectedText();
+                input.deleteText(input.getSelection());
+                break;
+            case "Paste":
+                input.insertText(input.getCaretPosition(),text);
+                break;
+            case "Delete":
+                input.setText("|");
+                break;
+        }
     }
        
 }

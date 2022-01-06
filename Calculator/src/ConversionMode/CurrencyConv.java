@@ -47,12 +47,10 @@ public class CurrencyConv {
             response.append(inputLine);
         }
         in.close();
-        System.out.println(response.toString());
      
         parser = new JSONParser();
         parse = (JSONObject)parser.parse(response.toString());
         
-        //      System.out.println((String)parse.get("date"));
         Double result = (Double)parse.get("result");
         String date = (String)parse.get("date");
         

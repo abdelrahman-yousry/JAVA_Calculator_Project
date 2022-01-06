@@ -4,11 +4,8 @@
  */
 package CalcApplication;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ConcurrentModificationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,79 +23,139 @@ import jssc.SerialPortList;
 public class ArduinoCommunication {
     ObservableList<String> portList;
     String portName;
-    boolean isPortSelected = false;
+    static boolean isPortSelected = false;
     SerialPort serialPort;
-    
+    boolean isFound = false;
+
     public void detectPort(){
         // this method is invoked on application startup and when "Ports" menu is selected
         portList = FXCollections.observableArrayList();
 
         String[] serialPortNames = SerialPortList.getPortNames();
         for(String name: serialPortNames){
-//            System.out.println(name);
+            isFound = false;
             portList.add(name);
-            Calc_GUI.baseModeController.port_menu.getItems().add(new CheckMenuItem(name));
+            if(!Calc_GUI.baseModeController.port_menu.getItems().isEmpty()){
+                for(MenuItem i: Calc_GUI.baseModeController.port_menu.getItems()){
+                    if(i.getText().equals(name)){
+                        isFound = true;
+                        break;
+                    }
+                }
+                if(!isFound)
+                    Calc_GUI.baseModeController.port_menu.getItems().add(new CheckMenuItem(name));
+            }
+            else
+                Calc_GUI.baseModeController.port_menu.getItems().add(new CheckMenuItem(name));
         }
-    }
-    
-    public boolean selectPort(){
         
-//        isPortSelected = false;
+        
+        // update menu -- delete items that no longer exists
+        CheckMenuItem j;
+        for(int count = 1; count < Calc_GUI.baseModeController.port_menu.getItems().size();count++){
+            j = (CheckMenuItem)Calc_GUI.baseModeController.port_menu.getItems().get(count);
+            isFound = false;
+            for(String name: serialPortNames){
+                if(j.getText().equals(name)){
+                    isFound = true;
+                    break;
+                }
+                
+            }
+            if(!isFound)
+                    Calc_GUI.baseModeController.port_menu.getItems().remove(j);
+        }
+        
+        
         for(MenuItem i: Calc_GUI.baseModeController.port_menu.getItems()){
             i.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
-                public void handle(ActionEvent t) {
-                    CheckMenuItem item = (CheckMenuItem)i;
-                    if(item.isSelected()){
-                        for(MenuItem i: Calc_GUI.baseModeController.port_menu.getItems()){
-                            CheckMenuItem j = (CheckMenuItem)i;
-                            j.setSelected(false);
-                        }
-                        item.setSelected(true);
-                        portName = item.getText();
-                        isPortSelected = true;
-                    }
+                public void handle(ActionEvent ev) {
+                    selectPort(ev);
                 }
             });
         }
-        return isPortSelected;
+    }
+
+    
+    public void selectPort(ActionEvent ev){
+        isPortSelected = false;
+        try{
+            CheckMenuItem item = (CheckMenuItem)ev.getSource();
+            if(item.isSelected()){
+                CheckMenuItem j;
+                for(int count = 1; count < Calc_GUI.baseModeController.port_menu.getItems().size();count++){
+                    j = (CheckMenuItem)Calc_GUI.baseModeController.port_menu.getItems().get(count);
+                    j.setSelected(false);
+
+                    if(serialPort!= null){
+                        if(serialPort.isOpened()){
+                            try {
+                                    serialPort.closePort();
+                            } catch (SerialPortException ex) {        }
+                        }
+                    }
+                }
+                portName = item.getText();
+                serialPort = new SerialPort(portName);
+                if(!serialPort.isOpened())
+                    try {
+                        serialPort.openPort();
+                        if(serialPort.isOpened()){
+                            isPortSelected = true;
+                            item.setSelected(true);
+                        }
+                } catch (SerialPortException ex) {}
+            }
+            else{
+                try {
+                    System.out.println("deselect");
+                    serialPort.closePort();
+                } catch (SerialPortException ex) {
+                }
+            }
+        }
+        catch(ConcurrentModificationException ex){
+            // do nothing 
+        }
     }
     
     public void readData(){
-
-        serialPort = new SerialPort(portName);
+//        System.out.println("ooo");
         try {
-            if(!serialPort.isOpened())
-                serialPort.openPort();
             serialPort.setParams(SerialPort.BAUDRATE_9600,    SerialPort.DATABITS_8, SerialPort.STOPBITS_1,SerialPort.PARITY_NONE);
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN);
             while(true)
             {       
-                //Read 10 bytes from serial port
-                byte[] buffer = serialPort.readBytes(2);
-                System.out.println(new String(buffer, StandardCharsets.UTF_8));
-                if(new String(buffer, StandardCharsets.UTF_8).charAt(0) != 'k')
+                //Read 1 byte from serial port
+                byte[] buffer = serialPort.readBytes(1);
+                String key = new String(buffer, StandardCharsets.UTF_8);
+                int isConnected = key.charAt(0);
+                
+                if(isConnected == 0)
                 {
-                    serialPort.closePort();
-                    isPortSelected = false;                    
-                    while(!selectPort());
-                    readData();
-//                    break;
+                    serialPort.closePort();     // close port
+                    isPortSelected = false;     // deselect port                                        
+                    CheckMenuItem j;
+                    for(int count = 1; count < Calc_GUI.baseModeController.port_menu.getItems().size();count++){
+                        j = (CheckMenuItem)Calc_GUI.baseModeController.port_menu.getItems().get(count);
+                        j.setSelected(false);
+                    }
+                    break;
                 }
+                System.out.println(key);
+                Calc_GUI.invoke(key);
             }
-            //Close serial port
-//            b = serialPort.closePort();
         }
-        catch (SerialPortException ex) {
-            System.out.println("CalcApplication.ArduinoCommunication.readData()");
-        }                   
+        catch (SerialPortException ex) {}                   
     }
     public void stopConnection(){
-        try {
-            serialPort.closePort();
-        } catch (SerialPortException ex) { 
-            System.out.println("CalcApplication.ArduinoCommunication.stopConnection()");
+        if(serialPort!= null){
+            if(serialPort.isOpened()){
+                try {
+                        serialPort.closePort();
+                } catch (SerialPortException ex) {        }
+            }
         }
-        
     }
 }
