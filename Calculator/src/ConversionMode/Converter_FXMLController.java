@@ -37,9 +37,12 @@ public class Converter_FXMLController implements Initializable {
     static String oldInput = "|";
     static String oldRes = " ";
     static boolean darkFlag = false;
+    static String fromFlag = "KWD";
+    static String toFlag = "KWD";
+    static String unitFlag = "Currency";
     String selectedMode;
-    String fromStr = null;
-    String toStr = null;
+    static String fromStr = null;
+    static String toStr = null;
     String amount = null;
     int pos ;
     
@@ -78,9 +81,12 @@ public class Converter_FXMLController implements Initializable {
     @FXML
     private Button b_period;
     @FXML
+    private MenuItem currencyButton;
+    @FXML
     private ImageView normal;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        init();
         ta1.setText(oldInput);
         ta1.setEditable(false);
         ta1.setFocusTraversable(false);
@@ -181,7 +187,6 @@ public class Converter_FXMLController implements Initializable {
         else if(bstr.equals("C"))
         {
             // clear button  --> clear screen
-            ta1.setText("|");
             ta1.setText("|");
         }
         else if(bstr.equals("⌫"))
@@ -1357,12 +1362,16 @@ public class Converter_FXMLController implements Initializable {
         Scene scene;
         if("normal".equals(((ImageView)event.getSource()).getId()))
         {
+            fromFlag = from_mb.getText();
+            toFlag = to_mb.getText();
             root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));
             Calc_GUI.darkFlag = true;
 
         }
         else
         {
+            fromFlag = from_mb.getText();
+            toFlag = to_mb.getText();            
             root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));
             Calc_GUI.darkFlag = false;
         }
@@ -1371,5 +1380,28 @@ public class Converter_FXMLController implements Initializable {
         window.setScene(scene);
         window.show();          
     }  
+    
+    void init ()
+    {
+        System.out.println(fromFlag);
+        switch(unitFlag)
+        {
+            case "Currency Converter":
+                currencyButton.fire();
+                switch(fromFlag)
+                {
+                    case "KWD":
+                        KWD.fire();
+                        break;
+                }
+                switch(toFlag)
+                {
+                    case "KWD":
+                        KWD_to.fire();
+                        
+                }
+                break;
+        }
+    }
     
 }

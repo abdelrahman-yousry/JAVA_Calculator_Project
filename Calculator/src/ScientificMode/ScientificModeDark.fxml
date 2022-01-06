@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" onKeyReleased="#write_key" prefHeight="595.0" prefWidth="794.0" style="-fx-background-image: url(file:./src/Style/dark3.png);" stylesheets="@../Style/buttonStyleDark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScientificMode.ScientificMode">
+<AnchorPane id="AnchorPane" fx:id="anchor" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="794.0" style="-fx-background-image: url(file:./src/Style/dark3.png);" stylesheets="@../Style/buttonStyleDark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScientificMode.ScientificMode">
     <children>
       <GridPane layoutX="39.0" layoutY="144.0" opacity="0.9" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyleDark.css">
          <columnConstraints>
@@ -160,7 +160,7 @@
       </GridPane>
       <TextField fx:id="txtField" layoutX="36.0" layoutY="67.0" opacity="0.8" prefHeight="68.0" prefWidth="723.0" styleClass="txtField" stylesheets="@../Style/buttonStyleDark.css">
          <font>
-            <Font name="Arial Bold" size="24.0" />
+            <Font name="Arial Bold" size="20.0" />
          </font></TextField>
       <GridPane layoutX="415.0" layoutY="146.0" opacity="0.9" prefHeight="410.0" prefWidth="155.0" stylesheets="@../Style/buttonStyleDark.css">
         <columnConstraints>
@@ -201,7 +201,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="xⁿ" textAlignment="CENTER" GridPane.rowIndex="1" fx:id="xpower">
+            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="|x|" textAlignment="CENTER" GridPane.rowIndex="1" fx:id="xpower">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
@@ -214,7 +214,7 @@
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="mod" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="|x|" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="mod" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="eˣ" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -283,12 +283,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="radian" layoutX="581.0" layoutY="160.0" mnemonicParsing="false" onAction="#radButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="Radian" textFill="WHITE">
+      <Button fx:id="radian" layoutX="581.0" layoutY="160.0" mnemonicParsing="false" onAction="#radButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="Radian" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="hyp" layoutX="581.0" layoutY="239.0" mnemonicParsing="false" onAction="#hypButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="hyp" textFill="WHITE">
+      <Button fx:id="hyp" layoutX="581.0" layoutY="239.0" mnemonicParsing="false" onAction="#hypButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="hyp" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

@@ -11,12 +11,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#write_key" prefHeight="540.0" prefWidth="578.0" style="-fx-background-image: url(file:./src/Style/Dark3.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConversionMode.Converter_FXMLController">
+<AnchorPane id="AnchorPane" onKeyPressed="#write_key" prefHeight="540.0" prefWidth="578.0" style="-fx-background-image: url(file:./src/Style/Dark3.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConversionMode.Converter_FXMLController">
     <children>
       <MenuButton fx:id="unit_conv_mb" layoutX="7.0" layoutY="62.0" mnemonicParsing="false" styleClass="convButton" stylesheets="@../Style/buttonStyleDark.css" text="Unit-Converter" textFill="WHITE">
         <items>
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Time Converter" />
-            <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Currency Converter" />
+            <MenuItem fx:id="currencyButton" mnemonicParsing="false" onAction="#conv_mode" text="Currency Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Temp Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Freq Converter" />
             <MenuItem mnemonicParsing="false" onAction="#conv_mode" text="Length Converter" />

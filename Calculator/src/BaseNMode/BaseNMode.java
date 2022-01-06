@@ -114,45 +114,9 @@ public class BaseNMode implements Initializable {
     }
     @FXML
     public void write_key(KeyEvent event) {
-       
+
         pos = input.getText().indexOf("|");
-        if(btn_Bin.getTextFill()==javafx.scene.paint.Color.BLUE)    
-        {
-            if(event.getCode()==event.getCode().DIGIT0
-               ||event.getCode()==event.getCode().DIGIT1)
-                    input.insertText(pos, event.getText());
-        }
-        else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.BLUE) //make it by default
-        {
-            if(event.getCode().isDigitKey())
-                input.insertText(pos, event.getText());
-        }
-        else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.BLUE)    
-        {
-             if(event.getCode()==event.getCode().DIGIT0
-               ||event.getCode()==event.getCode().DIGIT1
-               ||event.getCode()==event.getCode().DIGIT2
-               ||event.getCode()==event.getCode().DIGIT3
-               ||event.getCode()==event.getCode().DIGIT4
-               ||event.getCode()==event.getCode().DIGIT5
-               ||event.getCode()==event.getCode().DIGIT6
-               ||event.getCode()==event.getCode().DIGIT7)
-                input.insertText(pos, event.getText());
-        }
-        else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.BLUE)    
-        {
-            if(event.getCode().isDigitKey())
-                input.insertText(pos, event.getText());
-            if(event.getCode()==event.getCode().A
-               ||event.getCode()==event.getCode().B
-               ||event.getCode()==event.getCode().C
-               ||event.getCode()==event.getCode().D
-               ||event.getCode()==event.getCode().E
-               ||event.getCode()==event.getCode().F)                
-            {
-                input.insertText(pos, event.getText());
-            }
-        }
+        
         
         if(event.isShiftDown()){
             switch(event.getCode()){
@@ -229,6 +193,49 @@ public class BaseNMode implements Initializable {
                     input.insertText(input.getText().length(), "|");
                     break;
             }
+            
+            
+            if(btn_Bin.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            {
+                if(event.getCode()==event.getCode().DIGIT0
+                   ||event.getCode()==event.getCode().DIGIT1)
+                        input.insertText(pos, event.getText());
+            }
+            else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.BLUE) //make it by default
+            {
+                if(event.getCode().isDigitKey())
+                    input.insertText(pos, event.getText());
+            }
+            else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            {
+                 if(event.getCode()==event.getCode().DIGIT0
+                   ||event.getCode()==event.getCode().DIGIT1
+                   ||event.getCode()==event.getCode().DIGIT2
+                   ||event.getCode()==event.getCode().DIGIT3
+                   ||event.getCode()==event.getCode().DIGIT4
+                   ||event.getCode()==event.getCode().DIGIT5
+                   ||event.getCode()==event.getCode().DIGIT6
+                   ||event.getCode()==event.getCode().DIGIT7)
+                    input.insertText(pos, event.getText());
+            }
+            else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.BLUE)    
+            {
+                if(event.getCode().isDigitKey())
+                    input.insertText(pos, event.getText());
+                if(event.getCode()==event.getCode().A
+                   ||event.getCode()==event.getCode().B
+                   ||event.getCode()==event.getCode().C
+                   ||event.getCode()==event.getCode().D
+                   ||event.getCode()==event.getCode().E
+                   ||event.getCode()==event.getCode().F)                
+                {
+                    input.insertText(pos, event.getText().toUpperCase());
+                }
+            }
+
+            
+            
+            
         }
     }
     @FXML

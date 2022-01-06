@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" onKeyReleased="#write_key" prefHeight="595.0" prefWidth="794.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScientificMode.ScientificMode">
+<AnchorPane id="AnchorPane" fx:id="anchor" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="794.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScientificMode.ScientificMode">
     <children>
       <GridPane layoutX="39.0" layoutY="144.0" opacity="0.9" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyle.css">
          <columnConstraints>
@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="88.0" layoutY="316.0" mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="π" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <Button layoutX="88.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="π" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
@@ -135,7 +135,7 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="e" GridPane.rowIndex="4">
+            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="e" GridPane.rowIndex="4">
                <font>
                   <Font name="Times New Roman" size="27.0" />
                </font>
@@ -159,7 +159,7 @@
       </GridPane>
       <TextField fx:id="txtField" layoutX="36.0" layoutY="67.0" opacity="0.9" prefHeight="68.0" prefWidth="723.0" styleClass="txtField" stylesheets="@../Style/buttonStyle.css">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="20.0" />
          </font></TextField>
       <GridPane layoutX="415.0" layoutY="146.0" opacity="0.9" prefHeight="410.0" prefWidth="155.0" stylesheets="@../Style/buttonStyle.css">
         <columnConstraints>
@@ -200,9 +200,9 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyle.css" text="xⁿ" textAlignment="CENTER" GridPane.rowIndex="1" fx:id="xpower">
+            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyle.css" text="|x|" textAlignment="CENTER" GridPane.rowIndex="1" fx:id="xpower">
                <font>
-                  <Font name="System Bold Italic" size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <effect>
                   <Blend />
@@ -213,7 +213,7 @@
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="mod" mnemonicParsing="false" onAction="#operation" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyle.css" text="|x|" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="mod" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyle.css" text="eˣ" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

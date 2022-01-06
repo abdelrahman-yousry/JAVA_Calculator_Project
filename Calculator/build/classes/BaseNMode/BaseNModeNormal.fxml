@@ -144,7 +144,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="\%" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
-                  <Font name="System Bold" size="27.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Button>
             <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="÷" GridPane.columnIndex="3">

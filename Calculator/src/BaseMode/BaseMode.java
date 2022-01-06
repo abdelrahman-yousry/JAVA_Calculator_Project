@@ -43,6 +43,7 @@ import javax.script.ScriptException;
  */
 public class BaseMode implements Initializable {
     Alert alert;
+    DialogPane dialogPane;
     static String oldInput = "|";
     static String oldRes = " ";
     static String text;
@@ -383,6 +384,25 @@ public class BaseMode implements Initializable {
         switch(((MenuItem)event.getSource()).getText())
         {
             case "Guide":
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Guide");
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
+                        + "-----------------------------------------------------------\n"
+                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
+                        + "2- Ctrl + → : Move Cursor to Right\n"
+                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
+                        + "4- Alt   :  Go to MenuBar\n"
+                        + "5- Tab  :  Move out from the Text Field\n"
+                        + "-----------------------------------------------------------\n"
+                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
+                
+                dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add(
+                getClass().getResource("..//Style/Dialoge.css").toString());
+                dialogPane.getStyleClass().add("myDialog");
+                alert.showAndWait();
                 break;
             case "About":
                 Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
@@ -392,17 +412,15 @@ public class BaseMode implements Initializable {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("About");
                 alert.setHeaderText(null);
-                alert.setContentText("\n\n\n\n   @Aya Adel - ES42 - Embedded System Track");  
+                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\t    Embedded System Track");  
                 alert.setGraphic(pane);
-                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane = alert.getDialogPane();
                 dialogPane.getStylesheets().add(
                 getClass().getResource("..//Style/Dialoge.css").toString());
                 dialogPane.getStyleClass().add("myDialog");
                 alert.showAndWait();
-                break;
-            
+                break;       
         }
-
     }
 
     @FXML
@@ -411,6 +429,7 @@ public class BaseMode implements Initializable {
         {
             case "Copy":
                text = input.getSelectedText();
+               text = text.replace("|", "");
                 break;
             case "Cut":
                 text = input.getSelectedText();

@@ -96,7 +96,6 @@ public class ScientificMode implements Initializable {
         pos = txtField.getText().indexOf("|");
         if( !"|".equals(txtField.getText()) )  //if the text field is not Empty --> Check the last character before the curser
         {
-            System.out.println("ScientificMode.ScientificMode.handleButtonAction()");
             Character lastChar = txtField.getText().charAt(pos-1);  
             //if the last character is one of the next cases --> add X before the trigonometric func.
             switch( lastChar )
@@ -181,6 +180,22 @@ public class ScientificMode implements Initializable {
         {
                 txtField.insertText(pos,"log( )");                      
         }
+        else if ("|x|".equals(((Button)event.getSource()).getText()))
+        {
+                txtField.insertText(pos,"abs( )");                                  
+        }
+        else if("eˣ".equals(((Button)event.getSource()).getText()))
+        {
+                txtField.insertText(pos,"exp( )");                                             
+        }
+        else if("π".equals(((Button)event.getSource()).getText()))
+        {
+                txtField.insertText(pos,"π");                                             
+        }
+        else if("e".equals(((Button)event.getSource()).getText()))
+        {
+                txtField.insertText(pos,"e");                                             
+        }
     }
     
     @Override
@@ -255,13 +270,17 @@ public class ScientificMode implements Initializable {
             {
                 /* Preparing the Expression to be executed using Java Script Engine */
                 expression = expression.replace("sech","tmp");   //Replace every sech with temporary name because the e will be replaced to Math.e
+                expression = expression.replace("exp", "xp");
                 expression = expression.replace('×', '*');
                 expression = expression.replace('÷', '/');
                 expression = expression.replace("π", "Math.PI");
                 expression = expression.replace("e","Math.E");
                 expression = expression.replace("√", "Math.sqrt");
                 expression = expression.replace("log", "java.lang.Math.log10");
-
+                expression = expression.replace("abs(", "java.lang.Math.abs(");
+                expression = expression.replace("xp", "exp");                
+                expression = expression.replace("exp(", "java.lang.Math.exp(");
+                                
             if(expression.contains("^")){
                 // split string on all operators except ^
                 String[] arrOfStr = expression.split("[\\×\\÷\\+\\-\\√\\(\\)\\%]+");
@@ -459,7 +478,6 @@ public class ScientificMode implements Initializable {
 
     @FXML
     private void operation(ActionEvent event) {
-        System.out.println("ScientificMode.ScientificMode.operation()");
         Button tmp = (Button)event.getSource();
         String op = tmp.getText();
         if(op.equals("√")){
