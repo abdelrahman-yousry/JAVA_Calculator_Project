@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#write_key" prefHeight="540.0" prefWidth="578.0" style="-fx-background-image: url(file:./src/Style/dark3.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GeometryMode.Geometry_FXMLController">
+<AnchorPane id="AnchorPane" onKeyReleased="#write_key" prefHeight="540.0" prefWidth="578.0" style="-fx-background-image: url(file:./src/Style/dark3.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GeometryMode.Geometry_FXMLController">
     <children>
       <MenuButton fx:id="calc_mb" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" styleClass="convButton" stylesheets="@../Style/buttonStyleDark.css" text="Calculations" textFill="WHITE">
          <effect>
@@ -173,6 +173,7 @@
             <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Rectangle" />
             <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Triangle" />
             <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Rohmbus" />
+            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Parallelogram" />
          </items>
          <font>
             <Font name="System Bold" size="12.0" />
@@ -244,6 +245,7 @@
          </image>
       </ImageView>
       <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="227.0" prefHeight="26.0" prefWidth="50.0" stylesheets="@../Style/buttonStyle.css" textAlignment="RIGHT" />
+      <Label fx:id="Label_note" layoutX="420.0" layoutY="80.0" text="then press =" />
     </children>
    <effect>
       <DropShadow color="#0000003a" />

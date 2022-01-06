@@ -21,7 +21,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -34,19 +33,14 @@ import javafx.stage.Stage;
  */
 public class Geometry_FXMLController implements Initializable {
 
-    static String oldInput = "|";
-    static String oldRes = " ";
+    public String selectedMode;
     String shape_detection = null;
     String calc;
     int status_area; // this varibale is a flag to let me know at which state I stand
     int status_perimeter;// this varibale is a flag to let me know at which state I stand
-    String get_dnum;// this var. to get the numbers entered by the user 
-    int get_length = 0;// this var. to get the length of the string in the text area
-    int ta1_len;
-    int pos;
-    public String selectedMode;
+    String get_dnum;// this var. to get the numbers entered by the user
+    int ta1_len;// this var. to get the length of the string in the text area
     char c_to_clear;
-
     Double dnum1 = new Double(0);
     Double dnum2 = new Double(0);
     Double dnum3 = new Double(0);
@@ -62,17 +56,19 @@ public class Geometry_FXMLController implements Initializable {
     @FXML
     private MenuButton calc_mb;
     @FXML
-    private Menu port_menu;
-    @FXML
     private Button b_period;
     @FXML
     private Button b_equal;
     @FXML
     private Button b_backspace;
     @FXML
+    private Label Label_note;
+    @FXML
+    private Menu port_menu;
+    @FXML
     private Label res;
     @FXML
-    private ImageView dark;
+    private ImageView normal;
 
     /**
      * Initializes the controller class.
@@ -82,14 +78,13 @@ public class Geometry_FXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ta1.setText(oldInput);
+        // TODO
+        Label_note.setVisible(false);
         ta1.setEditable(false);
         ta1.setFocusTraversable(false);
-        res.setText(oldRes);
         ta2.setEditable(false);
-        ta2.setFocusTraversable(false);        
+        ta2.setFocusTraversable(false);
     }
-
 
     /*
     *this handler fired if any button is pressed in the GUI
@@ -99,18 +94,20 @@ public class Geometry_FXMLController implements Initializable {
     @FXML
     private void ta_write(ActionEvent event) {
         Button temp = (Button) event.getSource();// to know which button is pressed
-        String bstr = temp.getText();        
+        String bstr = temp.getText();
         /*
             clearing the screen when entering new number after the last 
             succesfull operation's result
-        */
-        if(c_to_clear=='=' && !ta2.getText().isEmpty())
-        {
-            if(!ta2.getText().equals("Enter Numbers!"))
+         */
+        if (c_to_clear == '=' && !ta2.getText().isEmpty()) {
+            //if(!ta2.getText().isEmpty()&&ta2.getText().equals(""))
+            if (!ta2.getText().equals("Enter Numbers!") || bstr.equals("⌫")) {
                 ta1.clear();
-                ta2.clear();
-                c_to_clear=' ';
+            }
+            ta2.clear();
+            c_to_clear = ' ';
         }
+
         /*
         here we switch case according to the button pressed, and according to the button
         we implement the logic of this button
@@ -120,44 +117,50 @@ public class Geometry_FXMLController implements Initializable {
                 ta1.clear();
                 break;
             case "⌫"://mean deleting the last character
-                ta1.deletePreviousChar();
+                if (!ta1.getText().isEmpty()) {
+                    ta1.deleteText(ta1.getLength() - 1, ta1.getLength());
+                }
                 break;
             case "=":// mean calculating the operations
-                
-                c_to_clear='=';
-                if (!ta1.getText(ta1_len,ta1.getLength()).isEmpty() && shape_detection != null && calc!=null) {
+
+                c_to_clear = '=';
+                if (!ta1.getText().isEmpty() && shape_detection != null && calc != null) {
 
                     Double result = new Double(0);
                     switch (shape_detection) {
                         case ("Circle"):
                             switch (calc) {
                                 case ("Area"):
-                                    dnum1 = Double.parseDouble(ta1.getText(17, ta1.getLength()));
+                                    dnum1 = Double.parseDouble(ta1.getText());
                                     result = 3.14 * dnum1 * dnum1;
+                                    Label_note.setVisible(false);
                                     ta2.appendText(result.toString());
-                                    dnum1=0.0;
+                                    dnum1 = 0.0;
                                     break;
                                 case ("Circumference"):
-                                    dnum1 = Double.parseDouble(ta1.getText(17, ta1.getLength()));
+                                    dnum1 = Double.parseDouble(ta1.getText());
                                     result = 2 * 3.14 * dnum1;
+                                    Label_note.setVisible(false);
                                     ta2.appendText(result.toString());
-                                    dnum1=0.0;
+                                    dnum1 = 0.0;
                                     break;
                             }
                             break;
                         case ("Square"):
                             switch (calc) {
                                 case ("Area"):
-                                    dnum1 = Double.parseDouble(ta1.getText(20, ta1.getLength()));
+                                    dnum1 = Double.parseDouble(ta1.getText());
                                     result = dnum1 * dnum1;
                                     ta2.appendText(result.toString());
-                                    dnum1=0.0;
+                                    Label_note.setVisible(false);
+                                    dnum1 = 0.0;
                                     break;
                                 case ("Perimeter"):
-                                    dnum1 = Double.parseDouble(ta1.getText(20, ta1.getLength()));
+                                    dnum1 = Double.parseDouble(ta1.getText());
                                     result = 4 * dnum1;
                                     ta2.appendText(result.toString());
-                                    dnum1=0.0;
+                                    Label_note.setVisible(false);
+                                    dnum1 = 0.0;
                                     break;
                             }
                             break;
@@ -166,26 +169,28 @@ public class Geometry_FXMLController implements Initializable {
                             switch (calc) {
                                 case ("Area"):
                                     if (dnum1 == 0) {
-                                        dnum1 = Double.parseDouble(ta1.getText(13, ta1.getLength()));
-                                        ta1.appendText(" Enter length: ");
-                                        ta1_len = ta1.getLength();
+                                        dnum1 = Double.parseDouble(ta1.getText());
+                                        ta1.clear();
+                                        ta1.setPromptText("Enter length:");
                                     } else {
-                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
+                                        dnum2 = Double.parseDouble(ta1.getText());
                                         result = dnum1 * dnum2;
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         dnum1 = 0.0;
                                         dnum2 = 0.0;
                                     }
                                     break;
                                 case ("Perimeter"):
                                     if (dnum1 == 0) {
-                                        dnum1 = Double.parseDouble(ta1.getText(13, ta1.getLength()));
-                                        ta1.appendText(" Enter length: ");
-                                        ta1_len = ta1.getLength();
+                                        dnum1 = Double.parseDouble(ta1.getText());
+                                        ta1.clear();
+                                        ta1.setPromptText(" Enter length: ");
                                     } else {
-                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
+                                        dnum2 = Double.parseDouble(ta1.getText());
                                         result = 2 * (dnum1 + dnum2);
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         dnum1 = 0.0;
                                         dnum2 = 0.0;
                                     }
@@ -197,38 +202,41 @@ public class Geometry_FXMLController implements Initializable {
                             switch (calc) {
                                 case ("Area"):
                                     if (status_area == 0) {
-                                        dnum1 =  Double.parseDouble(ta1.getText(15, ta1.getLength()));
-                                        ta1.appendText(" Enter the hieght ");
-                                        ta1_len = ta1.getLength();
+                                        dnum1 = Double.parseDouble(ta1.getText());
+                                        ta1.clear();
+                                        ta1.setPromptText("Enter the hieght ");
                                         status_area = 1;
                                     } else if (status_area == 1) {
-                                        dnum2 =  Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
+                                        dnum2 = Double.parseDouble(ta1.getText());
                                         result = 0.5 * dnum1 * dnum2;
                                         ta2.setText("The area = ");
+                                        ta2.setPromptText("");
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         status_area = 0;
-                                        ta1_len = 0;
                                     }
 
                                     break;
                                 case ("Perimeter"):
                                     if (status_perimeter == 0) {
-                                        dnum1 = Double.parseDouble(ta1.getText(15, ta1.getLength()));
-                                        ta1.setText(" Enter side 2 = ");
-                                        ta1_len = ta1.getLength();
+                                        dnum1 = Double.parseDouble(ta1.getText());
+                                        ta1.clear();
+                                        ta1.setPromptText(" Enter side 2 = ");
+
                                         status_perimeter = 1;
                                     } else if (status_perimeter == 1) {
-                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
-                                        ta1.setText("Enter side 3 = ");
-                                        ta1_len = ta1.getLength();
+                                        dnum2 = Double.parseDouble(ta1.getText());
+                                        ta1.clear();
+                                        ta1.setPromptText("Enter side 3 = ");
                                         status_perimeter = 2;
                                     } else if (status_perimeter == 2) {
-                                        dnum3 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
+                                        dnum3 = Double.parseDouble(ta1.getText());
                                         result = dnum1 + dnum2 + dnum3;
-                                        ta2.setText("The perimeter = ");
+                                        ta2.setPromptText("The perimeter = ");
+                                        ta2.setPromptText("");
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         status_perimeter = 0;
-                                        ta1_len = 0;
                                     }
                                     break;
                             }
@@ -237,29 +245,32 @@ public class Geometry_FXMLController implements Initializable {
                             switch (calc) {
                                 case ("Area"):
                                     if (status_area == 0) {
-                                        get_dnum = ta1.getText(28, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
-                                        ta1.setText(" Enter the diagonal 2 length ");
-                                        ta1_len = ta1.getLength();
+                                        ta1.clear();
+                                        ta1.setPromptText("Enter the diagonal 2 length ");
                                         status_area = 1;
                                     } else if (status_area == 1) {
-                                        get_dnum = ta1.getText(ta1_len, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum2 = new Double(get_dnum);
-                                        ta2.setText("The area of Rohmbus = ");
+                                        ta2.setPromptText("The area of Rohmbus = ");
+                                        ta2.setPromptText("");
                                         result = (dnum1 * dnum2) / 2;
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         status_area = 0;
-                                        ta1_len = 0;
                                     }
                                     break;
 
                                 case ("Perimeter"):
                                     if (status_perimeter == 0) {
-                                        get_dnum = ta1.getText(22, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
                                         result = 4 * dnum1;
-                                        ta2.setText("The perimeter of Rohmbus = ");
+                                        ta2.setPromptText("The perimeter of Rohmbus = ");
+                                        ta2.setPromptText("");
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                     }
                                     break;
                             }
@@ -269,110 +280,103 @@ public class Geometry_FXMLController implements Initializable {
                             switch (calc) {
                                 case ("Area"):
                                     if (status_area == 0) {
-                                        get_dnum = ta1.getText(17, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
-                                        ta1.setText(" Enter the hieght = ");
-                                        ta1_len = ta1.getLength();
+                                        ta1.clear();
+                                        ta1.setPromptText(" Enter the hieght = ");
                                         status_area = 1;
                                     } else if (status_area == 1) {
-                                        get_dnum = ta1.getText(ta1_len, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum2 = new Double(get_dnum);
-                                        ta2.setText("The area of parallelogram = ");
+                                        ta2.setPromptText("The area of parallelogram = ");
+                                        ta2.setPromptText("");
                                         result = dnum1 * dnum2;
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         status_area = 0;
-                                        ta1_len = 0;
                                     }
                                     break;
 
                                 case ("Perimeter"):
                                     if (status_perimeter == 0) {
 
-                                        get_dnum = ta1.getText(14, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
-                                        ta1.setText(" Enter side 2 = ");
-                                        ta1_len = ta1.getLength();
+                                        ta1.clear();
+                                        ta1.setPromptText(" Enter side 2 = ");
                                         status_perimeter = 1;
                                     } else if (status_perimeter == 1) {
-                                        get_dnum = ta1.getText(ta1_len, ta1.getLength());
+                                        get_dnum = ta1.getText();
                                         dnum2 = new Double(get_dnum);
-                                        ta2.setText("The perimeter of parallelogram = ");
+                                        ta2.setPromptText("The perimeter of parallelogram = ");
+                                        ta2.setPromptText("");
                                         result = 2 * (dnum1 + dnum2);
                                         ta2.appendText(result.toString());
+                                        Label_note.setVisible(false);
                                         status_perimeter = 0;
-                                        ta1_len = 0;
                                     }
                                     break;
                             }
                             break;
                     }
-                }
-                /*
+                } /*
                     if there is no shape or the type of calculation selected 
                     we print out message for the user to choose the shape and 
                     also choose the calculation type
-                 */
-                else if (shape_detection == null) {
+                 */ else if (shape_detection == null) {
                     ta2.setText("Choose a shape");
-                }
-                else if (calc == null) {
+                } else if (calc == null) {
                     ta2.setText("Choose from Calculations menu");
-                }
-                else{
+                } else {
                     ta2.setText("Enter Numbers!");
                 }
 
                 break;
 
             default:// this case is if the user select any number from the GUI
-                if(ta1.getText().isEmpty())
-                {
-                    switch(shape_detection)
-                    {
-                        case("Circle"):
-                            ta1.setText("Enter the radius: ");
+                if (ta1.getText().isEmpty()) {
+                    switch (shape_detection) {
+                        case ("Circle"):
+                            ta1.setPromptText("Enter the radius: ");
                             break;
-                        case("Square"):  
-                            ta1.setText("Enter side's length: ");
+                        case ("Square"):
+                            ta1.setPromptText("Enter side's length: ");
                             break;
-                        case("Rectangle"):
-                            ta1.setText("Enter width: ");
+                        case ("Rectangle"):
+                            ta1.setPromptText("Enter width: ");
                             break;
-                        case("Triangle"):
-                            switch(calc)
-                            {
-                                case("Area"):
-                                    ta1.setText("Enter the base ");
+                        case ("Triangle"):
+                            switch (calc) {
+                                case ("Area"):
+                                    ta1.setPromptText("Enter the base ");
                                     break;
-                                case("Perimeter"):
-                                    ta1.setText("Enter side 1 = ");
+                                case ("Perimeter"):
+                                    ta1.setPromptText("Enter side 1 = ");
                                     break;
                             }
                             break;
-                        case("Rohmbus"):
-                            switch(calc)
-                            {
-                                case("Area"):
-                                    ta1.setText("Enter the diagonal 1 length ");
+                        case ("Rohmbus"):
+                            switch (calc) {
+                                case ("Area"):
+                                    ta1.setPromptText("Enter the diagonal 1 length ");
                                     break;
-                                case("Perimeter"):
-                                    ta1.setText("Enter the side length ");
+                                case ("Perimeter"):
+                                    ta1.setPromptText("Enter the side length ");
                                     break;
                             }
                             break;
-                        case("Parallelogram"):
-                            switch(calc)
-                            {
-                                case("Area"):
-                                    ta1.setText("Enter the base = ");
+                        case ("Parallelogram"):
+                            switch (calc) {
+                                case ("Area"):
+                                    ta1.setPromptText("Enter the base = ");
                                     break;
-                                case("Perimeter"):
-                                    ta1.setText("Enter side 1 =");
+                                case ("Perimeter"):
+                                    ta1.setPromptText("Enter side 1 =");
                                     break;
                             }
                             break;
                     }
-                ta1_len=ta1.getLength();
+                    ta1_len = ta1.getLength();
                 }
                 ta1.appendText(bstr);
                 break;
@@ -389,6 +393,9 @@ public class Geometry_FXMLController implements Initializable {
     private void shape_geo(ActionEvent event) {
         ta1.clear();
         ta2.clear();
+        ta1.setPromptText("");
+        Label_note.setVisible(false);
+
         shape_detection = null;
         calc = null;
         MenuItem shapes_mi = (MenuItem) event.getSource();
@@ -406,15 +413,17 @@ public class Geometry_FXMLController implements Initializable {
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter the radius: ");
-                ta1_len = ta1.getLength();
-                calc_mb.setText(area_mi.getText());
-                calc = ((MenuItem) event1.getSource()).getText();
+                ta1.setPromptText("Enter the radius: ");
+                Label_note.setVisible(true);
+                calc_mb.setText(area_mi.getText());// setting menubutton of the calc by the menuitem which has been selected
+                //calc = ((MenuItem) event1.getSource()).getText();// flag for switch in the ta_write handler
+                calc = calc_mb.getText();
             });
             circum_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter the radius: ");
+                ta1.setPromptText("Enter the radius: ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(circum_calc.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -428,7 +437,8 @@ public class Geometry_FXMLController implements Initializable {
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter side's length: ");
+                ta1.setPromptText("Enter side's length: ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(perimeter_calc.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -436,7 +446,8 @@ public class Geometry_FXMLController implements Initializable {
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter side's length: ");
+                ta1.setPromptText("Enter side's length: ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(area_mi.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -450,7 +461,8 @@ public class Geometry_FXMLController implements Initializable {
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter width: ");
+                ta1.setPromptText("Enter width: ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(perimeter_calc.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -458,7 +470,8 @@ public class Geometry_FXMLController implements Initializable {
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter width: ");
+                ta1.setPromptText("Enter width: ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(area_mi.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -473,7 +486,8 @@ public class Geometry_FXMLController implements Initializable {
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter side 1 = ");
+                ta1.setPromptText("Enter side 1 = ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(perimeter_calc.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -482,7 +496,8 @@ public class Geometry_FXMLController implements Initializable {
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter the base ");
+                ta1.setPromptText("Enter the base ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(area_mi.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -498,7 +513,8 @@ public class Geometry_FXMLController implements Initializable {
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter the side length ");
+                ta1.setPromptText("Enter the side length ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(perimeter_calc.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -506,7 +522,8 @@ public class Geometry_FXMLController implements Initializable {
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter the diagonal 1 length ");
+                ta1.setPromptText("Enter the diagonal 1 length ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(area_mi.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -522,7 +539,8 @@ public class Geometry_FXMLController implements Initializable {
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter side 1 =");
+                ta1.setPromptText("Enter side 1 =");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(perimeter_calc.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -530,7 +548,8 @@ public class Geometry_FXMLController implements Initializable {
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
                 ta2.clear();
-                ta1.setText("Enter the base = ");
+                ta1.setPromptText("Enter the base = ");
+                Label_note.setVisible(true);
                 ta1_len = ta1.getLength();
                 calc_mb.setText(area_mi.getText());
                 calc = ((MenuItem) event1.getSource()).getText();
@@ -540,103 +559,79 @@ public class Geometry_FXMLController implements Initializable {
 
     @FXML
     private void modesHandle(ActionEvent event) throws IOException {
-        selectedMode = ((MenuItem)event.getSource()).getText();
-
-        Parent root = null;  
+        selectedMode = ((MenuItem) event.getSource()).getText();
+        Parent root = null;
         Scene scene;
-        
-        switch(selectedMode)
-        {
+
+        switch (selectedMode) {
             case "Basic":
-                if(!Calc_GUI.darkFlag)
+                if (!Calc_GUI.darkFlag) {
                     root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));                   
+                } else {
+                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));
+                }
                 break;
             case "Scientific":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));                   
+                if (!Calc_GUI.darkFlag) {
+                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));
+                } else {
+                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));
+                }
                 break;
             case "Conversion":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));                  
-                break;     
+                if (!Calc_GUI.darkFlag) {
+                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));
+                } else {
+                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));
+                }
+                break;
             case "Geometry":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));                  
-                break;  
+                if (!Calc_GUI.darkFlag) {
+                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));
+                } else {
+                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));
+                }
+                break;
             case "Base-N":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));                  
-                break; 
+                if (!Calc_GUI.darkFlag) {
+                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml"));
+                } else {
+                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));
+                }
+                break;
         }
 
-
         scene = new Scene(root);
-        Stage window = (Stage)(res.getScene().getWindow());
+        Stage window = (Stage) (ta2.getScene().getWindow());//***////question???? what is res var refer to
         window.setScene(scene);
         window.show();
-        //return to default
-        oldInput = "|";
-        oldRes = " ";
-        
+
     }
+// Hosny
 
     @FXML
     private void changeMode(MouseEvent event) throws IOException {
         Parent root;
         Scene scene;
-        if("normal".equals(((ImageView)event.getSource()).getId()))
-        {
-            oldInput = ta1.getText();
-            oldRes = ta2.getText();
+        if ("normal".equals(((ImageView) event.getSource()).getId())) {
             root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));
             Calc_GUI.darkFlag = true;
 
-        }
-        else
-        {
-            oldInput = ta1.getText();   
-            oldRes = ta2.getText();            
+        } else {
             root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));
             Calc_GUI.darkFlag = false;
         }
         scene = new Scene(root);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
-        window.show();    
-    
+        window.show();
+
     }
 
     @FXML
     private void write_key(KeyEvent event) {
-        pos = ta1.getText().indexOf("|");
-
         if (event.getCode().isDigitKey()) {
-            ta1.insertText(pos, event.getText());
-        } else if (event.isControlDown()) {
-            switch (event.getCode()) {
-                case LEFT:
-                    if (pos > 0) {
-                        ta1.setText(ta1.getText().replace("|", ""));
-                        ta1.insertText(pos - 1, "|");
-                    }
-                    break;
-                case RIGHT:
-                    if (pos < ta1.getText().length() - 1) {
-                        ta1.setText(ta1.getText().replace("|", ""));
-                        ta1.insertText(pos + 1, "|");
-                    }
-                    break;
-            }
+            ta1.appendText(event.getText());
         } else {
             switch (event.getCode()) {
 
@@ -655,16 +650,7 @@ public class Geometry_FXMLController implements Initializable {
                 case DECIMAL: // for dot in >
                     b_period.fire();
                     break;
-                case HOME:
-                    ta1.setText(ta1.getText().replace("|", ""));
-                    ta1.insertText(0, "|");
-                    break;
-                case END:
-                    ta1.setText(ta1.getText().replace("|", ""));
-                    ta1.insertText(ta1.getText().length(), "|");
-                    break;
             }
         }
     }
-
 }
