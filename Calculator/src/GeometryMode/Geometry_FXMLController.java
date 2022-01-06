@@ -69,6 +69,22 @@ public class Geometry_FXMLController implements Initializable {
     private Label res;
     @FXML
     private ImageView normal;
+    static String old_ta1_text = null;
+    static String old_ta2_text = null;
+    static String old_Shape_Detection = null;
+    static String old_Calc = null;
+    @FXML
+    MenuItem Circle_mi;
+    @FXML
+    MenuItem Square_mi;
+    @FXML
+    MenuItem Rectangle_mi;
+    @FXML
+    MenuItem Triangle_mi;
+    @FXML
+    MenuItem Rohmbus_mi;
+    @FXML
+    MenuItem Parallelogram_mi;
 
     /**
      * Initializes the controller class.
@@ -79,6 +95,10 @@ public class Geometry_FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        if (old_ta1_text != null && old_ta2_text!=null) {
+            ta1.setText(old_ta1_text);
+            ta2.setText(old_ta2_text);
+        }
         Label_note.setVisible(false);
         ta1.setEditable(false);
         ta1.setFocusTraversable(false);
@@ -334,7 +354,7 @@ public class Geometry_FXMLController implements Initializable {
                 break;
 
             default:// this case is if the user select any number from the GUI
-                if (ta1.getText().isEmpty()) {
+                if (ta1.getText().isEmpty() && shape_detection != null && calc!=null) {
                     switch (shape_detection) {
                         case ("Circle"):
                             ta1.setPromptText("Enter the radius: ");
@@ -395,7 +415,6 @@ public class Geometry_FXMLController implements Initializable {
         ta2.clear();
         ta1.setPromptText("");
         Label_note.setVisible(false);
-
         shape_detection = null;
         calc = null;
         MenuItem shapes_mi = (MenuItem) event.getSource();
@@ -613,10 +632,11 @@ public class Geometry_FXMLController implements Initializable {
     private void changeMode(MouseEvent event) throws IOException {
         Parent root;
         Scene scene;
+        old_ta1_text = ta1.getText();
+        old_ta2_text = ta2.getText();
         if ("normal".equals(((ImageView) event.getSource()).getId())) {
             root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));
             Calc_GUI.darkFlag = true;
-
         } else {
             root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));
             Calc_GUI.darkFlag = false;
@@ -625,7 +645,6 @@ public class Geometry_FXMLController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
-
     }
 
     @FXML
