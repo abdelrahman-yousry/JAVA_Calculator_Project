@@ -18,7 +18,7 @@ import javafx.scene.control.ToggleButton;
 /**
  * FXML Controller class
  *
- * @author Abdelrahman Yousry
+ * @author Mohamed Hosny
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -26,9 +26,9 @@ public class FXMLDocumentController implements Initializable {
     String calc;
     int status_area; // this varibale is a flag to let me know at which state I stand
     int status_perimeter;// this varibale is a flag to let me know at which state I stand
-    String get_dnum;// this var. to get the numbers entered by the user 
-    int get_length = 0;// this var. to get the length of the string in the text area
-    int ta1_len;
+    String get_dnum;// this var. to get the numbers entered by the user
+    int ta1_len;// this var. to get the length of the string in the text area
+    char c_to_clear;
     Double dnum1 = new Double(0);
     Double dnum2 = new Double(0);
     Double dnum3 = new Double(0);
@@ -81,8 +81,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void ta_write(ActionEvent event) {
         Button temp = (Button) event.getSource();// to know which button is pressed
-        String bstr = temp.getText();
-        //String ta1_str = temp.getText();
+        String bstr = temp.getText();        
+        /*
+            clearing the screen when entering new number after the last 
+            succesfull operation's result
+        */
+        if(c_to_clear=='=' && !ta2.getText().isEmpty())
+        {
+            if(!ta2.getText().equals("Enter Numbers!"))
+                ta1.clear();
+            ta2.clear();
+            c_to_clear=' ';
+        }
         /*
         here we switch case according to the button pressed, and according to the button
         we implement the logic of this button
@@ -95,8 +105,9 @@ public class FXMLDocumentController implements Initializable {
                 ta1.deletePreviousChar();
                 break;
             case "=":// mean calculating the operations
-
-                if (!ta1.getText().isEmpty() && shape_detection != null) {
+                
+                c_to_clear='=';
+                if (!ta1.getText(ta1_len,ta1.getLength()).isEmpty() && shape_detection != null && calc!=null) {
 
                     Double result = new Double(0);
                     switch (shape_detection) {
@@ -106,11 +117,13 @@ public class FXMLDocumentController implements Initializable {
                                     dnum1 = Double.parseDouble(ta1.getText(17, ta1.getLength()));
                                     result = 3.14 * dnum1 * dnum1;
                                     ta2.appendText(result.toString());
+                                    dnum1=0.0;
                                     break;
                                 case ("Circumference"):
                                     dnum1 = Double.parseDouble(ta1.getText(17, ta1.getLength()));
                                     result = 2 * 3.14 * dnum1;
                                     ta2.appendText(result.toString());
+                                    dnum1=0.0;
                                     break;
                             }
                             break;
@@ -120,11 +133,13 @@ public class FXMLDocumentController implements Initializable {
                                     dnum1 = Double.parseDouble(ta1.getText(20, ta1.getLength()));
                                     result = dnum1 * dnum1;
                                     ta2.appendText(result.toString());
+                                    dnum1=0.0;
                                     break;
                                 case ("Perimeter"):
                                     dnum1 = Double.parseDouble(ta1.getText(20, ta1.getLength()));
                                     result = 4 * dnum1;
                                     ta2.appendText(result.toString());
+                                    dnum1=0.0;
                                     break;
                             }
                             break;
@@ -134,10 +149,10 @@ public class FXMLDocumentController implements Initializable {
                                 case ("Area"):
                                     if (dnum1 == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText(13, ta1.getLength()));
-                                        ta1_len = ta1.getLength();
                                         ta1.appendText(" Enter length: ");
+                                        ta1_len = ta1.getLength();
                                     } else {
-                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len + 15, ta1.getLength()));
+                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
                                         result = dnum1 * dnum2;
                                         ta2.appendText(result.toString());
                                         dnum1 = 0.0;
@@ -147,15 +162,14 @@ public class FXMLDocumentController implements Initializable {
                                 case ("Perimeter"):
                                     if (dnum1 == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText(13, ta1.getLength()));
-                                        ta1_len = ta1.getLength();
                                         ta1.appendText(" Enter length: ");
+                                        ta1_len = ta1.getLength();
                                     } else {
-                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len + 15, ta1.getLength()));
+                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
                                         result = 2 * (dnum1 + dnum2);
                                         ta2.appendText(result.toString());
                                         dnum1 = 0.0;
                                         dnum2 = 0.0;
-                                        result = 0.0;
                                     }
                                     break;
                             }
@@ -167,15 +181,15 @@ public class FXMLDocumentController implements Initializable {
                                     if (status_area == 0) {
                                         dnum1 =  Double.parseDouble(ta1.getText(15, ta1.getLength()));
                                         ta1.appendText(" Enter the hieght ");
-                                        get_length = ta1.getLength();
+                                        ta1_len = ta1.getLength();
                                         status_area = 1;
                                     } else if (status_area == 1) {
-                                        dnum2 =  Double.parseDouble(ta1.getText(get_length, ta1.getLength()));
+                                        dnum2 =  Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
                                         result = 0.5 * dnum1 * dnum2;
                                         ta2.setText("The area = ");
                                         ta2.appendText(result.toString());
                                         status_area = 0;
-                                        get_length = 0;
+                                        ta1_len = 0;
                                     }
 
                                     break;
@@ -183,20 +197,20 @@ public class FXMLDocumentController implements Initializable {
                                     if (status_perimeter == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText(15, ta1.getLength()));
                                         ta1.setText(" Enter side 2 = ");
-                                        get_length = ta1.getLength();
+                                        ta1_len = ta1.getLength();
                                         status_perimeter = 1;
                                     } else if (status_perimeter == 1) {
-                                        dnum2 = Double.parseDouble(ta1.getText(get_length, ta1.getLength()));
+                                        dnum2 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
                                         ta1.setText("Enter side 3 = ");
-                                        get_length = ta1.getLength();
+                                        ta1_len = ta1.getLength();
                                         status_perimeter = 2;
                                     } else if (status_perimeter == 2) {
-                                        dnum3 = Double.parseDouble(ta1.getText(get_length, ta1.getLength()));
+                                        dnum3 = Double.parseDouble(ta1.getText(ta1_len, ta1.getLength()));
                                         result = dnum1 + dnum2 + dnum3;
                                         ta2.setText("The perimeter = ");
                                         ta2.appendText(result.toString());
                                         status_perimeter = 0;
-                                        get_length = 0;
+                                        ta1_len = 0;
                                     }
                                     break;
                             }
@@ -208,16 +222,16 @@ public class FXMLDocumentController implements Initializable {
                                         get_dnum = ta1.getText(28, ta1.getLength());
                                         dnum1 = new Double(get_dnum);
                                         ta1.setText(" Enter the diagonal 2 length ");
-                                        get_length = ta1.getLength();
+                                        ta1_len = ta1.getLength();
                                         status_area = 1;
                                     } else if (status_area == 1) {
-                                        get_dnum = ta1.getText(get_length, ta1.getLength());
+                                        get_dnum = ta1.getText(ta1_len, ta1.getLength());
                                         dnum2 = new Double(get_dnum);
                                         ta2.setText("The area of Rohmbus = ");
                                         result = (dnum1 * dnum2) / 2;
                                         ta2.appendText(result.toString());
                                         status_area = 0;
-                                        get_length = 0;
+                                        ta1_len = 0;
                                     }
                                     break;
 
@@ -240,16 +254,16 @@ public class FXMLDocumentController implements Initializable {
                                         get_dnum = ta1.getText(17, ta1.getLength());
                                         dnum1 = new Double(get_dnum);
                                         ta1.setText(" Enter the hieght = ");
-                                        get_length = ta1.getLength();
+                                        ta1_len = ta1.getLength();
                                         status_area = 1;
                                     } else if (status_area == 1) {
-                                        get_dnum = ta1.getText(get_length, ta1.getLength());
+                                        get_dnum = ta1.getText(ta1_len, ta1.getLength());
                                         dnum2 = new Double(get_dnum);
                                         ta2.setText("The area of parallelogram = ");
                                         result = dnum1 * dnum2;
                                         ta2.appendText(result.toString());
                                         status_area = 0;
-                                        get_length = 0;
+                                        ta1_len = 0;
                                     }
                                     break;
 
@@ -259,16 +273,16 @@ public class FXMLDocumentController implements Initializable {
                                         get_dnum = ta1.getText(14, ta1.getLength());
                                         dnum1 = new Double(get_dnum);
                                         ta1.setText(" Enter side 2 = ");
-                                        get_length = ta1.getLength();
+                                        ta1_len = ta1.getLength();
                                         status_perimeter = 1;
                                     } else if (status_perimeter == 1) {
-                                        get_dnum = ta1.getText(get_length, ta1.getLength());
+                                        get_dnum = ta1.getText(ta1_len, ta1.getLength());
                                         dnum2 = new Double(get_dnum);
                                         ta2.setText("The perimeter of parallelogram = ");
                                         result = 2 * (dnum1 + dnum2);
                                         ta2.appendText(result.toString());
                                         status_perimeter = 0;
-                                        get_length = 0;
+                                        ta1_len = 0;
                                     }
                                     break;
                             }
@@ -280,17 +294,68 @@ public class FXMLDocumentController implements Initializable {
                     we print out message for the user to choose the shape and 
                     also choose the calculation type
                  */
-                if (shape_detection == null && calc == null) {
-                    ta2.setText("Enter Numbers!");
-                } else if (shape_detection == null) {
+                else if (shape_detection == null) {
                     ta2.setText("Choose a shape");
-                } else if (calc == null) {
+                }
+                else if (calc == null) {
                     ta2.setText("Choose from Calculations menu");
+                }
+                else{
+                    ta2.setText("Enter Numbers!");
                 }
 
                 break;
 
             default:// this case is if the user select any number from the GUI
+                if(ta1.getText().isEmpty())
+                {
+                    switch(shape_detection)
+                    {
+                        case("Circle"):
+                            ta1.setText("Enter the radius: ");
+                            break;
+                        case("Square"):  
+                            ta1.setText("Enter side's length: ");
+                            break;
+                        case("Rectangle"):
+                            ta1.setText("Enter width: ");
+                            break;
+                        case("Triangle"):
+                            switch(calc)
+                            {
+                                case("Area"):
+                                    ta1.setText("Enter the base ");
+                                    break;
+                                case("Perimeter"):
+                                    ta1.setText("Enter side 1 = ");
+                                    break;
+                            }
+                            break;
+                        case("Rohmbus"):
+                            switch(calc)
+                            {
+                                case("Area"):
+                                    ta1.setText("Enter the diagonal 1 length ");
+                                    break;
+                                case("Perimeter"):
+                                    ta1.setText("Enter the side length ");
+                                    break;
+                            }
+                            break;
+                        case("Parallelogram"):
+                            switch(calc)
+                            {
+                                case("Area"):
+                                    ta1.setText("Enter the base = ");
+                                    break;
+                                case("Perimeter"):
+                                    ta1.setText("Enter side 1 =");
+                                    break;
+                            }
+                            break;
+                    }
+                ta1_len=ta1.getLength();
+                }
                 ta1.appendText(bstr);
                 break;
         }
