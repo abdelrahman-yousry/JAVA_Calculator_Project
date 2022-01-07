@@ -168,12 +168,12 @@
             <DropShadow color="#0000006c" height="2.34" radius="0.08499999999999996" width="0.0" />
          </effect>
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Circle" />
-            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Square" />
-            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Rectangle" />
-            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Triangle" />
-            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Rohmbus" />
-            <MenuItem mnemonicParsing="false" onAction="#shape_geo" text="Parallelogram" />
+            <MenuItem fx:id="Circle_mi" mnemonicParsing="false" onAction="#shape_geo" text="Circle" />
+            <MenuItem fx:id="Square_mi" mnemonicParsing="false" onAction="#shape_geo" text="Square" />
+            <MenuItem fx:id="Rectangle_mi" mnemonicParsing="false" onAction="#shape_geo" text="Rectangle" />
+            <MenuItem fx:id="Triangle_mi" mnemonicParsing="false" onAction="#shape_geo" text="Triangle" />
+            <MenuItem fx:id="Rohmbus_mi" mnemonicParsing="false" onAction="#shape_geo" text="Rohmbus" />
+            <MenuItem fx:id="Parallelogram_mi" mnemonicParsing="false" onAction="#shape_geo" text="Parallelogram" />
          </items>
          <font>
             <Font name="System Bold" size="12.0" />
@@ -245,7 +245,7 @@
          </image>
       </ImageView>
       <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="227.0" prefHeight="26.0" prefWidth="50.0" stylesheets="@../Style/buttonStyle.css" textAlignment="RIGHT" />
-      <Label fx:id="Label_note" layoutX="420.0" layoutY="80.0" text="then press =" />
+      <Label fx:id="Label_note" layoutX="420.0" layoutY="80.0" text="then press =" textFill="WHITE" />
     </children>
    <effect>
       <DropShadow color="#0000003a" />

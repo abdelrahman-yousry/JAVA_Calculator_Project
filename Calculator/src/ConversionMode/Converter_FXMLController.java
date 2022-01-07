@@ -96,6 +96,7 @@ public class Converter_FXMLController implements Initializable {
         res.setText(oldRes);
         ta2.setEditable(false);
         ta2.setFocusTraversable(false);
+        
     } 
     
     @FXML

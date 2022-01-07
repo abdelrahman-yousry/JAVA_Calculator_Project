@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#write_key" prefHeight="595.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseNMode.BaseNMode">
+<AnchorPane id="AnchorPane" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseNMode.BaseNMode">
     <children>
       <MenuBar prefHeight="40.0" prefWidth="549.0" stylesheets="@../Style/buttonStyle.css">
         <menus>
