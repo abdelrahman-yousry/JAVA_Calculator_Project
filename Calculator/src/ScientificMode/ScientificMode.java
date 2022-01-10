@@ -222,6 +222,17 @@ public class ScientificMode implements Initializable {
         scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
         scriptEngine.put("HyperMath", new HyperMath());   // Add a class HyperMath - that solves the operations that are not found in java Math library such as ln, arccot,... - to the Script Engine to recognize them
         makeFadeOut();
+        
+        Calc_GUI.baseModeController.menuBar.getStylesheets().clear();
+        anchor.getChildren().add(Calc_GUI.baseModeController.menuBar);
+        Calc_GUI.baseModeController.menuBar.toBack();
+        Calc_GUI.baseModeController.menuBar.setPrefWidth(794);
+        if(Calc_GUI.darkFlag){
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());            
+        }
+        else{
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyle.css").toString()); 
+        }
 
     }    
 
@@ -334,10 +345,6 @@ public class ScientificMode implements Initializable {
                 }
                 else
                 {
-//                    for(String s : hyperOperations)
-//                    {
-//                        expression = expression.replace(s, "HyperMath."+s+"(Math.PI/180)*");
-//                    }
                     /* Replace sin,cos,asin,.. --> Math.sin,Math.cos,Math.asin.. */
                     for(String s : trigOperations)
                     {
@@ -536,57 +543,7 @@ public class ScientificMode implements Initializable {
         }
     }
 
-    @FXML
-    private void modesHandle(ActionEvent event) throws IOException {
-         selectedMode = ((MenuItem)event.getSource()).getText();
-
-        Parent root = null;
-        Scene scene;
-        
-        switch(selectedMode)
-        {
-            case "Basic":
-                if(!Calc_GUI.darkFlag)
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));                   
-                break;
-            case "Scientific":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));                   
-                break;
-            case "Conversion":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));                  
-                break;     
-            case "Geometry":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));                  
-                break;  
-            case "Base-N":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));                  
-                break; 
-        }
-
-        
-        scene = new Scene(root);
-        Stage window = (Stage)(res.getScene().getWindow());
-        window.setScene(scene);
-        window.show();
-        //return to default
-        oldInput = "|";
-        oldRes = " ";
-    }
-    
+ 
     @FXML
     private void changeMode(MouseEvent event) throws IOException {
         Parent root;
@@ -595,16 +552,16 @@ public class ScientificMode implements Initializable {
         {
             oldInput = txtField.getText();
             oldRes = res.getText();
-            root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));
             Calc_GUI.darkFlag = true;
+            root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));
 
         }
         else
         {
             oldInput = txtField.getText();
             oldRes = res.getText();
-            root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));
             Calc_GUI.darkFlag = false;
+            root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));
         }
         scene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -658,71 +615,8 @@ public class ScientificMode implements Initializable {
         } 
     }
     
-   @FXML
-    private void helpHandle(ActionEvent event) {
-        switch(((MenuItem)event.getSource()).getText())
-        {
-            case "Guide":
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guide");
-                alert.setHeaderText(null);
-                alert.setGraphic(null);
-                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
-                        + "-----------------------------------------------------------\n"
-                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
-                        + "2- Ctrl + → : Move Cursor to Right\n"
-                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
-                        + "4- Alt   :  Go to MenuBar\n"
-                        + "5- Tab  :  Move out from the Text Field\n"
-                        + "-----------------------------------------------------------\n"
-                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
-                
-                dialogPane = alert.getDialogPane();
-                dialogPane.getStylesheets().add(
-                getClass().getResource("..//Style/Dialoge.css").toString());
-                dialogPane.getStyleClass().add("myDialog");
-                alert.showAndWait();
-                break;
-            case "About":
-                Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
-                ImageView logo = new ImageView(logoITI);
-                StackPane pane = new StackPane();
-                pane.getChildren().add(logo);
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("About");
-                alert.setHeaderText(null);
-                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
-                alert.setGraphic(pane);
-                dialogPane = alert.getDialogPane();
-                dialogPane.getStylesheets().add(
-                getClass().getResource("..//Style/Dialoge.css").toString());
-                dialogPane.getStyleClass().add("myDialog");
-                alert.showAndWait();
-                break;       
-        }
-    }
+ 
 
-    @FXML
-    private void editHandle(ActionEvent event) {
-        switch(((MenuItem)event.getSource()).getText())
-        {
-            case "Copy":
-               text = txtField.getSelectedText();
-               text = text.replace("|", "");
-                break;
-            case "Cut":
-                text = txtField.getSelectedText();
-                txtField.deleteText(txtField.getSelection());
-                break;
-            case "Paste":
-                txtField.insertText(txtField.getCaretPosition(),text);
-                break;
-            case "Delete":
-                txtField.setText("|");
-                break;
-        }
-    }
-    
     void makeFadeOut()
     {
         FadeTransition fadeTransition = new FadeTransition();

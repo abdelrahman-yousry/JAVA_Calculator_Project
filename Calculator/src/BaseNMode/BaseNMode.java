@@ -1,23 +1,14 @@
 package BaseNMode;
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
- */
-
-
+    This is the base-N mode file to handle conversions between modes and 
+    the operations can be apply on the modes.
+    
+*/
 import CalcApplication.Calc_GUI;
-import java.awt.Color;
-import static java.awt.Color.RED;
-import static java.awt.Color.black;
 import java.io.IOException;
-import static java.lang.Math.E;
-import static java.lang.Math.PI;
-import java.math.BigInteger;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.StringJoiner;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,30 +22,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-/**
- *
- * @author yomna
- */
+
+
+//Initializations are needed in the rest of functions  
 public class BaseNMode implements Initializable {
     Alert alert;
     DialogPane dialogPane;
     static String text;
     static String oldInput = "|";
     static String oldRes = " ";
+    static int state = 10;
     @FXML
     public Label res;
     public TextField input;
@@ -65,8 +53,8 @@ public class BaseNMode implements Initializable {
     public  Menu port_menu;
     public String selectedMode ;
     
-    int prev_state=10;
-    int next_state=10;
+    int prev_state;
+    int next_state;
     
     int pos;
     
@@ -113,112 +101,120 @@ public class BaseNMode implements Initializable {
     @FXML
     private GridPane gridPane;
     @FXML
-    private MenuItem BaseN;
+    private AnchorPane anchor;
     @FXML
-    private ImageView dark;
+    private ImageView normal;
     
     
+    //Function to write numbers on the textfield
     @FXML
     public void write_number(ActionEvent event) {
-        Button tmp = (Button)event.getSource();
-        pos = input.getText().indexOf("|");
-        input.insertText(pos, tmp.getText());
+        Button tmp = (Button)event.getSource(); //take the text from the button 
+        pos = input.getText().indexOf("|");     //get the position of the text using the postion of cursor
+        input.insertText(pos, tmp.getText());   //insert the text from click on the button in the textfield in the position
     }
+    
+    //Function to handle the keyboard buttons to control on the textfield 
+    //those buttons are only accepted to edit on textfield
     @FXML
     public void write_key(KeyEvent event) {
 
         pos = input.getText().indexOf("|");
         
-        
+        //Those are the operations wrote when shift button is click
         if(event.isShiftDown()){
             switch(event.getCode()){
                 case EQUALS:
-                    input.insertText(pos, "+");
+                    input.insertText(pos, "+"); //shift+(+)button -> =  
                     break;
                 case DIGIT6:
-                    input.insertText(pos, "^");
+                    input.insertText(pos, "^"); //shift+6 button -> ^  
                     break;
                 case DIGIT8:
-                    input.insertText(pos, "×");
+                    input.insertText(pos, "×");//shift+8 button -> x 
                     break;               
                 case DIGIT5:
-                    input.insertText(pos, "%");
+                    input.insertText(pos, "%");//shift+5 button -> % 
                     break;
                 case DIGIT9:
-                    input.insertText(pos, "( )");
+                    input.insertText(pos, "( )");//shift+9 button -> ()
                     break;
                 case DIGIT0:
-                    input.insertText(pos, "( )");
+                    input.insertText(pos, "( )");//shift+0 button -> ()
                     break;
             }
         }
+        //Those are the operations wrote when ctrl button is click
         else if(event.isControlDown()){
             switch(event.getCode()){
-                case LEFT:
+                case LEFT: //ctrl + left to move cursor to the previous position to write on this position
                     if(pos>0){
                         input.setText(input.getText().replace("|", ""));
                         input.insertText(pos-1, "|");
                     }break;
-                case RIGHT:
+                case RIGHT://ctrl + left to move cursor to the next position to write on this position
                     if(pos<input.getText().length()-1){
                         input.setText(input.getText().replace("|", ""));
                         input.insertText(pos+1, "|");
                     }break;
             }
         }
+        //Those are some buttons to click to wirte on the textfield directly
         else{
             switch(event.getCode()){
                 
                 case SLASH:
-                    input.insertText(pos, "÷");
+                    input.insertText(pos, "÷"); // button slash to divide 
                     break;
                 case DIVIDE:
-                    input.insertText(pos, "÷");
+                    input.insertText(pos, "÷"); // button / to divide 
                     break;
                 case MINUS:
-                    input.insertText(pos, "-");
+                    input.insertText(pos, "-");// button - to minus 
                     break;
                 case SUBTRACT:
                     input.insertText(pos, "-");
                     break;
                 case ADD:
-                    input.insertText(pos, "+");
+                    input.insertText(pos, "+");// button + to plus 
                     break;
                 case MULTIPLY:
                     input.insertText(pos, "×");
                     break;
                 case EQUALS:
-                    b_equal.fire();
+                    b_equal.fire(); //equal button to do the functionality of equal button on GUI
                     break; 
                 case ENTER:
-                    b_equal.fire();
+                    b_equal.fire();//enter button to do the functionality of equal button on GUI
                     break; 
                 case BACK_SPACE:
-                    b_backspace.fire();
+                    b_backspace.fire();//backspace button to do the functionality of backspace button on GUI to remove last written number
                     break;
                 case HOME:
-                    input.setText(input.getText().replace("|", ""));
+                    input.setText(input.getText().replace("|", "")); // home button to go to by the cursor to first position in text
                     input.insertText(0, "|");
                     break;
                 case END:
-                    input.setText(input.getText().replace("|", ""));
+                    input.setText(input.getText().replace("|", "")); // end button to go to by the cursor to last position in text
                     input.insertText(input.getText().length(), "|");
                     break;
             }
             
-            
-            if(btn_Bin.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)    
+            //Change the color of the buttons on the gui depends on the mode to make the text is yellowgreen color
+            //Activate only buttons can be clicked on keyboard depends on the mode
+            if(btn_Bin.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)  //in the binary mode activate on 1,0 +opertaions
             {
                 if(event.getCode()==event.getCode().DIGIT0
                    ||event.getCode()==event.getCode().DIGIT1)
                         input.insertText(pos, event.getText());
             }
-            else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //make it by default
+            else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //make it by default ,in the decimal mode activate from 0 to 9 numbers +opertaions
+                
             {
                 if(event.getCode().isDigitKey())
                     input.insertText(pos, event.getText());
             }
-            else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)    
+            else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //in the octal mode activate from 0 to 7 digits +opertaions 
             {
                  if(event.getCode()==event.getCode().DIGIT0
                    ||event.getCode()==event.getCode().DIGIT1
@@ -230,7 +226,7 @@ public class BaseNMode implements Initializable {
                    ||event.getCode()==event.getCode().DIGIT7)
                     input.insertText(pos, event.getText());
             }
-            else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)    
+            else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //in the hex mode activate from 0 to 9 digits and A,B,C,D,E and F alphabets+opertaions 
             {
                 if(event.getCode().isDigitKey())
                     input.insertText(pos, event.getText());
@@ -250,40 +246,45 @@ public class BaseNMode implements Initializable {
             
         }
     }
+    
+    //Function to write operations on the textfield
     @FXML
     public void operation(ActionEvent event) {        
-        Button tmp = (Button)event.getSource();
+        Button tmp = (Button)event.getSource(); //take the text from the button 
         String op = tmp.getText();
-        pos = input.getText().indexOf("|");
-        input.insertText(pos, op);
+        pos = input.getText().indexOf("|");//determine the position to be written on
+        input.insertText(pos, op); //add operation on the position
     }
    
+    //Function to clear screen
     @FXML
     private void clearScr(ActionEvent event) {
         // clear button  --> clear screen
-        input.clear();
-        input.setText("|");
-        res.setText("");
+        input.clear(); //clear the textfield 
+        input.setText("|"); //set the cursor in the start of the text field
+        res.setText(""); //clear the result label
     }   
     
+    //Function to delete the char 
     @FXML
     private void back_space(ActionEvent event) {
-        // deletes the char
-        pos = input.getText().indexOf("|");
+        pos = input.getText().indexOf("|");  //find the postion of cursor
         if(pos != 0)
-            input.deleteText(pos-1, pos);
+            input.deleteText(pos-1, pos); //clear the previous char of the cursor
     } 
     
+    //Function handles the equal button which handles the whole operations and conversions
     @FXML
     private void equal_op(ActionEvent event) {
+        //fisrt part aims to split the input written on textfield to apply the operations a 
         int dec;
-        String exp = input.getText().replace("|","");
+        String exp = input.getText().replace("|","");  //remove cursor from the textfield
         String expression = "";
-        String[] splitsMixed = exp.split("((?=\\+|\\-|\\×|\\÷|\\%|\\(|\\))|(?<=\\+|\\-|\\×|\\÷|\\%|\\(|\\)))");
+        String[] splitsMixed = exp.split("((?=\\+|\\-|\\×|\\÷|\\%|\\(|\\))|(?<=\\+|\\-|\\×|\\÷|\\%|\\(|\\)))"); //delimeters to split on
         for (String txt:splitsMixed)
         {
             try{
-               dec=(int)Long.parseLong(txt,next_state);
+               dec=(int)Long.parseLong(txt,next_state); //convert from nextstate mode to decimal which maybe (bin,oct,hex)-(2,8,16)
                txt=Integer.toString(dec);
             }
             catch(Exception e){ }
@@ -293,30 +294,30 @@ public class BaseNMode implements Initializable {
             ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
             ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
             
-            expression = expression.replace('×', '*');
-            expression = expression.replace('÷', '/');            
+            expression = expression.replace('×', '*'); //change the × which written on the textfield to * to apply multipliction
+            expression = expression.replace('÷', '/'); //change the ÷ which written on the textfield to / to apply division           
             try {
-                Double result = (Double) scriptEngine.eval(expression.replace("--", "+"));
-                switch(next_state)
+                Double result = (Double) scriptEngine.eval(expression.replace("--", "+")); //replace if two - written convert it in the double numbers to + in the double case of result
+                switch(next_state) // cases on the next state
                     {
-                        case 2:         
+                        case 2:   //convert to binary 
                             input.setText(Integer.toBinaryString(result.intValue()));
                             res.setText(Integer.toBinaryString(result.intValue()));
                             break;
-                        case 8:
+                        case 8: //convert to octal
                             input.setText(Integer.toOctalString(result.intValue()));
                             res.setText(Integer.toOctalString(result.intValue()));
                             break;
-                        case 10:
+                        case 10://convert to decimal
                             input.setText(Integer.toString(result.intValue()));
                             res.setText(Integer.toString(result.intValue()));
                             break;
-                        case 16:
+                        case 16://convert to hex
                             input.setText(Integer.toHexString(result.intValue()).toUpperCase());
                             res.setText(Integer.toHexString(result.intValue()).toUpperCase());
                             break;
                     }
-                    input.appendText("|");
+                    input.appendText("|"); //add cursor on the textfield
 
             } catch (ScriptException ex) {
                 res.setText("Math error");
@@ -326,7 +327,7 @@ public class BaseNMode implements Initializable {
             }
             catch(Exception ex){
                 try{
-                    Integer result = (Integer) scriptEngine.eval(expression.replace("--", "+"));
+                    Integer result = (Integer) scriptEngine.eval(expression.replace("--", "+"));//replace if two - written convert it in the double numbers to + in the integer case of result
                     switch(next_state)
                     {
                         case 2:         
@@ -357,12 +358,14 @@ public class BaseNMode implements Initializable {
             }
         }
     }
+    
+    //Function handles the inversion sign ( convert from + to negative numbers)
     @FXML
     private void invert_sign(ActionEvent event) {
         String str = input.getText();
         pos = input.getText().indexOf("|");
-        //split
-        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+");
+       
+        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+"); //split on the deliemets
         for(String a:arrOfStr){
             //cursor on which token
             if(a.contains("|")){
@@ -371,32 +374,33 @@ public class BaseNMode implements Initializable {
                 input.setText(input.getText().replace(a, ""));
                 a = "(-" + a.replace("|", "") + ")";
                 input.insertText(pos-pos_relative, a);
-                input.insertText(pos+2, "|");
+                input.insertText(pos+2, "|"); //add the cursor 
                 break;
             }
         }
     }
     
-    
+    //Function handles the baseN buttons (BIN,DEC,OCT,HEX)
     @FXML
     public void baseN(ActionEvent event) {
         Button tmp = (Button)event.getSource();
         String base = tmp.getText();
         int dec;
-        b_equal.fire();
+        b_equal.fire(); //same as equal function while click on any button from them
         switch(base)
             {               
-            case "BIN":
+            case "BIN": // in binary case
                 prev_state=next_state;
                 next_state=2;
                 if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
-                    input.setText(Integer.toBinaryString(dec));
-                    res.setText(Integer.toBinaryString(dec));
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state); //convert to decimal from the previous state
+                    input.setText(Integer.toBinaryString(dec)); //convert from decimal to binary and show it on textfield
+                    res.setText(Integer.toBinaryString(dec)); //show the result in binary
                 }
-                
-                btn_0.setDisable(false);
+                //buttons enabled and disabled in the mode
+                //only one and zero is enabled + operations buttons
+                btn_0.setDisable(false); 
                 btn_1.setDisable(false);
                 btn_2.setDisable(true);
                 btn_3.setDisable(true);
@@ -413,6 +417,7 @@ public class BaseNMode implements Initializable {
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
                 
+                //change color of text of the clicked button (BIN)
                 btn_Bin.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -425,10 +430,12 @@ public class BaseNMode implements Initializable {
                 next_state=8;
                 if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
-                    input.setText(Integer.toOctalString(dec));
-                    res.setText(Integer.toOctalString(dec));
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state); 
+                    input.setText(Integer.toOctalString(dec));//convert from decimal to octal and show it on textfield
+                    res.setText(Integer.toOctalString(dec));//show the result in binary
                 }
+                
+                //buttons from 0 to 7 are enabled + operations buttons
                 btn_0.setDisable(false);
                 btn_1.setDisable(false);
                 btn_2.setDisable(false);
@@ -446,6 +453,7 @@ public class BaseNMode implements Initializable {
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
                 
+                //change the text color of the oct button
                 btn_Oct.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -457,11 +465,12 @@ public class BaseNMode implements Initializable {
                 next_state=10;
                 if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
-                    input.setText(Integer.toString(dec));
-                    res.setText(Integer.toString(dec));
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state); //convert to decimal from the previous state
+                    input.setText(Integer.toString(dec));//show the decimal result in the textfield
+                    res.setText(Integer.toString(dec)); //show the decimal result in the result label
                 }
                 
+                //buttons from 0 to 9 and operations are enabled
                 btn_0.setDisable(false);
                 btn_1.setDisable(false);
                 btn_2.setDisable(false);
@@ -478,7 +487,8 @@ public class BaseNMode implements Initializable {
                 btn_D.setDisable(true);
                 btn_E.setDisable(true);
                 btn_F.setDisable(true);
-
+                
+                //change the text color in the dec button
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
@@ -490,11 +500,12 @@ public class BaseNMode implements Initializable {
                 next_state=16; 
                 if(!input.getText().replace("|", "").isEmpty()&&res.getText()!="Math error")
                 {
-                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state);
-                    input.setText(Integer.toHexString(dec).toUpperCase());
-                    res.setText(Integer.toHexString(dec).toUpperCase());
+                    dec=(int)Long.parseLong(input.getText().replace("|", ""),prev_state); //convert to decimal from the prev state
+                    input.setText(Integer.toHexString(dec).toUpperCase());//convert from decimal to hex and show it in the textfield
+                    res.setText(Integer.toHexString(dec).toUpperCase());//show the hex result in the result label 
                 }
                 
+                //buttons from 0 to 9 and alphabets A to F and operations are enabled
                 btn_0.setDisable(false);
                 btn_1.setDisable(false);
                 btn_2.setDisable(false);
@@ -512,6 +523,7 @@ public class BaseNMode implements Initializable {
                 btn_E.setDisable(false);
                 btn_F.setDisable(false);
                         
+                //change the text color of the hex button
                 btn_Bin.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Oct.setTextFill(javafx.scene.paint.Color.WHITE);
                 btn_Dec.setTextFill(javafx.scene.paint.Color.WHITE);
@@ -525,159 +537,72 @@ public class BaseNMode implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeFadeOut();
-        btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+        switch(state){
+            case 2:
+                btn_Bin.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                break;
+            case 8:
+                btn_Oct.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                break;
+            case 10:
+                btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                break;
+            case 16:
+                btn_Hex.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                break;
+        }
+        next_state = state;
+        prev_state = state;
+        
         input.setText(oldInput);
         input.setEditable(false);
         input.setFocusTraversable(false);
         res.setText(oldRes);
-        
+
+        Calc_GUI.baseModeController.menuBar.getStylesheets().clear();
+        anchor.getChildren().add(Calc_GUI.baseModeController.menuBar);
+        Calc_GUI.baseModeController.menuBar.toBack();
+        Calc_GUI.baseModeController.menuBar.setPrefWidth(549);
+        if(Calc_GUI.darkFlag){
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());            
+        }
+        else{
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyle.css").toString()); 
+        }
     }    
 
-    @FXML
-    public void modesHandle(ActionEvent event) throws IOException {
-        selectedMode = ((MenuItem)event.getSource()).getText();
-
-        Parent root = null;
-        Scene scene;
-        
-        switch(selectedMode)
-        {
-            case "Basic":
-                if(!Calc_GUI.darkFlag)
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));                   
-                break;
-            case "Scientific":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));                   
-                break;
-            case "Conversion":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));                  
-                break;     
-            case "Geometry":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));                  
-                break;  
-            case "Base-N":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));                  
-                break; 
-        }
-
-
-        scene = new Scene(root);
-        Stage window = (Stage)(res.getScene().getWindow());
-        window.setScene(scene);
-        window.show();
-        //return to default
-        oldInput = "|";
-        oldRes = " ";
-        
-    }
-
+    
+    //Function to change from normal mode to dark and reverse
     @FXML
     private void changeMode(MouseEvent event) throws IOException {
         Parent root;
         Scene scene;
-        if("normal".equals(((ImageView)event.getSource()).getId()))
+        if("normal".equals(((ImageView)event.getSource()).getId())) //incase of in the normal mode and click on the lamb button
         {
+            state = next_state; //to save the base-N conversions between two modes
             oldInput = input.getText();
             oldRes = res.getText();
-            root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));
             Calc_GUI.darkFlag = true;
+            root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));//convert scene to dark one
 
         }
         else
         {
+            state = next_state; 
             oldInput = input.getText();   
             oldRes = res.getText();            
-            root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml"));
             Calc_GUI.darkFlag = false;
+            root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml")); //convert scene to normal one
         }
         scene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();    
-    }
-    
-    @FXML
-    private void helpHandle(ActionEvent event) {
         
-        switch(((MenuItem)event.getSource()).getText())
-        {
-            case "Guide":
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guide");
-                alert.setHeaderText(null);
-                alert.setGraphic(null);
-                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
-                        + "-----------------------------------------------------------\n"
-                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
-                        + "2- Ctrl + → : Move Cursor to Right\n"
-                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
-                        + "4- Alt   :  Go to MenuBar\n"
-                        + "5- Tab  :  Move out from the Text Field\n"
-                        + "-----------------------------------------------------------\n"
-                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
-                
-                dialogPane = alert.getDialogPane();
-                dialogPane.getStylesheets().add(
-                getClass().getResource("..//Style/Dialoge.css").toString());
-                dialogPane.getStyleClass().add("myDialog");
-                alert.showAndWait();
-                break;
-            case "About":
-                Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
-                ImageView logo = new ImageView(logoITI);
-                StackPane pane = new StackPane();
-                pane.getChildren().add(logo);
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("About");
-                alert.setHeaderText(null);
-                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
-                alert.setGraphic(pane);
-                dialogPane = alert.getDialogPane();
-                dialogPane.getStylesheets().add(
-                getClass().getResource("..//Style/Dialoge.css").toString());
-                dialogPane.getStyleClass().add("myDialog");
-                alert.showAndWait();
-                break;       
-        }
-    }
-
-    @FXML
-    private void editHandle(ActionEvent event) {
-        switch(((MenuItem)event.getSource()).getText())
-        {
-            case "Copy":
-               text = input.getSelectedText();
-               text = text.replace("|", "");
-                break;
-            case "Cut":
-                text = input.getSelectedText();
-                input.deleteText(input.getSelection());
-                break;
-            case "Paste":
-                input.insertText(input.getCaretPosition(),text);
-                break;
-            case "Delete":
-                input.setText("|");
-                break;
-        }
     }
     
+   //fading out when change the mode (ex from basic to base-N ,etc..) 
     void makeFadeOut()
     {
         FadeTransition fadeTransition = new FadeTransition();

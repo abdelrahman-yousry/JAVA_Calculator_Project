@@ -164,6 +164,27 @@
 
 }
 
+#portMenu > .label
+{
+        -fx-graphic: url("..//Style/micro-usb.png");
+}
+
+#helpMenu > .label
+{
+        -fx-graphic: url("..//Style/DarkHelp.png");
+}
+
+#modeMenu > .label
+{
+        -fx-graphic: url("..//Style/DarkMenu.png");
+}
+
+#editMenu > .label
+{
+        -fx-graphic: url("..//Style/editDark.png");
+}
+
+
 .convButton {
     -fx-background-color: #0092f0;
 }

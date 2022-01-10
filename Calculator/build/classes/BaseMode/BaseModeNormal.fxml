@@ -9,33 +9,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="480.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseMode.BaseMode">
+<AnchorPane id="AnchorPane" fx:id="anchor" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="480.0" stylesheets="@../Style/buttonStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BaseMode.BaseMode">
     <children>
-      <MenuBar prefHeight="40.0" prefWidth="480.0" stylesheets="@../Style/buttonStyle.css">
+      <MenuBar fx:id="menuBar" prefHeight="40.0" prefWidth="480.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu id="editMenu" mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Copy" />
                   <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Cut" />
                   <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Paste" />
                   <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Delete" />
             </items>
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/ellipsis%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
           </Menu>
-            <Menu mnemonicParsing="false" text="Modes">
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/NormalMenu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Menu id="modeMenu" mnemonicParsing="false" text="Modes">
                <items>
                   <MenuItem fx:id="basic" mnemonicParsing="false" onAction="#modesHandle" text="Basic" />
                   <MenuItem fx:id="scientific" mnemonicParsing="false" onAction="#modesHandle" text="Scientific" />
@@ -44,28 +30,13 @@
                   <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Conversion" />
                </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu id="helpMenu" mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="Guide" />
                   <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="About" />
             </items>
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/NormalHelp.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
           </Menu>
-            <Menu fx:id="port_menu" mnemonicParsing="false" text="Ports">
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/micro-usb%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Menu>
+            <Menu id="portMenu" fx:id="portMenu" mnemonicParsing="false" text="Ports" />
         </menus>
       </MenuBar>
       <GridPane fx:id="gridPane" layoutX="56.0" layoutY="148.0" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyle.css">

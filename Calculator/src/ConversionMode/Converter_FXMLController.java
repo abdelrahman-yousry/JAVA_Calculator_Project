@@ -29,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -58,9 +59,8 @@ public class Converter_FXMLController implements Initializable {
     char c_to_clear;
     String ta1str;
     int conv_mode_detect=0,from=0,to=0;
-    MenuItem AED,USD,BHD,BRL,EGP,KWD,LYD,MYR,SYP,TRY,SAR;
-    MenuItem AED_to,USD_to,BHD_to,BRL_to,EGP_to,KWD_to,LYD_to,MYR_to,SYP_to,TRY_to,SAR_to;
-
+    MenuItem AED,USD,BHD,BRL,EGP,KWD,LYD,MYR,SYP,TRY,SAR,BTC;
+    MenuItem AED_to,USD_to,BHD_to,BRL_to,EGP_to,KWD_to,LYD_to,MYR_to,SYP_to,TRY_to,SAR_to,BTC_to;
     MenuItem hrs_to,mins_to,secs_to,msecs_to;
     MenuItem hrs_from,mins_from,secs_from,msecs_from;
     MenuItem feh_from,cel_from,kel_from,feh_to,cel_to,kel_to;
@@ -75,8 +75,6 @@ public class Converter_FXMLController implements Initializable {
     MenuItem bit_to, byte_to,kilo_byte_to, mega_byte_to ,giga_byte_to ;
     public Label res;
     @FXML
-    private Menu port_menu;
-    @FXML
     private Label resLabel;
     @FXML
     private Button b_equal;
@@ -88,6 +86,10 @@ public class Converter_FXMLController implements Initializable {
     private MenuItem currencyButton;
     @FXML
     private ImageView normal;
+    @FXML
+    private Button neg_but;
+    @FXML
+    private AnchorPane anchor;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ta1.setText(oldInput);
@@ -96,14 +98,34 @@ public class Converter_FXMLController implements Initializable {
         res.setText(oldRes);
         ta2.setEditable(false);
         ta2.setFocusTraversable(false);
+        neg_but.setVisible(false);
+        
+        Calc_GUI.baseModeController.menuBar.getStylesheets().clear();
+        anchor.getChildren().add(Calc_GUI.baseModeController.menuBar);
+        Calc_GUI.baseModeController.menuBar.toBack();
+        Calc_GUI.baseModeController.menuBar.setPrefWidth(578);
+        if(Calc_GUI.darkFlag){
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());            
+        }
+        else{
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyle.css").toString()); 
+        }
     } 
     
     @FXML
     public void write_key(KeyEvent event) {
         pos = ta1.getText().indexOf("|");
-
         if(event.getCode().isDigitKey())
+        {
+            if(c_to_clear=='=')
+            {
+                ta1.setText("|");
+                ta2.clear();
+                c_to_clear=' ';
+                pos = ta1.getText().indexOf("|");
+            }
             ta1.insertText(pos, event.getText());
+        }
         else if(event.isControlDown()){
             switch(event.getCode()){
                 case LEFT:
@@ -122,11 +144,29 @@ public class Converter_FXMLController implements Initializable {
             switch(event.getCode()){
                 case MINUS:
                     if(conv_mode_detect==2)
+                    {
+                        if(c_to_clear=='=')
+                        {
+                            ta1.setText("|");
+                            ta2.clear();
+                            c_to_clear=' ';
+                            pos = ta1.getText().indexOf("|");
+                        }
                         ta1.insertText(pos, "-");
+                    }
                     break;
                 case SUBTRACT:
                     if(conv_mode_detect==2)
+                    {
+                        if(c_to_clear=='=')
+                        {
+                            ta1.setText("|");
+                            ta2.clear();
+                            c_to_clear=' ';
+                            pos = ta1.getText().indexOf("|");
+                        }
                         ta1.insertText(pos, "-");
+                    }
                     break;
                 case EQUALS:
                     b_equal.fire();
@@ -163,13 +203,12 @@ public class Converter_FXMLController implements Initializable {
         
         String bstr=temp.getText();
         String ta1_str=temp.getText();
-        
- 
         if(c_to_clear=='=')
         {
             ta1.setText("|");
             ta2.clear();
             c_to_clear=' ';
+            pos = ta1.getText().indexOf("|");
         }
         if(!bstr.equals("C") && !bstr.equals("⌫") && !bstr.equals("="))
             ta1.insertText(pos, ta1_str);
@@ -457,13 +496,16 @@ public class Converter_FXMLController implements Initializable {
                                     ta2.appendText(res[0]);
                                     resLabel.setText("Updated "+res[1]);
                                 } catch (Exception ex) {
-                                    Logger.getLogger(Converter_FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                                    ta2.setText("Connection Faild");
                                 }
                             }
                         }
                         break;
             }
-            ta2.appendText(result.toString());
+            if(conv_mode_detect != 8)
+            {
+                ta2.appendText(result.toString());
+            }
             if(from==to && to!=0)
             {
                 ta2.setText("Choose Different units");
@@ -485,15 +527,16 @@ public class Converter_FXMLController implements Initializable {
         ta2.clear();
         MenuItem conv_mi=(MenuItem)event.getSource();
         String s=conv_mi.getText();
+        neg_but.setVisible(false);
         unit_conv_mb.setText(s);
         from=to=0;
         to_mb.getItems().removeAll(hrs_to,mins_to,secs_to,msecs_to,hz_to,radps_to,feh_to,
                 cel_to,kel_to,deg_to,rad_to,mm_to,cm_to,m_to ,km_to, mile_to,m_p_s_to,
-                km_p_h_to,mile_p_h_to,bit_to, byte_to,kilo_byte_to, mega_byte_to ,giga_byte_to,AED_to,USD_to,BHD_to,EGP_to,BRL_to,KWD_to,TRY_to,LYD_to,MYR_to,SYP_to,SAR_to);
+                km_p_h_to,mile_p_h_to,bit_to, byte_to,kilo_byte_to, mega_byte_to ,giga_byte_to,AED_to,USD_to,BHD_to,EGP_to,BRL_to,KWD_to,TRY_to,LYD_to,MYR_to,SYP_to,SAR_to,BTC_to);
         from_mb.getItems().removeAll(hrs_from,mins_from,secs_from,msecs_from,hz_from,radps_from,
                 feh_from,cel_from,kel_from,deg_from,rad_from,mm_from,cm_from,m_from ,
                 km_from, mile_from,m_p_s_from,km_p_h_from,mile_p_h_from,bit_from, byte_from,kilo_byte_from, 
-                mega_byte_from ,giga_byte_from,AED,USD,BHD,EGP,BRL,KWD,TRY,LYD,MYR,SYP,SAR);
+                mega_byte_from ,giga_byte_from,AED,USD,BHD,EGP,BRL,KWD,TRY,LYD,MYR,SYP,SAR,BTC);
        
         from_mb.setText("     ");
         to_mb.setText("     ");
@@ -502,6 +545,8 @@ public class Converter_FXMLController implements Initializable {
         {
             ta1.setText("|");
             conv_mode_detect = 8;
+            BTC = new MenuItem("Bitcoin");
+            BTC_to = new MenuItem("Bitcoin");
             BHD = new MenuItem("Bahrain - Dinar");
             BHD_to = new MenuItem("Bahrain - Dinar");
             BRL = new MenuItem("Brazil - Real");
@@ -510,8 +555,8 @@ public class Converter_FXMLController implements Initializable {
             EGP_to = new MenuItem("Egypt - Pound");          
             KWD = new MenuItem("Kuwait - Dinar");
             KWD_to = new MenuItem("Kuwait - Dinar");
-            USD = new MenuItem("USA - Dollar");
-            USD_to = new MenuItem("USA - Dollar");          
+            USD = new MenuItem("USD - Dollar");
+            USD_to = new MenuItem("USD - Dollar");          
             TRY = new MenuItem("Turkey - Lira");
             TRY_to = new MenuItem("Turkey - Lira");
             AED = new MenuItem("Emarites - Dirham");
@@ -526,8 +571,8 @@ public class Converter_FXMLController implements Initializable {
             SAR_to = new MenuItem("Saudi Arabia - Riyal");
             
             
-            from_mb.getItems().addAll(AED,USD,BHD,EGP,BRL,KWD,TRY,LYD,MYR,SYP,SAR);
-            to_mb.getItems().addAll(AED_to,USD_to,BHD_to,EGP_to,BRL_to,KWD_to,TRY_to,LYD_to,MYR_to,SYP_to,SAR_to);
+            from_mb.getItems().addAll(BTC,AED,USD,BHD,EGP,BRL,KWD,TRY,LYD,MYR,SYP,SAR);
+            to_mb.getItems().addAll(BTC_to,AED_to,USD_to,BHD_to,EGP_to,BRL_to,KWD_to,TRY_to,LYD_to,MYR_to,SYP_to,SAR_to);
  
             USD.setOnAction(new EventHandler<ActionEvent>(){
             public void handle(ActionEvent event)
@@ -715,7 +760,7 @@ public class Converter_FXMLController implements Initializable {
                 ta1.setText("|");
                 ta2.clear();
                 from_mb.setText(SYP.getText());
-                fromStr = "BHD";
+                fromStr = "SYP";
                 from =10;
             }
             });
@@ -725,7 +770,7 @@ public class Converter_FXMLController implements Initializable {
                 ta1.setText("|");
                 ta2.clear();
                 to_mb.setText(SYP_to.getText());
-                toStr = "BHD";
+                toStr = "SYP";
                 to = 10;
             }
             });  
@@ -748,12 +793,36 @@ public class Converter_FXMLController implements Initializable {
                 toStr = "SAR";
                 to = 11;
             }
-            });  
+            }); 
+            
+            BTC.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {
+                ta1.setText("|");
+                ta2.clear();
+                from_mb.setText(BTC.getText());
+                fromStr = "BTC";
+                from =11;
+            }
+            });
+            BTC_to.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            { 
+                ta1.setText("|");
+                ta2.clear();
+                to_mb.setText(BTC_to.getText());
+                toStr = "BTC";
+                to = 11;
+            }
+            });
+            
+            
 
         }
         if(s.equals("Time Converter"))
         {
             ta1.setText("|");
+            resLabel.setText("");
             conv_mode_detect=1;
             hrs_from=new MenuItem("Hours");
             mins_from=new MenuItem("Minutes");
@@ -847,7 +916,9 @@ public class Converter_FXMLController implements Initializable {
         else if(s.equals("Temp Converter"))
         {
             ta1.setText("|");
+            resLabel.setText("");
             conv_mode_detect=2;
+            neg_but.setVisible(true);
             feh_from=new MenuItem("Fahrenheit");
             cel_from=new MenuItem("Celsius");
             feh_to=new MenuItem("Fahrenheit");
@@ -918,6 +989,7 @@ public class Converter_FXMLController implements Initializable {
     else if(s.equals("Freq Converter"))
     {
         ta1.setText("|");
+        resLabel.setText("");
         conv_mode_detect=3;
         hz_from=new MenuItem("Hz");
         radps_from=new MenuItem("Rad/Sec");
@@ -967,6 +1039,7 @@ public class Converter_FXMLController implements Initializable {
     else if(s.equals("Length Converter"))
     {
         ta1.setText("|");
+        resLabel.setText("");
         conv_mode_detect=4;
         mm_from=new MenuItem("Milli-meter");
         cm_from=new MenuItem("Centimeter");
@@ -1081,6 +1154,7 @@ public class Converter_FXMLController implements Initializable {
     }else if(s.equals("Data Converter"))
     {
         ta1.setText("|");
+        resLabel.setText("");
         conv_mode_detect=6;
         bit_from=new MenuItem("Bit");
         byte_from=new MenuItem("Byte");
@@ -1174,6 +1248,7 @@ public class Converter_FXMLController implements Initializable {
     else if(s.equals("Angle Converter"))
     {
         ta1.setText("|");
+        resLabel.setText("");
         conv_mode_detect=7;
         deg_from=new MenuItem("Degree");
         rad_from=new MenuItem("Radian");
@@ -1223,6 +1298,7 @@ public class Converter_FXMLController implements Initializable {
     else if(s.equals("Speed Converter"))
     {
         ta1.setText("|");
+        resLabel.setText("");
         conv_mode_detect=5;
         m_p_s_from=new MenuItem("Meter/sec");
         km_p_h_from=new MenuItem("Km/hr");
@@ -1295,139 +1371,23 @@ public class Converter_FXMLController implements Initializable {
 }    
 
     @FXML
-    private void modesHandle(ActionEvent event) throws IOException {
-        selectedMode = ((MenuItem)event.getSource()).getText();
-
-        Parent root = null;
-        Scene scene;
-        
-        switch(selectedMode)
-        {
-            case "Basic":
-                if(!Calc_GUI.darkFlag)
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));                   
-                break;
-            case "Scientific":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));                   
-                break;
-            case "Conversion":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));                  
-                break;     
-            case "Geometry":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));                  
-                break;  
-            case "Base-N":
-                if(!Calc_GUI.darkFlag)    
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeNormal.fxml"));            
-                else
-                    root = FXMLLoader.load(getClass().getResource("..//BaseNMode/BaseNModeDark.fxml"));                  
-                break; 
-        }
-
-        scene = new Scene(root);
-        Stage window = (Stage)(res.getScene().getWindow());
-        window.setScene(scene);
-        window.show();
-        //return to default
-        oldInput = "|";
-        oldRes = " ";    
-    }
-
-    @FXML
     private void changeMode(MouseEvent event) throws IOException {
         Parent root;
         Scene scene;
         if("normal".equals(((ImageView)event.getSource()).getId()))
         {
-            root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));
             Calc_GUI.darkFlag = true;
+            root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));
         }
         else
         {           
-            root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));
             Calc_GUI.darkFlag = false;
+            root = FXMLLoader.load(getClass().getResource("..//ConversionMode/Converter_FXML.fxml"));
         }
         scene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();          
-    } 
-    
-    @FXML
-    private void helpHandle(ActionEvent event) {
-        
-        switch(((MenuItem)event.getSource()).getText())
-        {
-            case "Guide":
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Guide");
-                alert.setHeaderText(null);
-                alert.setGraphic(null);
-                alert.setContentText("\t\t----IMPORTANT SHORTCUTS----\t\t\n"
-                        + "-----------------------------------------------------------\n"
-                        + "1- Ctrl + ←  :  Move Cursor to Left\n"
-                        + "2- Ctrl + → : Move Cursor to Right\n"
-                        + "3- ← → ↑ ↓  :  Moving on the GUI\n"
-                        + "4- Alt   :  Go to MenuBar\n"
-                        + "5- Tab  :  Move out from the Text Field\n"
-                        + "-----------------------------------------------------------\n"
-                        + "NOTE  :  You can use the Keys on your Keyboard to\n\t\t\t  type what you need"); 
-                
-                dialogPane = alert.getDialogPane();
-                dialogPane.getStylesheets().add(
-                getClass().getResource("..//Style/Dialoge.css").toString());
-                dialogPane.getStyleClass().add("myDialog");
-                alert.showAndWait();
-                break;
-            case "About":
-                Image logoITI = new Image(getClass().getResource("..//Style/ITI.png").toString());
-                ImageView logo = new ImageView(logoITI);
-                StackPane pane = new StackPane();
-                pane.getChildren().add(logo);
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("About");
-                alert.setHeaderText(null);
-                alert.setContentText("\n\n\t\tCopyright © 2022 by Team 9\n\n Aya Adel - Youmna Al-Shaboury - Nehal Amgad\n     Abdelrahman Yousry - Mohammed Hosny\n\n\t\tintake42-Embedded System Track");  
-                alert.setGraphic(pane);
-                dialogPane = alert.getDialogPane();
-                dialogPane.getStylesheets().add(
-                getClass().getResource("..//Style/Dialoge.css").toString());
-                dialogPane.getStyleClass().add("myDialog");
-                alert.showAndWait();
-                break;       
-        }
-    }
-
-    @FXML
-    private void editHandle(ActionEvent event) {
-        switch(((MenuItem)event.getSource()).getText())
-        {
-            case "Copy":
-               text = ta1.getSelectedText();
-               text = text.replace("|", "");
-                break;
-            case "Cut":
-                text = ta1.getSelectedText();
-                ta1.deleteText(ta1.getSelection());
-                break;
-            case "Paste":
-                ta1.insertText(ta1.getCaretPosition(),text);
-                break;
-            case "Delete":
-                ta1.setText("|");
-                break;
-        }
     }
     
 }

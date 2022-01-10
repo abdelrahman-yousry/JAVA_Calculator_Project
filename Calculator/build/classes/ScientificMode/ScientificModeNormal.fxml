@@ -296,63 +296,6 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <MenuBar prefHeight="40.0" prefWidth="794.0" stylesheets="@../Style/buttonStyle.css">
-         <menus>
-            <Menu mnemonicParsing="false" text="Edit">
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/ellipsis%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Copy" />
-                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Cut" />
-                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Paste" />
-                  <MenuItem mnemonicParsing="false" onAction="#editHandle" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Modes">
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/NormalMenu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Basic" />
-                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Scientific" />
-                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Base-N" />
-                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Geometry" />
-                  <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Conversion" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/NormalHelp.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="Guide" />
-                  <MenuItem mnemonicParsing="false" onAction="#helpHandle" text="About" />
-               </items>
-            </Menu>
-            <Menu fx:id="port_menu" mnemonicParsing="false" text="Ports">
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Style/micro-usb%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Menu>
-         </menus>
-      </MenuBar>
       <ImageView fx:id="normal" fitHeight="30.0" fitWidth="30.0" layoutX="741.0" layoutY="4.0" onMouseClicked="#changeMode" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Style/lamp.png" />

@@ -32,7 +32,8 @@ public class Calc_GUI extends Application {
     public static boolean darkFlag = false;
     ArduinoCommunication ardCom = new ArduinoCommunication();
     Thread port;
-
+    public static boolean isFirst = true;
+    
     @Override
     public void init() throws Exception {
         
@@ -49,29 +50,31 @@ public class Calc_GUI extends Application {
             @Override
             public void run() {
 
-                Calc_GUI.baseModeController.port_menu.setOnShowing(new EventHandler<Event>(){
+                Calc_GUI.baseModeController.portMenu.setOnShowing(new EventHandler<Event>(){
                     @Override
                     public void handle(Event t) {
-                        ardCom.detectPort();
+                        ardCom.detectPort(Calc_GUI.baseModeController.portMenu);
                     }
                 });           
-                ardCom.detectPort();
+                ardCom.detectPort(Calc_GUI.baseModeController.portMenu);
                 while(true){
                     while(!ardCom.isPortSelected){
                         System.out.print("");
                     }
-                    ardCom.readData();
+                    ardCom.readData(Calc_GUI.baseModeController.portMenu);
                 }
             }
         });
         
         port.start();       
-       
         scene = new Scene(root);
         stage.getIcons().add(new Image(getClass().getResource("..//Style/Calculator-icon.png").toExternalForm()));
         stage.setTitle("Calculator");      
         stage.setScene(scene);
         stage.show();
+
+        stage.resizableProperty().setValue(false);
+        baseModeController.window = stage;
         
     }
     @Override

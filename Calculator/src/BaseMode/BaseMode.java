@@ -25,15 +25,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.script.ScriptEngine;
@@ -45,6 +46,7 @@ import javax.script.ScriptException;
  * @author yomna
  */
 public class BaseMode implements Initializable {
+    public static Stage window;
     Alert alert;
     DialogPane dialogPane;
     static String oldInput = "|";
@@ -59,37 +61,25 @@ public class BaseMode implements Initializable {
     private Button b_backspace;
     @FXML
     private Button b_period;
-    public  Menu port_menu;
     public String selectedMode = "Basic";
     
     int pos;
     @FXML
     private GridPane gridPane;
     @FXML
-    private Button b_0;
+    private AnchorPane anchor;
     @FXML
-    private Button b_3;
+    private MenuItem basic;
     @FXML
-    private Button b_2;
+    private MenuItem scientific;
     @FXML
-    private Button b_8;
+    private ImageView normal;
     @FXML
-    private Button b_5;
+    public MenuBar menuBar;
     @FXML
-    private Button b_7;
-    @FXML
-    private Button b_6;
-    @FXML
-    private Button b_9;
-    @FXML
-    private Button b_1;
-    @FXML
-    private Button b_4;
-    @FXML
-    private ImageView dark;
-    public void theme_change(ActionEvent event) {
-
-    }
+    public Menu portMenu;
+    
+    
         
     @FXML
     public void write_number(ActionEvent event) {
@@ -351,8 +341,25 @@ public class BaseMode implements Initializable {
         res.setText(oldRes);
         MenuItem dummy = new MenuItem("Serial ports");
         dummy.setDisable(true);
-        port_menu.getItems().add(dummy);
         
+        if(Calc_GUI.isFirst){
+            portMenu.getItems().add(dummy);
+            Calc_GUI.isFirst = false;
+        }
+        
+        if(Calc_GUI.darkFlag){
+            anchor.getChildren().add(Calc_GUI.baseModeController.menuBar);
+            Calc_GUI.baseModeController.menuBar.toBack();
+            Calc_GUI.baseModeController.menuBar.setPrefWidth(480);
+            Calc_GUI.baseModeController.menuBar.getStylesheets().clear();
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());            
+        }
+        else{
+            menuBar.setPrefWidth(480);
+            menuBar.getStylesheets().clear();
+            menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyle.css").toString());            
+        }
+
     }    
 
     @FXML
@@ -397,7 +404,6 @@ public class BaseMode implements Initializable {
         }
 
         scene = new Scene(root);
-        Stage window = (Stage)(res.getScene().getWindow());
         window.setScene(scene);
         window.show();
         //return to default
@@ -414,16 +420,16 @@ public class BaseMode implements Initializable {
         {
             oldInput = input.getText();
             oldRes = res.getText();
-            root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));
             Calc_GUI.darkFlag = true;
+            root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeDark.fxml"));
 
         }
         else
         {
             oldInput = input.getText();   
             oldRes = res.getText();            
-            root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));
             Calc_GUI.darkFlag = false;
+            root = FXMLLoader.load(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));
         }
         scene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
