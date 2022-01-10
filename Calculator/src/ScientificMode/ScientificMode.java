@@ -8,6 +8,7 @@ import CalcApplication.Calc_GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,6 +33,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 /**
  *
  * @author EngAya
@@ -43,10 +45,9 @@ public class ScientificMode implements Initializable {
     static String text;
     ScriptEngineManager scriptEngineManager;
     ScriptEngine scriptEngine;
-    String [] trigOperations = {" sin("," cos("," tan("," sec("," csc("," cot(","asin(","acos(","atan(","asec(","acsc(","acot(",
-    " sinh("," cosh("," tanh("};
+    String [] trigOperations = {" sin("," cos("," tan("," sec("," csc("," cot(","asin(","acos(","atan(","asec(","acsc(","acot("};
     String [] arcOperations = {"sinֿ¹","cosֿ¹","tanֿ¹","secֿ¹","cscֿ¹","cotֿ¹","sinhֿ¹","coshֿ¹","tanhֿ¹","sechֿ¹","cschֿ¹","cothֿ¹"};
-    String [] hyperOperations = {" sech("," csch("," coth(","asinh(","acosh(","atanh(","asech(","acsch(","acoth("};
+    String [] hyperOperations = {" sinh("," cosh("," tanh("," sech("," csch("," coth(","asinh(","acosh(","atanh(","asech(","acsch(","acoth("};
 
     /* Flags */
     static boolean hypFlag = false;
@@ -91,6 +92,8 @@ public class ScientificMode implements Initializable {
     private Button b_equal;
     @FXML
     private ImageView dark;
+    @FXML
+    private AnchorPane gridPane;
 
 
     
@@ -218,6 +221,8 @@ public class ScientificMode implements Initializable {
         scriptEngineManager = new ScriptEngineManager();  
         scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
         scriptEngine.put("HyperMath", new HyperMath());   // Add a class HyperMath - that solves the operations that are not found in java Math library such as ln, arccot,... - to the Script Engine to recognize them
+        makeFadeOut();
+
     }    
 
     @FXML
@@ -313,13 +318,14 @@ public class ScientificMode implements Initializable {
                 {
                     expression = expression.replace(s, "a"+s.replace("ֿ¹",""));
                 }
+                
+                for(String s : hyperOperations)
+               {
+                   expression = expression.replace(s, "HyperMath."+s);
+               }               
 
                 if(radianFlag == true)
                 {
-                     for(String s : hyperOperations)
-                    {
-                        expression = expression.replace(s, "HyperMath."+s);
-                    }
                     /* Replace sin,cos,asin,.. --> Math.sin,Math.cos,Math.asin.. */
                     for(String s : trigOperations)
                     {
@@ -328,10 +334,10 @@ public class ScientificMode implements Initializable {
                 }
                 else
                 {
-                    for(String s : hyperOperations)
-                    {
-                        expression = expression.replace(s, "HyperMath."+s+"(Math.PI/180)*");
-                    }
+//                    for(String s : hyperOperations)
+//                    {
+//                        expression = expression.replace(s, "HyperMath."+s+"(Math.PI/180)*");
+//                    }
                     /* Replace sin,cos,asin,.. --> Math.sin,Math.cos,Math.asin.. */
                     for(String s : trigOperations)
                     {
@@ -715,6 +721,16 @@ public class ScientificMode implements Initializable {
                 txtField.setText("|");
                 break;
         }
+    }
+    
+    void makeFadeOut()
+    {
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(500));
+        fadeTransition.setNode(gridPane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
     }
 
 }

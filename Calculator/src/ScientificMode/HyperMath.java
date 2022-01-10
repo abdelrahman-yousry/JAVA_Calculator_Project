@@ -12,6 +12,18 @@ import static java.lang.Math.E;
  * @author EngAya
  */
 public class HyperMath {
+    public Double sinh(Double theta)
+    {
+        return java.lang.Math.sinh(theta);
+    }
+    public Double cosh(Double theta)
+    {
+        return java.lang.Math.cosh(theta);
+    }
+    public Double tanh(Double theta)
+    {
+        return java.lang.Math.tanh(theta);
+    }
     public Double sech(Double theta)
     {
         return 1/(java.lang.Math.cosh(theta));
@@ -35,7 +47,7 @@ public class HyperMath {
     }
     public Double atanh(Double theta)
     {
-        return 0.5*Math.log( (theta + 1.0) / (theta - 1.0));    
+        return 0.5*Math.log( (1.0 + theta) / (1.0 - theta));    
     }
     public Double asech(Double theta)
     {

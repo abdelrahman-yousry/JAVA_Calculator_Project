@@ -13,286 +13,290 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchor" onKeyPressed="#write_key" prefHeight="595.0" prefWidth="794.0" style="-fx-background-image: url(file:./src/Style/dark3.png);" stylesheets="@../Style/buttonStyleDark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScientificMode.ScientificMode">
     <children>
-      <GridPane layoutX="39.0" layoutY="144.0" opacity="0.9" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyleDark.css">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <AnchorPane fx:id="gridPane" layoutX="39.0" layoutY="144.0">
          <children>
-            <Button layoutX="157.0" layoutY="316.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="155.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="3" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="88.0" layoutY="316.0" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="π" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="86.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="2" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="78.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="8" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="86.0" layoutY="174.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="5" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="7" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="155.0" layoutY="167.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="6" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button fx:id="b_period" layoutX="16.0" layoutY="316.0" mnemonicParsing="false" onAction="#dot_op" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="." textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Button fx:id="radian" layoutX="542.0" layoutY="16.0" mnemonicParsing="false" onAction="#radButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="Radian" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="143.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="9" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="14.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="4" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="( )" textFill="WHITE" GridPane.columnIndex="2">
-               <font>
-                  <Font name="System Bold" size="23.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="\%" textFill="WHITE" GridPane.columnIndex="3">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="÷" textFill="WHITE" GridPane.columnIndex="6">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="×" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Arial Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="-" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial Bold" size="31.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button fx:id="b_equal" defaultButton="true" mnemonicParsing="false" onAction="#equalButtonHandle" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyleDark.css" text="=" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button fx:id="b_backspace" mnemonicParsing="false" onAction="#back_space" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="⌫" textFill="WHITE" GridPane.columnIndex="4">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#clearScr" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="C" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="e" textFill="WHITE" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Times New Roman" size="27.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#invert_sign" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+/-" textFill="WHITE" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="√" textFill="WHITE" GridPane.rowIndex="2">
+            <GridPane layoutX="542.0" layoutY="166.0" opacity="0.9" prefHeight="246.0" prefWidth="172.0" stylesheets="@../Style/buttonStyleDark.css">
+               <children>
+                  <Button fx:id="arcsin" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="sinֿ¹" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arcsec" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="secֿ¹" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arccsc" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cscֿ¹" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arccos" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cosֿ¹" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arctan" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="tanֿ¹" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="arccot" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cotֿ¹" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Button fx:id="hyp" layoutX="542.0" layoutY="95.0" mnemonicParsing="false" onAction="#hypButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="hyp" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="^" textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
+            <GridPane opacity="0.9" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyleDark.css">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button layoutX="157.0" layoutY="316.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="155.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="3" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="88.0" layoutY="316.0" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="π" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="86.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="2" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="78.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="8" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="86.0" layoutY="174.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="5" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="7" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="155.0" layoutY="167.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="6" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b_period" layoutX="16.0" layoutY="316.0" mnemonicParsing="false" onAction="#dot_op" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="." textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="143.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="9" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="4" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="( )" textFill="WHITE" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="\%" textFill="WHITE" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="÷" textFill="WHITE" GridPane.columnIndex="6">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="×" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="-" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Bold" size="31.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b_equal" defaultButton="true" mnemonicParsing="false" onAction="#equalButtonHandle" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyleDark.css" text="=" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b_backspace" mnemonicParsing="false" onAction="#back_space" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="⌫" textFill="WHITE" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#clearScr" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="C" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="e" textFill="WHITE" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Times New Roman" size="27.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#invert_sign" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+/-" textFill="WHITE" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="√" textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="^" textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane layoutX="376.0" layoutY="2.0" opacity="0.9" prefHeight="410.0" prefWidth="155.0" stylesheets="@../Style/buttonStyleDark.css">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="sec" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="sec" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="csc" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="csc" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cos" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cos" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="tan" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="tan" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cot" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cot" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="|x|" textAlignment="CENTER" GridPane.rowIndex="1" fx:id="xpower">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Button>
+                  <Button fx:id="log" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="log" textAlignment="CENTER" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="mod" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="eˣ" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="sin" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="sin" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="ln" textAlignment="CENTER">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
-      </GridPane>
+      </AnchorPane>
       <TextField fx:id="txtField" layoutX="36.0" layoutY="67.0" opacity="0.8" prefHeight="68.0" prefWidth="723.0" styleClass="txtField" stylesheets="@../Style/buttonStyleDark.css">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font></TextField>
-      <GridPane layoutX="415.0" layoutY="146.0" opacity="0.9" prefHeight="410.0" prefWidth="155.0" stylesheets="@../Style/buttonStyleDark.css">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button fx:id="sec" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="sec" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="csc" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="csc" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="cos" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cos" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="tan" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="tan" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="cot" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cot" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="|x|" textAlignment="CENTER" GridPane.rowIndex="1" fx:id="xpower">
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-               <effect>
-                  <Blend />
-               </effect>
-            </Button>
-            <Button fx:id="log" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="log" textAlignment="CENTER" GridPane.columnIndex="2">
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="mod" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="eˣ" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="sin" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="sin" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="ln" textAlignment="CENTER">
-               <effect>
-                  <Blend />
-               </effect>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </Button>
-         </children>
-      </GridPane>
-      <GridPane layoutX="581.0" layoutY="310.0" opacity="0.9" prefHeight="246.0" prefWidth="172.0" stylesheets="@../Style/buttonStyleDark.css">
-         <children>
-            <Button fx:id="arcsin" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="sinֿ¹" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="arcsec" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="secֿ¹" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="arccsc" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cscֿ¹" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="arccos" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cosֿ¹" GridPane.columnIndex="2">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="arctan" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="tanֿ¹" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="arccot" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="cotֿ¹" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-         </children>
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
       <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="47.0" layoutY="104.0" opacity="0.9" prefHeight="26.0" prefWidth="707.0" style="-fx-background-color: rgb(255,255,255,0);" stylesheets="@../Style/buttonStyleDark.css" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="radian" layoutX="581.0" layoutY="160.0" mnemonicParsing="false" onAction="#radButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="Radian" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="hyp" layoutX="581.0" layoutY="239.0" mnemonicParsing="false" onAction="#hypButtonHandle" opacity="0.9" prefHeight="51.0" prefWidth="172.0" styleClass="rad_hyp_Button" stylesheets="@../Style/buttonStyleDark.css" text="hyp" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Button>
       <MenuBar prefHeight="40.0" prefWidth="794.0" stylesheets="@../Style/buttonStyleDark.css">
          <menus>
             <Menu mnemonicParsing="false" text="Edit">

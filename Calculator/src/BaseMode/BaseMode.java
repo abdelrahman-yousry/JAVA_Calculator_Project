@@ -12,6 +12,7 @@ import static java.lang.Math.E;
 import static java.lang.Math.PI;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,9 +31,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -61,11 +64,29 @@ public class BaseMode implements Initializable {
     
     int pos;
     @FXML
-    private MenuItem basic;
+    private GridPane gridPane;
     @FXML
-    private MenuItem scientific;
+    private Button b_0;
     @FXML
-    private ImageView normal;
+    private Button b_3;
+    @FXML
+    private Button b_2;
+    @FXML
+    private Button b_8;
+    @FXML
+    private Button b_5;
+    @FXML
+    private Button b_7;
+    @FXML
+    private Button b_6;
+    @FXML
+    private Button b_9;
+    @FXML
+    private Button b_1;
+    @FXML
+    private Button b_4;
+    @FXML
+    private ImageView dark;
     public void theme_change(ActionEvent event) {
 
     }
@@ -323,6 +344,7 @@ public class BaseMode implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        makeFadeOut();
         input.setText(oldInput);
         input.setEditable(false);
         input.setFocusTraversable(false);
@@ -475,5 +497,16 @@ public class BaseMode implements Initializable {
                 break;
         }
     }
+    
+    void makeFadeOut()
+    {
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(500));
+        fadeTransition.setNode(gridPane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
+    }
+
        
 }

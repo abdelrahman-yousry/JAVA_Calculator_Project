@@ -68,7 +68,7 @@
             </Menu>
         </menus>
       </MenuBar>
-      <GridPane layoutX="56.0" layoutY="148.0" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyle.css">
+      <GridPane fx:id="gridPane" layoutX="56.0" layoutY="148.0" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyle.css">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />

@@ -71,7 +71,7 @@
             <Insets />
          </opaqueInsets>
       </MenuBar>
-      <GridPane layoutX="57.0" layoutY="148.0" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyleDark.css">
+      <GridPane fx:id="gridPane" layoutX="57.0" layoutY="148.0" prefHeight="410.0" prefWidth="361.0" stylesheets="@../Style/buttonStyleDark.css">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />

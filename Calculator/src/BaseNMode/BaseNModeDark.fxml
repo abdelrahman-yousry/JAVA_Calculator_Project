@@ -13,7 +13,7 @@
     <children>
       <MenuBar prefHeight="40.0" prefWidth="549.0" stylesheets="@../Style/buttonStyleDark.css">
         <menus>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" onAction="#editHandle" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" text="Copy" />
                   <MenuItem mnemonicParsing="false" text="Cut" />
@@ -44,7 +44,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#modesHandle" text="Conversion" />
                </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" onAction="#helpHandle" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="Guide" />
                   <MenuItem mnemonicParsing="false" text="About" />
@@ -71,7 +71,7 @@
             <Insets />
          </opaqueInsets>
       </MenuBar>
-      <GridPane layoutX="27.0" layoutY="148.0" prefHeight="418.0" prefWidth="496.0" stylesheets="@../Style/buttonStyleDark.css">
+      <GridPane fx:id="gridPane" layoutX="27.0" layoutY="148.0" prefHeight="418.0" prefWidth="496.0" stylesheets="@../Style/buttonStyleDark.css">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />

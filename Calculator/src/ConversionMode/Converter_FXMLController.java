@@ -96,7 +96,6 @@ public class Converter_FXMLController implements Initializable {
         res.setText(oldRes);
         ta2.setEditable(false);
         ta2.setFocusTraversable(false);
-        
     } 
     
     @FXML
@@ -121,26 +120,13 @@ public class Converter_FXMLController implements Initializable {
         }
         else{
             switch(event.getCode()){
-                case E:
-                    ta1.insertText(pos, "e");
-                    break;
-                case SLASH:
-                    ta1.insertText(pos, "÷");
-                    break;
-                case DIVIDE:
-                    ta1.insertText(pos, "÷");
-                    break;
                 case MINUS:
-                    ta1.insertText(pos, "-");
+                    if(conv_mode_detect==2)
+                        ta1.insertText(pos, "-");
                     break;
                 case SUBTRACT:
-                    ta1.insertText(pos, "-");
-                    break;
-                case ADD:
-                    ta1.insertText(pos, "+");
-                    break;
-                case MULTIPLY:
-                    ta1.insertText(pos, "×");
+                    if(conv_mode_detect==2)
+                        ta1.insertText(pos, "-");
                     break;
                 case EQUALS:
                     b_equal.fire();

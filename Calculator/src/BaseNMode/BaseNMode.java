@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,8 +38,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -108,9 +111,11 @@ public class BaseNMode implements Initializable {
     @FXML
     private Button btn_Hex;
     @FXML
-    private MenuItem baseN;
+    private GridPane gridPane;
     @FXML
-    private ImageView normal;
+    private MenuItem BaseN;
+    @FXML
+    private ImageView dark;
     
     
     @FXML
@@ -521,6 +526,7 @@ public class BaseNMode implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        makeFadeOut();
         btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
         input.setText(oldInput);
         input.setEditable(false);
@@ -670,6 +676,16 @@ public class BaseNMode implements Initializable {
                 input.setText("|");
                 break;
         }
+    }
+    
+    void makeFadeOut()
+    {
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(500));
+        fadeTransition.setNode(gridPane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
     }
        
 }

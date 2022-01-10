@@ -21,7 +21,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </MenuButton>
-      <GridPane layoutX="161.0" layoutY="174.0" prefHeight="348.0" prefWidth="334.0">
+      <GridPane fx:id="gridPane" layoutX="161.0" layoutY="174.0" prefHeight="348.0" prefWidth="334.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
@@ -245,7 +245,7 @@
          </image>
       </ImageView>
       <Label fx:id="res" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="227.0" prefHeight="26.0" prefWidth="50.0" stylesheets="@../Style/buttonStyle.css" textAlignment="RIGHT" />
-      <Label fx:id="Label_note" layoutX="420.0" layoutY="80.0" text="then press =" textFill="WHITE" />
+      <Label fx:id="Label_note" layoutX="420.0" layoutY="80.0" text="then press =" />
     </children>
    <effect>
       <DropShadow color="#0000003a" />

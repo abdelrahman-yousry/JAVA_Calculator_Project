@@ -26,35 +26,25 @@ import javafx.stage.Stage;
  */
 public class Calc_GUI extends Application {
     FXMLLoader loader;
+    Parent root;
     public static Scene scene;
     public static BaseMode baseModeController;
     public static boolean darkFlag = false;
- //   public static ScientificMode scientificModeController;
- //   public static Converter_FXMLController converterModeController;
-   
     ArduinoCommunication ardCom = new ArduinoCommunication();
     Thread port;
 
     @Override
     public void init() throws Exception {
         
-        loader = new FXMLLoader(getClass().getResource("..//BaseMode/BaseModeNormal.fxml"));   
+        loader = new FXMLLoader(getClass().getResource("..//BaseMode/BaseModeNormal.fxml")); 
+        root = loader.load();
+        baseModeController = loader.<BaseMode>getController();
         
-      //      loader = new FXMLLoader(getClass().getResource("../BaseMode/BaseModeDark.fxml"));   
-     //     loader = new FXMLLoader(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));   
-     //   loader = new FXMLLoader(getClass().getResource("..//ConversionMode/Converter_FXML_Dark.fxml"));   
-    //loader = new FXMLLoader(getClass().getResource("..//GeometryMode/GeometryModeNormal.fxml"));
        }
     
     
     @Override
-    public void start(Stage stage) throws Exception {
-
-
-        Parent root = loader.load();
-
-        baseModeController = loader.<BaseMode>getController();
-        
+    public void start(Stage stage) throws Exception {      
         port = new Thread(new Runnable(){
             @Override
             public void run() {
