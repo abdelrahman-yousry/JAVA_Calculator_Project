@@ -8,7 +8,7 @@
 
 ### Link of Demo video: 
 https://youtu.be/eb2qRVtGJRE
-### Decumentation Link:
+### Documentation Link:
 https://github.com/abdelrahman-yousry/Java_Calculator_Project/blob/main/Documentation/CalculatorDoc.pdf
 
  
