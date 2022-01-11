@@ -67,7 +67,7 @@ Binary -> Hex
 #### In this project, we used two 4x4 Keypad to control all the modes and features in our calculator.
 #### 	First Keypad: 
 #### In this keypad we manage all the numbers from 0 – 9, dot operator, equal button and the basic operations + - / *  .
-<img src="Images/keypad1.PNG" alt="drawing" style="width:300px;"/>
+<img src="Images/keypad1.PNG" alt="drawing" style="width:200px;"/>
 
 #### Second keypad
 <img src="Images/keypad2.PNG" alt="drawing" style="width:400px;"/>
