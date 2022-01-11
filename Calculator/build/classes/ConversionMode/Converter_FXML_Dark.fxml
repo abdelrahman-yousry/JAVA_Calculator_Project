@@ -83,7 +83,7 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="b_period" layoutX="118.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="." textFill="WHITE" GridPane.rowIndex="4">
+            <Button fx:id="b_period" layoutX="118.0" layoutY="452.0" mnemonicParsing="false" onAction="#dot_op" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="." textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

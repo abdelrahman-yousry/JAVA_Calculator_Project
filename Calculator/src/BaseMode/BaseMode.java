@@ -7,6 +7,7 @@ package BaseMode;
 
 
 import CalcApplication.Calc_GUI;
+import static CalcApplication.Calc_GUI.opValidation;
 import java.io.IOException;
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
@@ -85,36 +86,46 @@ public class BaseMode implements Initializable {
     public void write_number(ActionEvent event) {
         Button tmp = (Button)event.getSource();
         pos = input.getText().indexOf("|");
-        input.insertText(pos, tmp.getText());
+        String s = Calc_GUI.numberValidation(input.getText(), tmp.getText(), pos);
+        input.insertText(pos, s);
     }
     @FXML
     public void write_key(KeyEvent event) {
         pos = input.getText().indexOf("|");
+        String s;
         if(event.isShiftDown()){
             switch(event.getCode()){
                 case EQUALS:
-                    input.insertText(pos, "+");
+                    s = opValidation(input.getText(), "+", pos);
+                    input.setText(s);
                     break;
                 case DIGIT6:
-                    input.insertText(pos, "^");
+                    s = opValidation(input.getText(), "^", pos);
+                    input.setText(s);
                     break;
                 case DIGIT8:
-                    input.insertText(pos, "×");
+                    s = opValidation(input.getText(), "×", pos);
+                    input.setText(s);
                     break;
                 
                 case DIGIT5:
-                    input.insertText(pos, "%");
+                    s = opValidation(input.getText(), "%", pos);
+                    input.setText(s);
                     break;
                 case DIGIT9:
-                    input.insertText(pos, "( )");
+                    s = opValidation(input.getText(), "( )", pos);
+                    input.setText(s);
                     break;
                 case DIGIT0:
-                    input.insertText(pos, "( )");
+                    s = opValidation(input.getText(), "( )", pos);
+                    input.setText(s);
                     break;
             }
         }
-        else if(event.getCode().isDigitKey())
-            input.insertText(pos, event.getText());
+        else if(event.getCode().isDigitKey()){
+            s = Calc_GUI.numberValidation(input.getText(),event.getText() , pos);
+            input.insertText(pos, s);
+        }
         else if(event.isControlDown()){
 //        else if(event.getCode().isArrowKey()){
             switch(event.getCode()){
@@ -133,25 +144,32 @@ public class BaseMode implements Initializable {
         else{
             switch(event.getCode()){
                 case E:
-                    input.insertText(pos, "e");
+                    s = opValidation(input.getText(), "e", pos);
+                    input.setText(s);
                     break;
                 case SLASH:
-                    input.insertText(pos, "÷");
+                    s = opValidation(input.getText(), "÷", pos);
+                    input.setText(s);
                     break;
                 case DIVIDE:
-                    input.insertText(pos, "÷");
+                    s = opValidation(input.getText(), "÷", pos);
+                    input.setText(s);
                     break;
                 case MINUS:
-                    input.insertText(pos, "-");
+                    s = opValidation(input.getText(), "-", pos);
+                    input.setText(s);
                     break;
                 case SUBTRACT:
-                    input.insertText(pos, "-");
+                    s = opValidation(input.getText(), "-", pos);
+                    input.setText(s);
                     break;
                 case ADD:
-                    input.insertText(pos, "+");
+                    s = opValidation(input.getText(), "+", pos);
+                    input.setText(s);
                     break;
                 case MULTIPLY:
-                    input.insertText(pos, "×");
+                    s = opValidation(input.getText(), "×", pos);
+                    input.setText(s);
                     break;
                 case EQUALS:
                     b_equal.fire();
@@ -183,40 +201,13 @@ public class BaseMode implements Initializable {
     public void operation(ActionEvent event) {
         Button tmp = (Button)event.getSource();
         String op = tmp.getText();
+        String s;
         pos = input.getText().indexOf("|");
-
-        if(op.equals("√") || op.equals("π") || op.equals("e") || op.equals("( )"))
-        {
-            if( !"|".equals(input.getText()) )  //if the text field is not Empty --> Check the last character before the curser
-        {
-            Character lastChar = input.getText().charAt(pos-1);  
-            //if the last character is one of the next cases --> add X before the trigonometric func.
-            switch( lastChar )
-            {
-                case '0':
-                case '1':
-                case '2':        
-                case '3':        
-                case '4':        
-                case '5':        
-                case '6':        
-                case '7':        
-                case '8':        
-                case '9':        
-                case 'e':        
-                case 'π':
-                case ')':
-                    input.insertText(pos,"×");
-                    pos = input.getText().indexOf("|");;
-                    break;
-            } 
-        }
-            
-        }
         if(op.equals("√")){
             op = "√( )";
         }
-        input.insertText(pos, op);
+        s = opValidation(input.getText(),op , pos);
+        input.setText(s);
     }
    
     @FXML

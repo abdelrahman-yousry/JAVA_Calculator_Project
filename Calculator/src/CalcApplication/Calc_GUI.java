@@ -205,7 +205,143 @@ public class Calc_GUI extends Application {
         
     }
 
+    public static String numberValidation(String str,String numberStr , int pos){
+        if(!str.replace("|", "").isEmpty()){
+            if(pos == 0){
+                // check that after caret is valid "doesn't contain e, pi, (, sqrt"
+                if(!"0123456789+-×%^÷). ABCDEF".contains(str.substring(pos+1, pos+2))){
+                    return (numberStr + "×");
+                }
+            }
+            else if(pos == str.length()-1){
+                // check that before caret is valid "doesn't contain e, pi, ), sqrt"
+                if("√".contains(str.substring(pos-1, pos))){
+                    return"";
+                }
+                if(!"0123456789+-×%^÷(. ABCDEF".contains(str.substring(pos-1, pos))){
+                    return("×" + numberStr);
+                }                  
+            }
+            else{
+                // check before and after the caret
+                
+                if("√".contains(str.substring(pos-1, pos))){
+                    return"";
+                }
+                else if(!"0123456789+-×%^÷(. ABCDEF".contains(str.substring(pos-1, pos)) && !"0123456789+-×%^÷). ABCDEF".contains(str.substring(pos+1, pos+2))){
+                    return("×" + numberStr + "×");
+                }
+                else if(!"0123456789+-×%^÷(. ABCDEF".contains(str.substring(pos-1, pos))){
+                    return("×" + numberStr);
+                } 
+                else if(!"0123456789+-×%^÷). ABCDEF".contains(str.substring(pos+1, pos+2))){
+                    return(numberStr + "×");
+                }
+            }
+        }
+        return numberStr;
+    }
+    
 
+    public static String opValidation(String str,String opStr , int pos){
+        StringBuilder sb = new StringBuilder(str);
+        if("+-×%^÷".contains(opStr)){
+            
+            if(!str.replace("|", "").isEmpty()){
+                if(pos == 0){
+                    // check that after caret is valid "doesn't contain e, pi, (, sqrt"
+                    return str;
+                }
+                else if(pos == str.length()-1){
+                    // check that before caret is valid "doesn't contain e, pi, ), sqrt"
+                    if("√".contains(str.substring(pos-1, pos))){
+                        return sb.toString();
+                    }
+                    if("+-×%^÷".contains(str.substring(pos-1, pos)) && "+-×%^÷".contains(opStr)){
+                        sb.replace(pos-1, pos, opStr);
+                        return sb.toString();
+                    }
+                    else{
+                        sb.insert(pos, opStr);
+                        return sb.toString();
+                    }
+                }
+                else{
+                    // check before and after the caret
+                    if("√".contains(str.substring(pos-1, pos))){
+                        return sb.toString();
+                    }
+                    if(("+-×%^÷".contains(str.substring(pos-1, pos)) && "+-×%^÷".contains(opStr)) && ("+-×%^÷".contains(str.substring(pos+1, pos+2)) && "+-×%^÷".contains(opStr))){
+                        sb.replace(pos-1, pos+2, opStr+"|");
+                    }
+                    else if("+-×%^÷".contains(str.substring(pos-1, pos)) && "+-×%^÷".contains(opStr)){
+                        sb.replace(pos-1, pos, opStr);
+                    } 
+                    else if("+-×%^÷".contains(str.substring(pos+1, pos+2)) && "+-×%^÷".contains(opStr)){
+                        sb.replace(pos+1, pos+2, opStr);
+                    }
+                    else{
+                        if("( ".contains(str.substring(pos-1, pos)))
+                            return sb.toString();
+                        sb.insert(pos, opStr);
+                    }
+                    return sb.toString();  
+                }
+            }
+            else
+                return "|";
+        }
+        else{
+            // rest of operations e pi ( ) sqrt
+            if(!str.replace("|", "").isEmpty()){
+                if(pos == 0){
+                    // check that after caret is valid "doesn't contain e, pi, (, sqrt"
+                    if("+-×%^÷".contains(str.substring(pos+1, pos+2))){
+                        sb.insert(pos, opStr);
+                        return sb.toString();
+                    }
+                    else{
+                        sb.insert(pos, opStr+ "×");
+                        return sb.toString();
+                    }
+                }
+                else if(pos == str.length()-1){
+                    // check that before caret is valid "doesn't contain e, pi, ), sqrt"
+                    if("+-×%^÷".contains(str.substring(pos-1, pos))){
+                        sb.insert(pos, opStr);
+                        return sb.toString();
+                    }
+                    else{
+                        sb.insert(pos,"×" + opStr);
+                        return sb.toString();
+                    }
+                }
+                else{
+                    // check before and after the caret
+                    if("+-×%^÷".contains(str.substring(pos-1, pos)) && "+-×%^÷".contains(str.substring(pos+1, pos+2))){
+                        sb.insert(pos,opStr);
+                        return sb.toString();
+                    }
+                    else if("+-×%^÷".contains(str.substring(pos-1, pos))){
+                        sb.insert(pos, opStr + "×");
+                        return sb.toString();
+                    } 
+                    else if("+-×%^÷".contains(str.substring(pos+1, pos+2))){
+                        sb.insert(pos,"×" + opStr);
+                        return sb.toString();
+                    }
+                    else{
+                        sb.insert(pos, "×" + opStr + "×");
+                        return sb.toString();
+                    }
+                }
+            }
+            else{
+                return (opStr+"|");
+            }
+        }
+    }
+     
 
     /**
      * @param args the command line arguments

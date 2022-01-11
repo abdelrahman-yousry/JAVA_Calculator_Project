@@ -42,7 +42,7 @@
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Button>
-                  <Button layoutX="88.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="π" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <Button layoutX="88.0" layoutY="316.0" mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="π" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -92,7 +92,7 @@
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="( )" GridPane.columnIndex="2">
+                  <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="( )" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>
@@ -137,7 +137,7 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="e" GridPane.rowIndex="4">
+                  <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="e" GridPane.rowIndex="4">
                      <font>
                         <Font name="Times New Roman" size="27.0" />
                      </font>
@@ -147,7 +147,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="√" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" onAction="#operation" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="√" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

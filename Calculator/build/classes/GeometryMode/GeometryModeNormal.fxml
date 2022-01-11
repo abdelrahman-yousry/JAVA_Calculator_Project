@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" onKeyReleased="#write_key" prefHeight="540.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GeometryMode.Geometry_FXMLController">
+<AnchorPane id="AnchorPane" fx:id="anchor" onKeyPressed="#write_key" prefHeight="540.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GeometryMode.Geometry_FXMLController">
     <children>
       <MenuButton fx:id="calc_mb" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" styleClass="convButton" stylesheets="@../Style/buttonStyle.css" text="Calculations" textFill="WHITE">
          <effect>
@@ -68,7 +68,7 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="b_period" layoutX="16.0" layoutY="316.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="." GridPane.rowIndex="4">
+            <Button fx:id="b_period" layoutX="16.0" layoutY="316.0" mnemonicParsing="false" onAction="#dot_op" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="." GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

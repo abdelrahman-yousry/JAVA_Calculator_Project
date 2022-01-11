@@ -152,7 +152,8 @@ public class Converter_FXMLController implements Initializable {
                             c_to_clear=' ';
                             pos = ta1.getText().indexOf("|");
                         }
-                        ta1.insertText(pos, "-");
+                        if(ta1.getText().charAt(0)!= '-')
+                            ta1.insertText(0, "-");
                     }
                     break;
                 case SUBTRACT:
@@ -165,7 +166,8 @@ public class Converter_FXMLController implements Initializable {
                             c_to_clear=' ';
                             pos = ta1.getText().indexOf("|");
                         }
-                        ta1.insertText(pos, "-");
+                        if(ta1.getText().charAt(0)!= '-')
+                            ta1.insertText(0, "-");
                     }
                     break;
                 case EQUALS:
@@ -194,6 +196,25 @@ public class Converter_FXMLController implements Initializable {
             }
         }
     }
+    @FXML
+    private void dot_op(ActionEvent event) {
+        // sets dot only one time per number
+        // parse on operations
+        String str = ta1.getText();
+        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+");
+        int pos = ta1.getText().indexOf("|");
+        for(String a:arrOfStr){
+            if(a.contains("|")){
+                if(!a.contains(".")){
+                    ta1.insertText(pos, ".");
+                    // check if pos of | doesn't has a number before it --> pos-2 = 0
+                    if(pos == 0 || !Character.isDigit(ta1.getText().charAt(pos-1)))
+                        ta1.insertText(pos, "0");
+                }
+                break;
+            }
+        }
+    }
     
     @FXML
     private void ta_write(ActionEvent event) {
@@ -203,6 +224,7 @@ public class Converter_FXMLController implements Initializable {
         
         String bstr=temp.getText();
         String ta1_str=temp.getText();
+   
         if(c_to_clear=='=')
         {
             ta1.setText("|");
@@ -210,8 +232,14 @@ public class Converter_FXMLController implements Initializable {
             c_to_clear=' ';
             pos = ta1.getText().indexOf("|");
         }
-        if(!bstr.equals("C") && !bstr.equals("⌫") && !bstr.equals("="))
+        if(bstr.equals("-")){
+            if(ta1.getText().charAt(0)!= '-')
+                ta1.insertText(0, "-");
+        }
+        else if(!bstr.equals("C") && !bstr.equals("⌫") && !bstr.equals("=") && !bstr.equals("-")){ 
             ta1.insertText(pos, ta1_str);
+        }
+            
 
         else if(bstr.equals("C"))
         {

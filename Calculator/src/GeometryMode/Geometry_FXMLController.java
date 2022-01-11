@@ -221,7 +221,26 @@ public class Geometry_FXMLController implements Initializable {
         ta1.setText(old_ta1_text);
         ta2.setText(old_ta2_text);
     }
-
+    @FXML
+    private void dot_op(ActionEvent event) {
+        // sets dot only one time per number
+        // parse on operations
+        String str = ta1.getText();
+        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+");
+        int pos = ta1.getText().indexOf("|");
+        for(String a:arrOfStr){
+            if(a.contains("|")){
+                if(!a.contains(".")){
+                    ta1.insertText(pos, ".");
+                    // check if pos of | doesn't has a number before it --> pos-2 = 0
+                    if(pos == 0 || !Character.isDigit(ta1.getText().charAt(pos-1)))
+                        ta1.insertText(pos, "0");
+                }
+                break;
+            }
+        }
+    }
+    
     /*
     *this handler fired if any button is pressed in the GUI
     *the input param is the event which is clicking on the button

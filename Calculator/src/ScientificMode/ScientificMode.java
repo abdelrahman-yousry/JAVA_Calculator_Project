@@ -5,8 +5,10 @@
 package ScientificMode;
 
 import CalcApplication.Calc_GUI;
+import static CalcApplication.Calc_GUI.opValidation;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -98,117 +100,87 @@ public class ScientificMode implements Initializable {
 
     
     @FXML
+    // "| )" exception --> sin
     public void handleButtonAction(ActionEvent event) {
+        String str = "";
+        String s;
         pos = txtField.getText().indexOf("|");
-        if( !"|".equals(txtField.getText()) )  //if the text field is not Empty --> Check the last character before the curser
-        {
-            Character lastChar = txtField.getText().charAt(pos-1);  
-            //if the last character is one of the next cases --> add X before the trigonometric func.
-            switch( lastChar )
-            {
-                case '0':
-                case '1':
-                case '2':        
-                case '3':        
-                case '4':        
-                case '5':        
-                case '6':        
-                case '7':        
-                case '8':        
-                case '9':        
-                case 'e':        
-                case 'π':
-                case ')':
-                    txtField.insertText(pos,"×");
-                    pos = txtField.getText().indexOf("|");;
-                    break;
-            } 
-        }
+        
         /* Check if the hyperpolic button is pressed or not , if pressed print
          * sinh, cosh,... , if not pressed print sin, cos,... on buttons 
          */
         if(hypFlag == false)
         {
             if(event.getSource() == sin)
-                txtField.insertText(pos," sin( )");
+                str= " sin( )";
             else if(event.getSource() == cos)
-                txtField.insertText(pos," cos( )");
+                str= " cos( )";
             else if(event.getSource() == tan)
-                txtField.insertText(pos," tan( )");
+                str= " tan( )";
             else if(event.getSource() == sec)
-                txtField.insertText(pos," sec( )");
+                str= " sec( )";
             else if(event.getSource() == csc)
-                txtField.insertText(pos," csc( )");
+                str= " csc( )";
             else if(event.getSource() == cot)
-                txtField.insertText(pos," cot( )");
+                str= " cot( )";
             else if(event.getSource() == arcsin)
-                txtField.insertText(pos," sinֿ¹( )");
+                str= " sinֿ¹( )";
             else if(event.getSource() == arccos)
-                txtField.insertText(pos," cosֿ¹( )");
+                str= " cosֿ¹( )";
             else if(event.getSource() == arctan)
-                txtField.insertText(pos," tanֿ¹( )");
+                str= " tanֿ¹( )";
             else if(event.getSource() == arcsec)
-                txtField.insertText(pos," secֿ¹( )");
+                str= " secֿ¹( )";
             else if(event.getSource() == arccsc)
-                txtField.insertText(pos," cscֿ¹( )");
+                str= " cscֿ¹( )";
             else if(event.getSource() == arccot)
-                txtField.insertText(pos," cotֿ¹( )");
+                str= " cotֿ¹( )";
         }
         else
         {
             if(event.getSource() == sin)
-                txtField.insertText(pos," sinh( )");
+                str= " sinh( )";
             else if(event.getSource() == cos)
-                txtField.insertText(pos," cosh( )");
+                str= " cosh( )";
             else if(event.getSource() == tan)
-                txtField.insertText(pos," tanh( )");
+                str= " tanh( )";
             else if(event.getSource() == sec)
-                txtField.insertText(pos," sech( )");
+                str= " sech( )";
             else if(event.getSource() == csc)
-                txtField.insertText(pos," csch( )");
+                str= " csch( )";
             else if(event.getSource() == cot)
-                txtField.insertText(pos," coth( )");
+                str= " coth( )";
             else if(event.getSource() == arcsin)
-                txtField.insertText(pos," sinhֿ¹( )");
+                str= " sinhֿ¹( )";
             else if(event.getSource() == arccos)
-                txtField.insertText(pos," coshֿ¹( )");
+                str= " coshֿ¹( )";
             else if(event.getSource() == arctan)
-                txtField.insertText(pos," tanhֿ¹( )");
+                str= " tanhֿ¹( )";
             else if(event.getSource() == arcsec)
-                txtField.insertText(pos," sechֿ¹( )");
+                str= " sechֿ¹( )";
             else if(event.getSource() == arccsc)
-                txtField.insertText(pos," cschֿ¹( )");
+                str= " cschֿ¹( )";
             else if(event.getSource() == arccot)
-                txtField.insertText(pos," cothֿ¹( )");           
+                str= " cothֿ¹( )";           
         }  
         if("ln".equals(((Button)event.getSource()).getText()))
         {
-                txtField.insertText(pos,"ln( )");                      
+                str= "ln( )";                      
         }
         else if("log".equals(((Button)event.getSource()).getText()))
         {
-                txtField.insertText(pos,"log( )");                      
+                str= "log( )";                      
         }
         else if ("|x|".equals(((Button)event.getSource()).getText()))
         {
-                txtField.insertText(pos,"abs( )");                                  
+                str= "abs( )";                                  
         }
         else if("eˣ".equals(((Button)event.getSource()).getText()))
         {
-                txtField.insertText(pos,"exp( )");                                             
+                str= "exp( )";                                             
         }
-        else if("π".equals(((Button)event.getSource()).getText()))
-        {
-                txtField.insertText(pos,"π");                                             
-        }
-        else if("e".equals(((Button)event.getSource()).getText()))
-        {
-                txtField.insertText(pos,"e");                                             
-        }
-        else if("√".equals(((Button)event.getSource()).getText()))
-        {
-                txtField.insertText(pos,"√( )");                                             
-        }
+        s = opValidation(txtField.getText(), str, pos);
+        txtField.setText(s);
     }
     
     @Override
@@ -383,37 +355,47 @@ public class ScientificMode implements Initializable {
     private void write_number(ActionEvent event) {
         Button tmp = (Button)event.getSource();
         pos = txtField.getText().indexOf("|");
-        txtField.insertText(pos, tmp.getText());
+        String s = Calc_GUI.numberValidation(txtField.getText(),tmp.getText() , pos);
+        txtField.insertText(pos, s);
     }
     
-    @FXML
+  @FXML
     public void write_key(KeyEvent event) {
         pos = txtField.getText().indexOf("|");
+        String s;
         if(event.isShiftDown()){
             switch(event.getCode()){
                 case EQUALS:
-                    txtField.insertText(pos, "+");
+                    s = opValidation(txtField.getText(), "+", pos);
+                    txtField.setText(s);
                     break;
                 case DIGIT6:
-                    txtField.insertText(pos, "^");
+                    s = opValidation(txtField.getText(), "^", pos);
+                    txtField.setText(s);
                     break;
                 case DIGIT8:
-                    txtField.insertText(pos, "×");
+                    s = opValidation(txtField.getText(), "×", pos);
+                    txtField.setText(s);
                     break;
                 
                 case DIGIT5:
-                    txtField.insertText(pos, "%");
+                    s = opValidation(txtField.getText(), "%", pos);
+                    txtField.setText(s);
                     break;
                 case DIGIT9:
-                    txtField.insertText(pos, "( )");
+                    s = opValidation(txtField.getText(), "( )", pos);
+                    txtField.setText(s);
                     break;
                 case DIGIT0:
-                    txtField.insertText(pos, "( )");
+                    s = opValidation(txtField.getText(), "( )", pos);
+                    txtField.setText(s);
                     break;
             }
         }
-        else if(event.getCode().isDigitKey())
-            txtField.insertText(pos, event.getText());
+        else if(event.getCode().isDigitKey()){
+            s = Calc_GUI.numberValidation(txtField.getText(),event.getText() , pos);
+            txtField.insertText(pos, s);
+        }
         else if(event.isControlDown()){
 //        else if(event.getCode().isArrowKey()){
             switch(event.getCode()){
@@ -432,25 +414,32 @@ public class ScientificMode implements Initializable {
         else{
             switch(event.getCode()){
                 case E:
-                    txtField.insertText(pos, "e");
+                    s = opValidation(txtField.getText(), "e", pos);
+                    txtField.setText(s);
                     break;
                 case SLASH:
-                    txtField.insertText(pos, "÷");
+                    s = opValidation(txtField.getText(), "÷", pos);
+                    txtField.setText(s);
                     break;
                 case DIVIDE:
-                    txtField.insertText(pos, "÷");
+                    s = opValidation(txtField.getText(), "÷", pos);
+                    txtField.setText(s);
                     break;
                 case MINUS:
-                    txtField.insertText(pos, "-");
+                    s = opValidation(txtField.getText(), "-", pos);
+                    txtField.setText(s);
                     break;
                 case SUBTRACT:
-                    txtField.insertText(pos, "-");
+                    s = opValidation(txtField.getText(), "-", pos);
+                    txtField.setText(s);
                     break;
                 case ADD:
-                    txtField.insertText(pos, "+");
+                    s = opValidation(txtField.getText(), "+", pos);
+                    txtField.setText(s);
                     break;
                 case MULTIPLY:
-                    txtField.insertText(pos, "×");
+                    s = opValidation(txtField.getText(), "×", pos);
+                    txtField.setText(s);
                     break;
                 case EQUALS:
                     b_equal.fire();
@@ -478,7 +467,7 @@ public class ScientificMode implements Initializable {
             }
         }
     }
-
+    
     @FXML
     private void dot_op(ActionEvent event) {
         // sets dot only one time per number
@@ -501,19 +490,45 @@ public class ScientificMode implements Initializable {
 
     @FXML
     private void operation(ActionEvent event) {
+        String s;
         Button tmp = (Button)event.getSource();
         String op = tmp.getText();
         pos = txtField.getText().indexOf("|");
-        txtField.insertText(pos, op);
+        if(op.equals("√")){
+            op = "√( )";
+        }
+        s = opValidation(txtField.getText(),op , pos);
+        txtField.setText(s);
     }
 
     @FXML
     private void back_space(ActionEvent event) {
+        int operatorIndex [] = new int[5];
+        int max = -1;
         // deletes the char
-        pos = txtField.getText().indexOf("|");
-        if(pos != 0)
-            txtField.deleteText(pos-1, pos);
+        pos = txtField.getText().indexOf("|");  //find index of cursor 
+        if(pos != 0)  //if the txtfield is empty
+        {
+            if(txtField.getText().charAt(pos-1) == ')')   //if the last charactetr before the cursor is ) that means that we should remove the whole function--> find the index of last operator
+            {
+                operatorIndex[0] = txtField.getText().lastIndexOf("+");
+                operatorIndex[1] = txtField.getText().lastIndexOf("×");
+                operatorIndex[2] = txtField.getText().lastIndexOf("/");
+                operatorIndex[3] = txtField.getText().lastIndexOf("-");
+                operatorIndex[4] = txtField.getText().lastIndexOf("%");
+            }
+            max = Arrays.stream(operatorIndex).max().getAsInt();  //Find the max of indexs to find last operator, return 0 if no operator found
+            if(max > 0)  //No operator is found
+            {
+                txtField.deleteText(max+1, pos);  //delete until the oprator
+            }
+            else 
+            {
+                txtField.deleteText(pos-1, pos);  //delete char by char
+            }
+        }
     }
+
 
     @FXML
     private void clearScr(ActionEvent event) {

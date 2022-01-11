@@ -2,10 +2,15 @@ package BaseNMode;
 
 /*
     This is the base-N mode file to handle conversions between modes and 
-    the operations can be apply on the modes.
+    the operations can be applied on the modes.
     
+    authors:
+            Nehal Amgad
+            Yomna Al-Shaboury
 */
+
 import CalcApplication.Calc_GUI;
+import static CalcApplication.Calc_GUI.opValidation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,6 +48,10 @@ public class BaseNMode implements Initializable {
     static String oldInput = "|";
     static String oldRes = " ";
     static int state = 10;
+    int prev_state;
+    int next_state;
+    int pos;
+    
     @FXML
     public Label res;
     public TextField input;
@@ -52,11 +61,6 @@ public class BaseNMode implements Initializable {
     private Button b_backspace;
     public  Menu port_menu;
     public String selectedMode ;
-    
-    int prev_state;
-    int next_state;
-    
-    int pos;
     
     @FXML
     private Button btn_0;    
@@ -110,8 +114,9 @@ public class BaseNMode implements Initializable {
     @FXML
     public void write_number(ActionEvent event) {
         Button tmp = (Button)event.getSource(); //take the text from the button 
-        pos = input.getText().indexOf("|");     //get the position of the text using the postion of cursor
-        input.insertText(pos, tmp.getText());   //insert the text from click on the button in the textfield in the position
+        pos = input.getText().indexOf("|");     //get the position of the text using the postion of caret
+        String s = Calc_GUI.numberValidation(input.getText(), tmp.getText(), pos); // validation on numbers
+        input.insertText(pos, s);              //insert the text from click on the button in the textfield in the position
     }
     
     //Function to handle the keyboard buttons to control on the textfield 
@@ -119,40 +124,47 @@ public class BaseNMode implements Initializable {
     @FXML
     public void write_key(KeyEvent event) {
 
+        String s;
         pos = input.getText().indexOf("|");
         
         //Those are the operations wrote when shift button is click
         if(event.isShiftDown()){
             switch(event.getCode()){
                 case EQUALS:
-                    input.insertText(pos, "+"); //shift+(+)button -> =  
+                    s = opValidation(input.getText(), "+", pos);
+                    input.setText(s);           //shift+(=)button -> + 
                     break;
                 case DIGIT6:
-                    input.insertText(pos, "^"); //shift+6 button -> ^  
+                    s = opValidation(input.getText(), "^", pos);
+                    input.setText(s);           //shift+6 button -> ^  
                     break;
                 case DIGIT8:
-                    input.insertText(pos, "×");//shift+8 button -> x 
+                    s = opValidation(input.getText(), "×", pos);
+                    input.setText(s);           //shift+8 button -> x 
                     break;               
                 case DIGIT5:
-                    input.insertText(pos, "%");//shift+5 button -> % 
+                    s = opValidation(input.getText(), "%", pos);
+                    input.setText(s);           //shift+5 button -> % 
                     break;
                 case DIGIT9:
-                    input.insertText(pos, "( )");//shift+9 button -> ()
+                    s = opValidation(input.getText(), "( )", pos);
+                    input.setText(s);           //shift+9 button -> ()
                     break;
                 case DIGIT0:
-                    input.insertText(pos, "( )");//shift+0 button -> ()
+                    s = opValidation(input.getText(), "( )", pos);
+                    input.setText(s);           //shift+0 button -> ()
                     break;
             }
         }
         //Those are the operations wrote when ctrl button is click
         else if(event.isControlDown()){
             switch(event.getCode()){
-                case LEFT: //ctrl + left to move cursor to the previous position to write on this position
+                case LEFT: //ctrl + left to move caret to the previous position to write on this position
                     if(pos>0){
                         input.setText(input.getText().replace("|", ""));
                         input.insertText(pos-1, "|");
                     }break;
-                case RIGHT://ctrl + left to move cursor to the next position to write on this position
+                case RIGHT://ctrl + right to move caret to the next position to write on this position
                     if(pos<input.getText().length()-1){
                         input.setText(input.getText().replace("|", ""));
                         input.insertText(pos+1, "|");
@@ -164,38 +176,44 @@ public class BaseNMode implements Initializable {
             switch(event.getCode()){
                 
                 case SLASH:
-                    input.insertText(pos, "÷"); // button slash to divide 
+                    s = opValidation(input.getText(), "÷", pos);
+                    input.setText(s);               // button slash to divide 
                     break;
                 case DIVIDE:
-                    input.insertText(pos, "÷"); // button / to divide 
+                    s = opValidation(input.getText(), "÷", pos);
+                    input.setText(s);               // button / (on computer keypad) to divide 
                     break;
                 case MINUS:
-                    input.insertText(pos, "-");// button - to minus 
+                    s = opValidation(input.getText(), "-", pos);
+                    input.setText(s);               // button - to minus 
                     break;
                 case SUBTRACT:
-                    input.insertText(pos, "-");
+                    s = opValidation(input.getText(), "-", pos);
+                    input.setText(s);               //button - (on computer keypad) to subtract
                     break;
                 case ADD:
-                    input.insertText(pos, "+");// button + to plus 
+                    s = opValidation(input.getText(), "+", pos);
+                    input.setText(s);               // button + (on computer keypad) to add 
                     break;
                 case MULTIPLY:
-                    input.insertText(pos, "×");
+                    s = opValidation(input.getText(), "×", pos);
+                    input.setText(s);               // button * (on computer keypad) to multiply
                     break;
                 case EQUALS:
-                    b_equal.fire(); //equal button to do the functionality of equal button on GUI
+                    b_equal.fire();                 //equal button to do the functionality of equal button on GUI
                     break; 
                 case ENTER:
-                    b_equal.fire();//enter button to do the functionality of equal button on GUI
+                    b_equal.fire();                 //enter button to do the functionality of equal button on GUI
                     break; 
                 case BACK_SPACE:
-                    b_backspace.fire();//backspace button to do the functionality of backspace button on GUI to remove last written number
+                    b_backspace.fire();             //backspace button to do the functionality of backspace button on GUI to remove the letter before the caret "|"
                     break;
                 case HOME:
-                    input.setText(input.getText().replace("|", "")); // home button to go to by the cursor to first position in text
+                    input.setText(input.getText().replace("|", "")); // home button to go to by the caret to first position in text
                     input.insertText(0, "|");
                     break;
                 case END:
-                    input.setText(input.getText().replace("|", "")); // end button to go to by the cursor to last position in text
+                    input.setText(input.getText().replace("|", "")); // end button to go to by the caret to last position in text
                     input.insertText(input.getText().length(), "|");
                     break;
             }
@@ -204,32 +222,32 @@ public class BaseNMode implements Initializable {
             //Activate only buttons can be clicked on keyboard depends on the mode
             if(btn_Bin.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN)  //in the binary mode activate on 1,0 +opertaions
             {
-                if(event.getCode()==event.getCode().DIGIT0
-                   ||event.getCode()==event.getCode().DIGIT1)
-                        input.insertText(pos, event.getText());
+                if(event.getCode().isDigitKey()&& ("01".contains(event.getText()))){
+                    s = Calc_GUI.numberValidation(input.getText(),event.getText() , pos);
+                    input.insertText(pos, s);
+                }
             }
             else if(btn_Dec.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //make it by default ,in the decimal mode activate from 0 to 9 numbers +opertaions
                 
             {
-                if(event.getCode().isDigitKey())
-                    input.insertText(pos, event.getText());
+                if(event.getCode().isDigitKey()){
+                    s = Calc_GUI.numberValidation(input.getText(),event.getText() , pos);
+                    input.insertText(pos, s);
+                }
             }
             else if(btn_Oct.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //in the octal mode activate from 0 to 7 digits +opertaions 
             {
-                 if(event.getCode()==event.getCode().DIGIT0
-                   ||event.getCode()==event.getCode().DIGIT1
-                   ||event.getCode()==event.getCode().DIGIT2
-                   ||event.getCode()==event.getCode().DIGIT3
-                   ||event.getCode()==event.getCode().DIGIT4
-                   ||event.getCode()==event.getCode().DIGIT5
-                   ||event.getCode()==event.getCode().DIGIT6
-                   ||event.getCode()==event.getCode().DIGIT7)
-                    input.insertText(pos, event.getText());
+                 if(event.getCode().isDigitKey()&& ("01234567".contains(event.getText()))){
+                    s = Calc_GUI.numberValidation(input.getText(),event.getText() , pos);
+                    input.insertText(pos, s);
+                 }
             }
             else if(btn_Hex.getTextFill()==javafx.scene.paint.Color.YELLOWGREEN) //in the hex mode activate from 0 to 9 digits and A,B,C,D,E and F alphabets+opertaions 
             {
-                if(event.getCode().isDigitKey())
-                    input.insertText(pos, event.getText());
+                if(event.getCode().isDigitKey()){
+                    s = Calc_GUI.numberValidation(input.getText(),event.getText() , pos);
+                    input.insertText(pos, s);
+                }
                 if(event.getCode()==event.getCode().A
                    ||event.getCode()==event.getCode().B
                    ||event.getCode()==event.getCode().C
@@ -237,40 +255,39 @@ public class BaseNMode implements Initializable {
                    ||event.getCode()==event.getCode().E
                    ||event.getCode()==event.getCode().F)                
                 {
-                    input.insertText(pos, event.getText().toUpperCase());
+                    s = Calc_GUI.numberValidation(input.getText(),event.getText() , pos);
+                    input.insertText(pos, s.toUpperCase());
                 }
             }
-
-            
-            
-            
         }
     }
     
     //Function to write operations on the textfield
     @FXML
-    public void operation(ActionEvent event) {        
-        Button tmp = (Button)event.getSource(); //take the text from the button 
+    public void operation(ActionEvent event) {   
+        String s;
+        Button tmp = (Button)event.getSource();         //take the text from the button 
         String op = tmp.getText();
-        pos = input.getText().indexOf("|");//determine the position to be written on
-        input.insertText(pos, op); //add operation on the position
+        pos = input.getText().indexOf("|");             //determine the position to be written on
+        s = opValidation(input.getText(),op , pos);     // operation validation
+        input.setText(s);                               //add operation on the position
     }
    
     //Function to clear screen
     @FXML
     private void clearScr(ActionEvent event) {
         // clear button  --> clear screen
-        input.clear(); //clear the textfield 
-        input.setText("|"); //set the cursor in the start of the text field
-        res.setText(""); //clear the result label
+        input.clear();                              //clear the textfield 
+        input.setText("|");                         //set the caret in the start of the text field
+        res.setText("");                            //clear the result label
     }   
     
     //Function to delete the char 
     @FXML
     private void back_space(ActionEvent event) {
-        pos = input.getText().indexOf("|");  //find the postion of cursor
+        pos = input.getText().indexOf("|");  //find the postion of caret
         if(pos != 0)
-            input.deleteText(pos-1, pos); //clear the previous char of the cursor
+            input.deleteText(pos-1, pos); //clear the previous char of the caret
     } 
     
     //Function handles the equal button which handles the whole operations and conversions
@@ -278,7 +295,7 @@ public class BaseNMode implements Initializable {
     private void equal_op(ActionEvent event) {
         //fisrt part aims to split the input written on textfield to apply the operations a 
         int dec;
-        String exp = input.getText().replace("|","");  //remove cursor from the textfield
+        String exp = input.getText().replace("|","");  //remove caret from the textfield
         String expression = "";
         String[] splitsMixed = exp.split("((?=\\+|\\-|\\×|\\÷|\\%|\\(|\\))|(?<=\\+|\\-|\\×|\\÷|\\%|\\(|\\)))"); //delimeters to split on
         for (String txt:splitsMixed)
@@ -317,7 +334,7 @@ public class BaseNMode implements Initializable {
                             res.setText(Integer.toHexString(result.intValue()).toUpperCase());
                             break;
                     }
-                    input.appendText("|"); //add cursor on the textfield
+                    input.appendText("|"); //add caret on the textfield
 
             } catch (ScriptException ex) {
                 res.setText("Math error");
@@ -327,7 +344,7 @@ public class BaseNMode implements Initializable {
             }
             catch(Exception ex){
                 try{
-                    Integer result = (Integer) scriptEngine.eval(expression.replace("--", "+"));//replace if two - written convert it in the double numbers to + in the integer case of result
+                    Integer result = (Integer) scriptEngine.eval(expression.replace("--", "+"));//replace if two - written convert it in the integer numbers to + in the integer case of result
                     switch(next_state)
                     {
                         case 2:         
@@ -367,14 +384,14 @@ public class BaseNMode implements Initializable {
        
         String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+"); //split on the deliemets
         for(String a:arrOfStr){
-            //cursor on which token
+            //caret on which token
             if(a.contains("|")){
                 int pos_relative = a.indexOf("|");
                 // invert "(- number)"
                 input.setText(input.getText().replace(a, ""));
                 a = "(-" + a.replace("|", "") + ")";
                 input.insertText(pos-pos_relative, a);
-                input.insertText(pos+2, "|"); //add the cursor 
+                input.insertText(pos+2, "|"); //add the caret 
                 break;
             }
         }
@@ -537,33 +554,54 @@ public class BaseNMode implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        makeFadeOut();
+        makeFadeOut();          // apply the fade out
+        
+        /*
+            switch case to choose the mode (bin, oct, dec, or hex)
+            by default : dec is choosen
+            
+            if state has changed between modes (normal, dark) 
+                ->  state is saved and initialized here
+        */
         switch(state){
             case 2:
                 btn_Bin.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                btn_Bin.fire();
                 break;
             case 8:
                 btn_Oct.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                btn_Oct.fire();
                 break;
             case 10:
                 btn_Dec.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                btn_Dec.fire();
                 break;
             case 16:
                 btn_Hex.setTextFill(javafx.scene.paint.Color.YELLOWGREEN);
+                btn_Hex.fire();
                 break;
         }
+        
+        // initialize prev and next states by state
         next_state = state;
         prev_state = state;
         
+        // initialize the input, result
         input.setText(oldInput);
         input.setEditable(false);
         input.setFocusTraversable(false);
         res.setText(oldRes);
 
+        // clearing style sheet for menuBar
         Calc_GUI.baseModeController.menuBar.getStylesheets().clear();
+        // adding menuBar to the AnchorPane
         anchor.getChildren().add(Calc_GUI.baseModeController.menuBar);
+        // bring menuBar to back to show (normal/dark)images on front
         Calc_GUI.baseModeController.menuBar.toBack();
+        // set menu bar width to match the AnchorPane width
         Calc_GUI.baseModeController.menuBar.setPrefWidth(549);
+        
+        // add dark style to menuBar if mode is dark, and normal style if mode is normal
         if(Calc_GUI.darkFlag){
             Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());            
         }
