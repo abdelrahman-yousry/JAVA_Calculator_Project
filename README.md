@@ -21,11 +21,15 @@ This is a desktop calulator based on Javafx. The calculator has five modes : Bas
 
 
 ### 1-Basic mode
+#### This mode performs simple arithmetic operations.
 
+![alt text](https://github.com/abdelrahman-yousry/Java_Calculator_Project/blob/main/Images/basicModeNormal.PNG)
 
 ### 2-Base-N mode
-![alt text](https://github.com/abdelrahman-yousry/Java_Calculator_Project/blob/main/Images/Base-NMode.png)
+#### This mode performs advanced calculations involving powers, roots, exponents, logarithms, trigonometry, and more. 
 
+![alt text](https://github.com/abdelrahman-yousry/Java_Calculator_Project/blob/main/Images/Base-NMode.png)
+<img src="Images/Base-NMode.png" alt="drawing" style="width:200px;"/>
 ### How to use it ?
 #### In this project, we used two 4x4 Keypad to control all the modes and features in our calculator.
 
