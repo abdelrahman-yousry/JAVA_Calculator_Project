@@ -80,3 +80,8 @@ Binary -> Hex
 
 <img src="Images/keyboard_1.PNG" alt="drawing" style="width:500px;"/>
 <img src="Images/keyboard_2.PNG" alt="drawing" style="width:500px;"/>
+
+
+### Libraries that we are used:
+#### 1- jssc.2.8.0 (for serial communication between java and arduino)
+#### 2- json-simple-1.1 is for connecting to the currency server
