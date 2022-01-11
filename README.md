@@ -78,5 +78,5 @@ Binary -> Hex
 
 ## Keyboard shortcuts
 
-<img src="Images/keyboard_1.PNG" alt="drawing" style="width:300px;"style="height:300px;"/>
-<img src="Images/keyboard_2.PNG" alt="drawing" style="width:300px;"style="height:300px;"/>
+<img src="Images/keyboard_1.PNG" alt="drawing" style="width:500px;"/>
+<img src="Images/keyboard_2.PNG" alt="drawing" style="width:500px;"/>
