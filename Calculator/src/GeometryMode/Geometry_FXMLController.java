@@ -40,12 +40,14 @@ import javafx.util.Duration;
  * @author Mohamed Hosny
  */
 public class Geometry_FXMLController implements Initializable {
+
     Alert alert;
     DialogPane dialogPane;
     static String text;
     public String selectedMode;
     String shape_detection = null;
     String calc;
+    int dot_flag = 0;
     int status_area; // this varibale is a flag to let me know at which state I stand
     int status_perimeter;// this varibale is a flag to let me know at which state I stand
     String get_dnum;// this var. to get the numbers entered by the user
@@ -77,7 +79,7 @@ public class Geometry_FXMLController implements Initializable {
     private Label res;
     static String old_ta1_text = null;
     static String old_ta2_text = null;
-    static String old_Shape_Detection=null;
+    static String old_Shape_Detection = null;
     static String old_Calc = null;
     @FXML
     MenuItem Circle_mi;
@@ -94,9 +96,9 @@ public class Geometry_FXMLController implements Initializable {
     @FXML
     private GridPane gridPane;
     @FXML
-    private ImageView normal;
-    @FXML
     private AnchorPane anchor;
+    @FXML
+    private ImageView dark;
 
     /**
      * Initializes the controller class.
@@ -111,11 +113,10 @@ public class Geometry_FXMLController implements Initializable {
         anchor.getChildren().add(Calc_GUI.baseModeController.menuBar);
         Calc_GUI.baseModeController.menuBar.toBack();
         Calc_GUI.baseModeController.menuBar.setPrefWidth(578);
-        if(Calc_GUI.darkFlag){
-            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());            
-        }
-        else{
-            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyle.css").toString()); 
+        if (Calc_GUI.darkFlag) {
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyleDark.css").toString());
+        } else {
+            Calc_GUI.baseModeController.menuBar.getStylesheets().add(getClass().getResource("..//Style/buttonStyle.css").toString());
         }
         makeFadeOut();
         Label_note.setVisible(false);
@@ -127,10 +128,8 @@ public class Geometry_FXMLController implements Initializable {
             switch (old_Shape_Detection) {
                 case "Circle":
                     Circle_mi.fire();
-                    if(old_Calc!=null)
-                    {
-                        switch(old_Calc)
-                        {
+                    if (old_Calc != null) {
+                        switch (old_Calc) {
                             case "Area":
                                 area_mi.fire();
                                 break;
@@ -142,10 +141,8 @@ public class Geometry_FXMLController implements Initializable {
                     break;
                 case "Square":
                     Square_mi.fire();
-                    if(old_Calc!=null)
-                    {
-                        switch(old_Calc)
-                        {
+                    if (old_Calc != null) {
+                        switch (old_Calc) {
                             case "Area":
                                 area_mi.fire();
                                 break;
@@ -157,10 +154,8 @@ public class Geometry_FXMLController implements Initializable {
                     break;
                 case "Rectangle":
                     Rectangle_mi.fire();
-                    if(old_Calc!=null)
-                    {
-                        switch(old_Calc)
-                        {
+                    if (old_Calc != null) {
+                        switch (old_Calc) {
                             case "Area":
                                 area_mi.fire();
                                 break;
@@ -172,10 +167,8 @@ public class Geometry_FXMLController implements Initializable {
                     break;
                 case "Triangle":
                     Triangle_mi.fire();
-                    if(old_Calc!=null)
-                    {
-                        switch(old_Calc)
-                        {
+                    if (old_Calc != null) {
+                        switch (old_Calc) {
                             case "Area":
                                 area_mi.fire();
                                 break;
@@ -187,10 +180,8 @@ public class Geometry_FXMLController implements Initializable {
                     break;
                 case "Rohmbus":
                     Rohmbus_mi.fire();
-                    if(old_Calc!=null)
-                    {
-                        switch(old_Calc)
-                        {
+                    if (old_Calc != null) {
+                        switch (old_Calc) {
                             case "Area":
                                 area_mi.fire();
                                 break;
@@ -202,10 +193,8 @@ public class Geometry_FXMLController implements Initializable {
                     break;
                 case "Parallelogram":
                     Parallelogram_mi.fire();
-                    if(old_Calc!=null)
-                    {
-                        switch(old_Calc)
-                        {
+                    if (old_Calc != null) {
+                        switch (old_Calc) {
                             case "Area":
                                 area_mi.fire();
                                 break;
@@ -221,26 +210,28 @@ public class Geometry_FXMLController implements Initializable {
         ta1.setText(old_ta1_text);
         ta2.setText(old_ta2_text);
     }
-    @FXML
-    private void dot_op(ActionEvent event) {
-        // sets dot only one time per number
-        // parse on operations
-        String str = ta1.getText();
-        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+");
-        int pos = ta1.getText().indexOf("|");
-        for(String a:arrOfStr){
-            if(a.contains("|")){
-                if(!a.contains(".")){
-                    ta1.insertText(pos, ".");
-                    // check if pos of | doesn't has a number before it --> pos-2 = 0
-                    if(pos == 0 || !Character.isDigit(ta1.getText().charAt(pos-1)))
-                        ta1.insertText(pos, "0");
-                }
-                break;
-            }
-        }
-    }
-    
+
+//    @FXML
+//    private void dot_op(ActionEvent event) {
+//        // sets dot only one time per number
+//        // parse on operations
+//        String str = ta1.getText();
+//        String[] arrOfStr = str.split("[\\×\\÷\\+\\-\\^\\√\\(\\)\\%]+");
+//        int pos = ta1.getText().indexOf("|");
+//        for (String a : arrOfStr) {
+//            if (a.contains("|")) {
+//                if (!a.contains(".")) {
+//                    ta1.insertText(pos, ".");
+//                    // check if pos of | doesn't has a number before it --> pos-2 = 0
+//                    if (pos == 0 || !Character.isDigit(ta1.getText().charAt(pos - 1))) {
+//                        ta1.insertText(pos, "0");
+//                    }
+//                }
+//                break;
+//            }
+//        }
+//    }
+
     /*
     *this handler fired if any button is pressed in the GUI
     *the input param is the event which is clicking on the button
@@ -258,6 +249,7 @@ public class Geometry_FXMLController implements Initializable {
             //if(!ta2.getText().isEmpty()&&ta2.getText().equals(""))
             if (!ta2.getText().equals("Enter Numbers!") || bstr.equals("⌫")) {
                 ta1.clear();
+                dot_flag = 0;
             }
             ta2.clear();
             c_to_clear = ' ';
@@ -270,16 +262,29 @@ public class Geometry_FXMLController implements Initializable {
         switch (bstr) {//s switch 3la st mn 2l arduino
             case "C":// mean clearing the text area field 
                 ta1.clear();
+                dot_flag = 0;
                 break;
             case "⌫"://mean deleting the last character
+
                 if (!ta1.getText().isEmpty()) {
-                    ta1.deleteText(ta1.getLength() - 1, ta1.getLength());
+                    if (ta1.getText().charAt(ta1.getText().length() - 1)=='.') {
+                        dot_flag = 0;
+                    }
+                    ta1.deleteText(ta1.getLength() - 1, ta1.getLength()); 
                 }
+
+                break;
+            case ".":
+                if (dot_flag == 0) {
+                    dot_flag = 1;
+                    ta1.appendText(bstr);
+                }
+
                 break;
             case "=":// mean calculating the operations
 
                 c_to_clear = '=';
-                if (ta1.getText()!= null && !ta1.getText().isEmpty() && shape_detection != null && calc != null) {
+                if (ta1.getText() != null && !ta1.getText().isEmpty() && shape_detection != null && calc != null) {
 
                     Double result = new Double(0);
                     switch (shape_detection) {
@@ -326,6 +331,7 @@ public class Geometry_FXMLController implements Initializable {
                                     if (dnum1 == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText());
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText("Enter length:");
                                     } else {
                                         dnum2 = Double.parseDouble(ta1.getText());
@@ -340,6 +346,7 @@ public class Geometry_FXMLController implements Initializable {
                                     if (dnum1 == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText());
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText(" Enter length: ");
                                     } else {
                                         dnum2 = Double.parseDouble(ta1.getText());
@@ -359,6 +366,7 @@ public class Geometry_FXMLController implements Initializable {
                                     if (status_area == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText());
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText("Enter the height ");
                                         status_area = 1;
                                     } else if (status_area == 1) {
@@ -376,12 +384,14 @@ public class Geometry_FXMLController implements Initializable {
                                     if (status_perimeter == 0) {
                                         dnum1 = Double.parseDouble(ta1.getText());
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText(" Enter side 2 = ");
 
                                         status_perimeter = 1;
                                     } else if (status_perimeter == 1) {
                                         dnum2 = Double.parseDouble(ta1.getText());
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText("Enter side 3 = ");
                                         status_perimeter = 2;
                                     } else if (status_perimeter == 2) {
@@ -403,6 +413,7 @@ public class Geometry_FXMLController implements Initializable {
                                         get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText("Enter the diagonal 2 length ");
                                         status_area = 1;
                                     } else if (status_area == 1) {
@@ -438,6 +449,7 @@ public class Geometry_FXMLController implements Initializable {
                                         get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText(" Enter the height = ");
                                         status_area = 1;
                                     } else if (status_area == 1) {
@@ -458,6 +470,7 @@ public class Geometry_FXMLController implements Initializable {
                                         get_dnum = ta1.getText();
                                         dnum1 = new Double(get_dnum);
                                         ta1.clear();
+                                        dot_flag = 0;
                                         ta1.setPromptText(" Enter side 2 = ");
                                         status_perimeter = 1;
                                     } else if (status_perimeter == 1) {
@@ -503,6 +516,7 @@ public class Geometry_FXMLController implements Initializable {
     @FXML
     private void shape_geo(ActionEvent event) {
         ta1.clear();
+        dot_flag = 0;
         ta2.clear();
         ta1.setPromptText("");
         Label_note.setVisible(false);
@@ -521,6 +535,7 @@ public class Geometry_FXMLController implements Initializable {
             calc_mb.getItems().add(circum_calc);
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter the radius: ");
                 Label_note.setVisible(true);
@@ -530,6 +545,7 @@ public class Geometry_FXMLController implements Initializable {
             });
             circum_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter the radius: ");
                 Label_note.setVisible(true);
@@ -545,6 +561,7 @@ public class Geometry_FXMLController implements Initializable {
             calc_mb.getItems().add(perimeter_calc);
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter side's length: ");
                 Label_note.setVisible(true);
@@ -554,6 +571,7 @@ public class Geometry_FXMLController implements Initializable {
             });
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter side's length: ");
                 Label_note.setVisible(true);
@@ -569,6 +587,7 @@ public class Geometry_FXMLController implements Initializable {
             calc_mb.getItems().add(perimeter_calc);
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter width: ");
                 Label_note.setVisible(true);
@@ -578,6 +597,7 @@ public class Geometry_FXMLController implements Initializable {
             });
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter width: ");
                 Label_note.setVisible(true);
@@ -594,6 +614,7 @@ public class Geometry_FXMLController implements Initializable {
             calc_mb.getItems().add(perimeter_calc);
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter side 1 = ");
                 Label_note.setVisible(true);
@@ -604,6 +625,7 @@ public class Geometry_FXMLController implements Initializable {
             });
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter the base ");
                 Label_note.setVisible(true);
@@ -621,6 +643,7 @@ public class Geometry_FXMLController implements Initializable {
 
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter the side length ");
                 Label_note.setVisible(true);
@@ -630,6 +653,7 @@ public class Geometry_FXMLController implements Initializable {
             });
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter the diagonal 1 length ");
                 Label_note.setVisible(true);
@@ -647,6 +671,7 @@ public class Geometry_FXMLController implements Initializable {
 
             perimeter_calc.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter side 1 =");
                 Label_note.setVisible(true);
@@ -656,6 +681,7 @@ public class Geometry_FXMLController implements Initializable {
             });
             area_mi.setOnAction((ActionEvent event1) -> {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
                 ta1.setPromptText("Enter the base = ");
                 Label_note.setVisible(true);
@@ -666,17 +692,15 @@ public class Geometry_FXMLController implements Initializable {
         }
     }
 
-
 // Hosny
-
     @FXML
     private void changeMode(MouseEvent event) throws IOException {
         Parent root;
         Scene scene;
         old_ta1_text = ta1.getText();
         old_ta2_text = ta2.getText();
-        old_Shape_Detection=shape_detection;
-        old_Calc=calc;
+        old_Shape_Detection = shape_detection;
+        old_Calc = calc;
         if ("normal".equals(((ImageView) event.getSource()).getId())) {
             Calc_GUI.darkFlag = true;
             root = FXMLLoader.load(getClass().getResource("..//GeometryMode/GeometryModeDark.fxml"));
@@ -689,15 +713,15 @@ public class Geometry_FXMLController implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    
+
     @FXML
     private void write_key(KeyEvent event) {
         if (event.getCode().isDigitKey()) {
-            if(c_to_clear=='=')
-            {
+            if (c_to_clear == '=') {
                 ta1.clear();
+                dot_flag = 0;
                 ta2.clear();
-                c_to_clear=' ';
+                c_to_clear = ' ';
             }
             ta1.appendText(event.getText());
         } else {
@@ -721,9 +745,8 @@ public class Geometry_FXMLController implements Initializable {
             }
         }
     }
-    
-    void makeFadeOut()
-    {
+
+    void makeFadeOut() {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(500));
         fadeTransition.setNode(gridPane);
