@@ -30,152 +30,152 @@
             <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btn_0" layoutX="157.0" layoutY="316.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="btn_0" layoutX="157.0" layoutY="316.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_3" layoutX="155.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="btn_3" layoutX="155.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_2" layoutX="86.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="btn_2" layoutX="86.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_8" layoutX="78.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="8" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btn_8" layoutX="78.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="8" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_5" layoutX="86.0" layoutY="174.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="btn_5" layoutX="86.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_7" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="7" textFill="WHITE" GridPane.rowIndex="1">
+            <Button fx:id="btn_7" layoutX="14.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="7" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_6" layoutX="155.0" layoutY="167.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button fx:id="btn_6" layoutX="155.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_9" layoutX="143.0" layoutY="87.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="9" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="btn_9" layoutX="143.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="9" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_1" layoutX="14.0" layoutY="245.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="1" textFill="WHITE" GridPane.rowIndex="3">
+            <Button fx:id="btn_1" layoutX="14.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="1" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_4" layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="4" textFill="WHITE" GridPane.rowIndex="2">
+            <Button fx:id="btn_4" layoutX="14.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="4" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="( )" textFill="WHITE" GridPane.columnIndex="1">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="( )" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="\%" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="\%" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="÷" textFill="WHITE" GridPane.columnIndex="3">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="÷" textFill="WHITE" GridPane.columnIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="×" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="×" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="27.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="-" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="-" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
-                  <Font name="SWGothe" size="27.0" />
+                  <Font name="SWGothe" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
-            <Button fx:id="b_equal" mnemonicParsing="false" onAction="#equal_op" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyleDark.css" text="=" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#operation" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="b_backspace" mnemonicParsing="false" onAction="#back_space" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="⌫" textFill="WHITE" GridPane.columnIndex="2">
+            <Button fx:id="b_equal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#equal_op" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyleDark.css" text="=" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="b_backspace" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#back_space" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="⌫" textFill="WHITE" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#clearScr" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="C" textFill="WHITE">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clearScr" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="C" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#invert_sign" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+/-" textFill="WHITE" GridPane.rowIndex="4">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#invert_sign" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyleDark.css" text="+/-" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="btn_Dec" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="DEC" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <Button fx:id="btn_Dec" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="DEC" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btn_E" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="E" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <Button fx:id="btn_E" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="E" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_C" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="C" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <Button fx:id="btn_C" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="C" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_A" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="A" GridPane.columnIndex="6">
+            <Button fx:id="btn_A" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="A" GridPane.columnIndex="6">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_D" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="D" GridPane.columnIndex="7" GridPane.rowIndex="1">
+            <Button fx:id="btn_D" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="D" GridPane.columnIndex="7" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_F" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="F" GridPane.columnIndex="7" GridPane.rowIndex="2">
+            <Button fx:id="btn_F" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="F" GridPane.columnIndex="7" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_Oct" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="OCT" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="3">
+            <Button fx:id="btn_Oct" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="OCT" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btn_Hex" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="HEX" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="4">
+            <Button fx:id="btn_Hex" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="HEX" textFill="WHITE" GridPane.columnIndex="7" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btn_B" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="B" GridPane.columnIndex="7">
+            <Button fx:id="btn_B" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#write_number" opacity="0.9" prefHeight="60.0" prefWidth="60.0" styleClass="trigButton" stylesheets="@../Style/buttonStyleDark.css" text="B" GridPane.columnIndex="7">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="btn_Bin" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="BIN" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <Button fx:id="btn_Bin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#baseN" opacity="0.9" prefHeight="50.0" prefWidth="80.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyleDark.css" text="BIN" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

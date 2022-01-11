@@ -164,11 +164,11 @@ public class Calc_GUI extends Application {
                 case "c":
                     r.keyPress(java.awt.event.KeyEvent.VK_BACK_SPACE);                    
                     break;
-                case "%":   // tab
+                case "t":   // tab
                     r.keyPress(java.awt.event.KeyEvent.VK_TAB);                    
                     r.keyRelease(java.awt.event.KeyEvent.VK_TAB);                    
                     break;
-                case "i":   // alt
+                case "a":   // alt
                     r.keyPress(java.awt.event.KeyEvent.VK_ALT);                    
                     r.keyRelease(java.awt.event.KeyEvent.VK_ALT);                    
                     break;

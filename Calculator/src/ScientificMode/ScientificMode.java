@@ -62,6 +62,7 @@ public class ScientificMode implements Initializable {
     int pos;
     static String oldInput = "|";
     static String oldRes = " ";
+    static String oldRadLabel = "Deg";
 
     @FXML
     public Button radian;
@@ -85,17 +86,17 @@ public class ScientificMode implements Initializable {
     public Button log;
     public Button mod;
     @FXML
-    private Menu port_menu;
-    @FXML
     private Button b_period;
     @FXML
     private Button b_backspace;
     @FXML
     private Button b_equal;
     @FXML
-    private ImageView dark;
-    @FXML
     private AnchorPane gridPane;
+    @FXML
+    private ImageView normal;
+    @FXML
+    private Label radLabel;
 
 
     
@@ -185,6 +186,7 @@ public class ScientificMode implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        radLabel.setText(oldRadLabel);
         txtField.setText(oldInput);
         txtField.setEditable(false);
         txtField.setFocusTraversable(false);
@@ -251,11 +253,14 @@ public class ScientificMode implements Initializable {
         {
             radianFlag = true;
             radian.setText("Degree");
+            radLabel.setText("Rad");
         }
         else
         {
             radianFlag = false;
             radian.setText("Radian");
+            radLabel.setText("Deg");
+
         }
     }
 
@@ -567,6 +572,7 @@ public class ScientificMode implements Initializable {
         {
             oldInput = txtField.getText();
             oldRes = res.getText();
+            oldRadLabel = radLabel.getText();
             Calc_GUI.darkFlag = true;
             root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeDark.fxml"));
 
@@ -575,6 +581,7 @@ public class ScientificMode implements Initializable {
         {
             oldInput = txtField.getText();
             oldRes = res.getText();
+            oldRadLabel = radLabel.getText();
             Calc_GUI.darkFlag = false;
             root = FXMLLoader.load(getClass().getResource("..//ScientificMode/ScientificModeNormal.fxml"));
         }
