@@ -70,13 +70,13 @@ Binary -> Hex
 <img src="Images/keypad1.PNG" alt="drawing" style="width:300px;"/>
 
 #### Second keypad
-<img src="Images/keypad2.PNG" alt="drawing" style="width:300px;"/>
+<img src="Images/keypad2.PNG" alt="drawing" style="width:400px;"/>
 
 ### Connection with arduino
-<img src="Images/ardu.PNG" alt="drawing" style="width:300px;"/>
+<img src="Images/ardu.PNG" alt="drawing" style="width:500px;"/>
 
 
 ## Keyboard shortcuts
 
-<img src="Images/keyboard_1.PNG" alt="drawing" style="width:200px;"/>
-<img src="Images/keyboard_2.PNG" alt="drawing" style="width:200px;"/>
+<img src="Images/keyboard_1.PNG" alt="drawing" style="width:300px;"style="height:300px;"/>
+<img src="Images/keyboard_2.PNG" alt="drawing" style="width:300px;"style="height:300px;"/>
