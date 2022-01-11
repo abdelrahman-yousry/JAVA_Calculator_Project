@@ -65,4 +65,18 @@ Binary -> Hex
 
 ### How to use it ?
 #### In this project, we used two 4x4 Keypad to control all the modes and features in our calculator.
+#### 	First Keypad: 
+#### In this keypad we manage all the numbers from 0 – 9, dot operator, equal button and the basic operations + - / *  .
+<img src="Images/keypad1.png" alt="drawing" style="width:300px;"/>
 
+#### Second keypad
+<img src="Images/keypad2.png" alt="drawing" style="width:300px;"/>
+
+### Connection with arduino
+<img src="Images/ardu" alt="drawing" style="width:300px;"/>
+
+
+## Keyboard shortcuts
+
+<img src="Images/keyboard_1.png" alt="drawing" style="width:200px;"/>
+<img src="Images/keyboard_2.png" alt="drawing" style="width:200px;"/>
