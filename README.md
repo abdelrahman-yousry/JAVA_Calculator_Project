@@ -8,6 +8,7 @@
 
 ### Link of Demo video: 
 https://youtu.be/eb2qRVtGJRE
+
 ### Documentation Link:
 https://github.com/abdelrahman-yousry/Java_Calculator_Project/blob/main/Documentation/CalculatorDoc.pdf
 
@@ -18,8 +19,5 @@ https://github.com/abdelrahman-yousry/Java_Calculator_Project/blob/main/Document
 ### Description
 This is a desktop calulator based on Javafx. The calculator has five modes : Basic Mode, Scientific Mode, Base-N Mode, Conversion Mode, and Geometry Mode.
 
-###link to the video:
-
-https://youtu.be/eb2qRVtGJRE
 
 
