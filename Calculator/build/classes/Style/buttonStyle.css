@@ -86,6 +86,12 @@
     -fx-border-color: white;
 }
 
+.equalbutton:focused{
+    -fx-border-radius: 100px ;
+    -fx-border-color: yellowgreen;
+    -fx-border-width: 2px;
+}
+
 .context-menu{
     -fx-background-color: #fff;
     -fx-background-insets: 3,0,0,0;

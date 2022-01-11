@@ -52,77 +52,77 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="b_equal" layoutX="281.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyle.css" text="=" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Button fx:id="b_equal" layoutX="281.0" layoutY="452.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="equalbutton" stylesheets="@../Style/buttonStyle.css" text="=" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="200.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button layoutX="200.0" layoutY="381.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="1" GridPane.rowIndex="3">
+            <Button layoutX="112.0" layoutY="381.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="193.0" layoutY="310.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button layoutX="193.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="7" GridPane.rowIndex="1">
+            <Button layoutX="112.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="7" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="381.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button layoutX="281.0" layoutY="381.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="310.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="4" GridPane.rowIndex="2">
+            <Button layoutX="112.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="4" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button id="b8" layoutX="187.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button id="b8" layoutX="187.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="193.0" layoutY="452.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button layoutX="193.0" layoutY="452.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="223.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button layoutX="281.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="b_period" layoutX="118.0" layoutY="452.0" mnemonicParsing="false" onAction="#dot_op" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="." GridPane.rowIndex="4">
+            <Button fx:id="b_period" layoutX="118.0" layoutY="452.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dot_op" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="." GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="112.0" layoutY="152.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyle.css" text="C" textFill="WHITE">
+            <Button layoutX="112.0" layoutY="152.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="clearbutton" stylesheets="@../Style/buttonStyle.css" text="C" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="b_backspace" layoutX="281.0" layoutY="141.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="⌫" GridPane.columnIndex="2">
+            <Button fx:id="b_backspace" layoutX="281.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="⌫" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button layoutX="281.0" layoutY="303.0" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button layoutX="281.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Button>
-            <Button fx:id="neg_but" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="-" GridPane.columnIndex="1">
+            <Button fx:id="neg_but" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ta_write" prefHeight="60.0" prefWidth="60.0" styleClass="defaultbutton" stylesheets="@../Style/buttonStyle.css" text="-" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
