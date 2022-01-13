@@ -4,7 +4,7 @@
 - Aya Adel Gomaa
 - Mohamed Hosny
 - Nehal Amgad
-- Yomna AL-Shaboury
+- Yomna Al-Shaboury
 
 ### Link of Demo video: 
 https://youtu.be/eb2qRVtGJRE
