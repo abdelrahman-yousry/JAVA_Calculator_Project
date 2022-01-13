@@ -6,6 +6,8 @@
 - Nehal Amgad
 - Yomna Al-Shaboury
 
+## Supervised by Dr/Eman Hesham (ITI)
+
 ### Link of Demo video: 
 https://youtu.be/9yoEll96WvQ
 
@@ -85,3 +87,5 @@ Binary -> Hex
 ### Libraries that we are used:
 #### 1- Jssc 2.9.0 (for serial communication between java and arduino)
 #### 2- json-simple-1.1 is To read the response from server
+
+
