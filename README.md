@@ -1,4 +1,5 @@
 # Java Calculator Project
+## Supervised by Dr/Eman Hesham (ITI)
 ### Team Names
 - Abdelrahman Yosry
 - Aya Adel Gomaa
@@ -6,7 +7,7 @@
 - Nehal Amgad
 - Yomna Al-Shaboury
 
-## Supervised by Dr/Eman Hesham (ITI)
+
 
 ### Link of Demo video: 
 https://youtu.be/9yoEll96WvQ
