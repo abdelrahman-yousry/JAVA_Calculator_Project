@@ -83,5 +83,5 @@ Binary -> Hex
 
 
 ### Libraries that we are used:
-#### 1- jssc.2.8.0 (for serial communication between java and arduino)
-#### 2- json-simple-1.1 is for connecting to the currency server
+#### 1- Jssc 2.9.0 (for serial communication between java and arduino)
+#### 2- json-simple-1.1 is To read the response from server
